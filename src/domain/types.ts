@@ -1,6 +1,8 @@
 export interface LexiconEntry {
   form: string;
   gloss: string;
+  /** Human-curated concise fallback for inline/interlinear display. */
+  preferredGloss?: string;
   root?: string;
   pos?: string;
   register?: string;
