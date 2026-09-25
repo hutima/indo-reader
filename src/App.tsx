@@ -182,7 +182,10 @@ export function App() {
           <button className="close" onClick={() => setSelected(null)} type="button">×</button>
           <div className="surface">{selected.surface}</div>
           <dl>
-            <div><dt>English</dt><dd>{selected.lexicon?.gloss ?? 'Not glossed yet'}</dd></div>
+            {selected.inlineGloss && (
+              <div><dt>Inline gloss</dt><dd>{selected.inlineGloss} <small>· BSB-informed</small></dd></div>
+            )}
+            <div><dt>Dictionary gloss</dt><dd>{selected.lexicon?.gloss ?? 'Not glossed yet'}</dd></div>
             <div><dt>{selected.lexicon?.root ? 'Root' : 'Root guess'}</dt><dd>{selectedRoot}</dd></div>
             <div><dt>Part of speech</dt><dd>{selected.lexicon?.pos ?? '—'}</dd></div>
             {selected.lexicon?.register && <div><dt>Register</dt><dd>{selected.lexicon.register}</dd></div>}
