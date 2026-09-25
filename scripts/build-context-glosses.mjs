@@ -104,6 +104,11 @@ function senseWords(sense) {
 }
 
 function chooseGloss(entry, englishVerse) {
+  const normalizedForm = String(entry.form ?? '').toLocaleLowerCase('id');
+  if ((normalizedForm === 'kita' || normalizedForm === 'kami') && entry.preferredGloss) {
+    return entry.preferredGloss;
+  }
+
   const dictionaryOptions = senses(entry.gloss);
   const options = entry.preferredGloss
     ? [entry.preferredGloss, ...dictionaryOptions.filter((value) => value !== entry.preferredGloss)]
