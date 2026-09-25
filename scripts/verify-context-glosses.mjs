@@ -64,7 +64,7 @@ if (pronounValues.kami.size && (pronounValues.kami.size !== 1 || !pronounValues.
 const penerang = Object.entries(genesis)
   .filter(([key]) => key.includes(':penerang:'))
   .map(([, value]) => String(value));
-if (!penerang.length || penerang.some((value) => !/light/i.test(value))) {
+if (!penerang.length || penerang.some((value) => value !== 'light')) {
   throw new Error(`Genesis penerang gloss regression: ${penerang.join(', ') || 'missing'}`);
 }
 
