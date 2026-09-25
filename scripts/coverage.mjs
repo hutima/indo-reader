@@ -34,7 +34,8 @@ for (const file of await readdir(corpusDir)) {
 }
 
 const forms = [...counts.values()].sort((a, b) => b.count - a.count || a.form.localeCompare(b.form, 'id'));
-const coveredTypes = forms.filter((row) => row.covered).length;
+const missing = forms.filter((row) => !row.covered);
+const coveredTypes = forms.length - missing.length;
 const report = {
   generatedAt: new Date().toISOString(),
   totalTokens,
@@ -43,11 +44,16 @@ const report = {
   totalTypes: forms.length,
   coveredTypes,
   typeCoverage: forms.length ? coveredTypes / forms.length : 0,
-  mostFrequentMissing: forms.filter((row) => !row.covered).slice(0, 500),
+  mostFrequentMissing: missing.slice(0, 500),
 };
 
 await writeFile(outputFile, JSON.stringify(report, null, 2) + '\n', 'utf8');
+
 console.log(
   `PBWL coverage: ${coveredTokens}/${totalTokens} tokens (${(report.tokenCoverage * 100).toFixed(1)}%), ` +
   `${coveredTypes}/${forms.length} types (${(report.typeCoverage * 100).toFixed(1)}%).`,
 );
+console.log('Top 100 missing AGS surface forms:');
+for (const row of missing.slice(0, 100)) {
+  console.log(`${String(row.count).padStart(6)}  ${row.form}`);
+}
