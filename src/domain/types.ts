@@ -15,6 +15,8 @@ export interface ReadingToken {
   normalized: string;
   after: string;
   lexicon?: LexiconEntry;
+  /** Concise verse-context gloss for inline/interlinear display. */
+  inlineGloss?: string;
 }
 
 export interface Verse {
