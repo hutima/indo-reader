@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from 'react';
 import type { ReadingToken } from './domain/types';
 import { analyzeIndonesian } from './domain/indonesianMorph';
 import { loadAgsBook } from './io/corpus';
+import { loadPbwlLexicon } from './io/pbwl';
 import { parseUsfm } from './io/usfm';
 
 type Mode = 'indo' | 'gloss' | 'both';
@@ -13,7 +14,7 @@ export function App() {
   const [known, setKnown] = useState<Set<string>>(new Set());
 
   useEffect(() => {
-    loadAgsBook('JHN').then(setUsfm);
+    Promise.all([loadPbwlLexicon(), loadAgsBook('JHN')]).then(([, book]) => setUsfm(book));
   }, []);
 
   const verses = useMemo(() => (usfm ? parseUsfm(usfm) : []), [usfm]);
@@ -98,6 +99,9 @@ export function App() {
               <dd>{selectedRoot}</dd>
             </div>
             <div><dt>Part of speech</dt><dd>{selected.lexicon?.pos ?? '—'}</dd></div>
+            {selected.lexicon?.register && (
+              <div><dt>Register</dt><dd>{selected.lexicon.register}</dd></div>
+            )}
             {analysis.affixes.length > 0 && (
               <div><dt>Affixes</dt><dd>{analysis.affixes.join(' + ')}</dd></div>
             )}
@@ -109,7 +113,7 @@ export function App() {
               <dd>
                 {selected.lexicon
                   ? selected.lexicon.source === 'pbwl'
-                    ? 'PBWL reference'
+                    ? `PBWL reference${selected.lexicon.sourceRootId ? ` · root #${selected.lexicon.sourceRootId}` : ''}`
                     : 'Reader lexicon'
                   : `Automatic analysis (${analysis.confidence})`}
               </dd>
