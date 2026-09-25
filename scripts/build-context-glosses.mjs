@@ -233,6 +233,12 @@ async function main() {
     'utf8',
   );
   console.log(`Generated ${contextualCount} contextual inline glosses across ${verseCount} matched verses.`);
+
+  const sample = Object.entries(entries)
+    .filter(([key]) => /^JHN\.1\.[1-3]:/u.test(key))
+    .slice(0, 40);
+  console.log('John 1:1–3 contextual gloss sample:');
+  for (const [key, value] of sample) console.log(`  ${key} -> ${value}`);
 }
 
 main().catch((error) => {
