@@ -6,6 +6,7 @@ export interface LexiconEntry {
   register?: string;
   note?: string;
   source?: 'pbwl' | 'reader';
+  sourceRootId?: number;
 }
 
 export interface ReadingToken {
