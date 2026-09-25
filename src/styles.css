@@ -103,3 +103,22 @@ dt { color: #726b64; } dd { margin: 0; }
   opacity: .35;
   cursor: default;
 }
+
+.chapter-title-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+}
+.coverage-badge {
+  flex: 0 0 auto;
+  color: #726b64;
+  background: #eee9e4;
+  border-radius: 999px;
+  padding: .2rem .55rem;
+  font: 600 .72rem/1.2 Inter, sans-serif;
+}
+.under.missing {
+  color: #8b8178;
+  font-weight: 500;
+}
