@@ -105,6 +105,21 @@ function chooseGloss(entry, englishVerse) {
   const verseWords = englishWords(englishVerse);
   const verseSet = new Set(verseWords.map((word) => word.canon));
 
+  // Curated concise glosses are specifically intended for interlinear display.
+  // If the preferred sense is compatible with this BSB verse, use it rather
+  // than letting a longer dictionary phrase win merely because it overlaps
+  // more words elsewhere in the verse.
+  if (entry.preferredGloss) {
+    const preferredWords = senseWords(entry.preferredGloss);
+    if (preferredWords.length && preferredWords.every((word) => verseSet.has(word))) {
+      if (preferredWords.length === 1) {
+        const match = verseWords.find((word) => word.canon === preferredWords[0]);
+        if (match) return match.surface;
+      }
+      return entry.preferredGloss;
+    }
+  }
+
   let best = null;
   for (let i = 0; i < options.length; i += 1) {
     const option = options[i];
@@ -119,7 +134,7 @@ function chooseGloss(entry, englishVerse) {
     if (!best || score > best.score) best = { option, words, overlap, score };
   }
 
-  if (!best) return options[0];
+  if (!best) return entry.preferredGloss ?? options[0];
 
   // For one-word dictionary senses, when BSB uses an inflected/case form from
   // the same English family, display the BSB surface form (is -> was, he -> Him).
