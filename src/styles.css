@@ -84,3 +84,22 @@ dt { color: #726b64; } dd { margin: 0; }
   .passage-nav label:first-child { flex: 1; }
   .passage-nav select { width: 100%; }
 }
+
+.chapter-arrows {
+  display: flex;
+  gap: .35rem;
+  margin-left: auto;
+}
+.chapter-arrows button {
+  width: 2.2rem;
+  min-height: 2.2rem;
+  border: 1px solid #cfc7be;
+  border-radius: 9px;
+  background: white;
+  font-size: 1.35rem;
+  line-height: 1;
+}
+.chapter-arrows button:disabled {
+  opacity: .35;
+  cursor: default;
+}
