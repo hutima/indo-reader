@@ -44,3 +44,43 @@ dt { color: #726b64; } dd { margin: 0; }
   .detail { left: auto; right: 1rem; bottom: 1rem; transform: none; width: 23rem; border-radius: 16px; border-bottom: 1px solid #ddd6ce; }
   .reader { padding-right: 25rem; max-width: 72rem; }
 }
+
+
+.passage-nav {
+  position: sticky;
+  top: 62px;
+  z-index: 1;
+  display: flex;
+  gap: .75rem;
+  align-items: end;
+  padding: .55rem 1rem;
+  border-bottom: 1px solid #ddd6ce;
+  background: rgba(247,245,242,.95);
+  backdrop-filter: blur(12px);
+}
+.passage-nav label {
+  display: grid;
+  gap: .18rem;
+  color: #726b64;
+  font-size: .72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .04em;
+}
+.passage-nav select {
+  min-height: 2.2rem;
+  border: 1px solid #cfc7be;
+  border-radius: 9px;
+  background: white;
+  color: #20242a;
+  padding: .3rem 2rem .3rem .55rem;
+  font: 500 .95rem/1.2 Inter, sans-serif;
+}
+.loading { color: #726b64; font-style: italic; }
+@media (max-width: 560px) {
+  .header { align-items: flex-start; }
+  .subtitle { display: none; }
+  .passage-nav { top: 54px; }
+  .passage-nav label:first-child { flex: 1; }
+  .passage-nav select { width: 100%; }
+}
