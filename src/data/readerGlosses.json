@@ -9250,5 +9250,138 @@
     "root": "rodi",
     "pos": "noun",
     "source": "reader"
+  },
+  {
+    "form": "sanga",
+    "gloss": "dross; slag",
+    "preferredGloss": "dross",
+    "root": "sanga",
+    "pos": "noun",
+    "source": "reader"
+  },
+  {
+    "form": "sesukat",
+    "gloss": "one measure; a measure",
+    "preferredGloss": "a measure",
+    "root": "sukat",
+    "pos": "numeral/noun",
+    "affixes": [
+      "se-"
+    ],
+    "source": "reader"
+  },
+  {
+    "form": "umban",
+    "gloss": "sling",
+    "root": "umban",
+    "pos": "noun",
+    "source": "reader"
+  },
+  {
+    "form": "berlaksa-laksa",
+    "gloss": "myriads; tens of thousands",
+    "preferredGloss": "myriads",
+    "root": "laksa",
+    "pos": "numeral",
+    "affixes": [
+      "ber-",
+      "reduplication"
+    ],
+    "source": "reader"
+  },
+  {
+    "form": "bokor",
+    "gloss": "bowl; basin",
+    "preferredGloss": "bowl",
+    "root": "bokor",
+    "pos": "noun",
+    "source": "reader"
+  },
+  {
+    "form": "bulir-bulir",
+    "gloss": "heads of grain; ears of grain",
+    "preferredGloss": "heads of grain",
+    "root": "bulir",
+    "pos": "noun",
+    "affixes": [
+      "reduplication"
+    ],
+    "source": "reader"
+  },
+  {
+    "form": "congkak",
+    "gloss": "arrogant; proud; haughty",
+    "preferredGloss": "arrogant",
+    "root": "congkak",
+    "pos": "adjective",
+    "source": "reader"
+  },
+  {
+    "form": "dicabik-cabik",
+    "gloss": "be torn to pieces; be ripped apart",
+    "preferredGloss": "be torn to pieces",
+    "root": "cabik",
+    "pos": "verb",
+    "affixes": [
+      "di-",
+      "reduplication"
+    ],
+    "source": "reader"
+  },
+  {
+    "form": "harem",
+    "gloss": "harem; women's quarters",
+    "preferredGloss": "harem",
+    "root": "harem",
+    "pos": "noun",
+    "source": "reader"
+  },
+  {
+    "form": "kertau",
+    "gloss": "tree; plane tree",
+    "preferredGloss": "tree",
+    "root": "kertau",
+    "pos": "noun",
+    "note": "Rare tree name; contextual BSB gloss should take precedence.",
+    "source": "reader"
+  },
+  {
+    "form": "kerubim",
+    "gloss": "cherubim",
+    "root": "kerub",
+    "pos": "noun",
+    "source": "reader"
+  },
+  {
+    "form": "lembing",
+    "gloss": "spear; javelin",
+    "preferredGloss": "spear",
+    "root": "lembing",
+    "pos": "noun",
+    "source": "reader"
+  },
+  {
+    "form": "membagi-bagi",
+    "gloss": "divide; distribute",
+    "preferredGloss": "distribute",
+    "root": "bagi",
+    "pos": "verb",
+    "affixes": [
+      "meN-",
+      "reduplication"
+    ],
+    "source": "reader"
+  },
+  {
+    "form": "menakut-nakuti",
+    "gloss": "frighten; intimidate",
+    "preferredGloss": "frighten",
+    "root": "takut",
+    "pos": "verb",
+    "affixes": [
+      "meN-",
+      "reduplication"
+    ],
+    "source": "reader"
   }
 ]
