@@ -7,6 +7,12 @@ export interface PbwlPayload {
   entries: LexiconEntry[];
 }
 
+export interface DerivedPayload {
+  generatedAt: string;
+  strategy: string;
+  entries: LexiconEntry[];
+}
+
 import readerGlosses from './readerGlosses.json';
 
 const starter = readerGlosses as LexiconEntry[];
@@ -17,6 +23,13 @@ export function hydratePbwl(payload: PbwlPayload): void {
   for (const entry of payload.entries) {
     const key = entry.form.toLocaleLowerCase('id');
     if (!index.has(key)) index.set(key, { ...entry, source: 'pbwl' });
+  }
+}
+
+export function hydrateDerived(payload: DerivedPayload): void {
+  for (const entry of payload.entries) {
+    const key = entry.form.toLocaleLowerCase('id');
+    if (!index.has(key)) index.set(key, { ...entry, source: 'derived' });
   }
 }
 
