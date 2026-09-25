@@ -6,6 +6,7 @@ import { BIBLE_BOOKS, BOOK_BY_ID } from './data/books';
 import { loadAgsBook } from './io/corpus';
 import { loadPbwlLexicon } from './io/pbwl';
 import { parseUsfm } from './io/usfm';
+import { UpdateModal } from './UpdateModal';
 
 type Mode = 'indo' | 'gloss' | 'both';
 
@@ -181,6 +182,7 @@ export function App() {
           <p className="alignment-note">Original-language alignment stays optional; Indonesian glossing works independently.</p>
         </aside>
       )}
+      <UpdateModal />
     </main>
   );
 }
