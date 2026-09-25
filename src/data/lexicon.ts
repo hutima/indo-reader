@@ -1,8 +1,7 @@
 import type { LexiconEntry } from '../domain/types';
 
 export interface PbwlPayload {
-  sourceRepository: string;
-  sourceCommit: string;
+  source: Record<string, unknown>;
   sourceReference: string;
   license: string;
   entries: LexiconEntry[];
