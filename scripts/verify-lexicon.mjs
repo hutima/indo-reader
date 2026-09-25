@@ -22,28 +22,30 @@ const nt = coverage.byTestament?.NT;
 const ot = coverage.byTestament?.OT;
 if (!nt || !ot) throw new Error('Coverage report is missing OT/NT split metrics.');
 
-if (nt.tokenCoverage < 0.98) {
+if (nt.directTokenCoverage < 0.98) {
   throw new Error(
-    `NT reader coverage regressed to ${(nt.tokenCoverage * 100).toFixed(1)}%; expected at least 98%.`,
+    `NT direct lexical coverage regressed to ${(nt.directTokenCoverage * 100).toFixed(1)}%; expected at least 98%.`,
   );
 }
-
+if (ot.directTokenCoverage < 0.96) {
+  throw new Error(
+    `OT direct lexical coverage regressed to ${(ot.directTokenCoverage * 100).toFixed(1)}%; expected at least 96%.`,
+  );
+}
+if (coverage.tokenCoverage < 0.995) {
+  throw new Error(
+    `Combined display coverage regressed to ${(coverage.tokenCoverage * 100).toFixed(2)}%; expected at least 99.5%.`,
+  );
+}
 if (nt.pbwlTokenCoverage < 0.90) {
   throw new Error(
     `NT PBWL coverage regressed to ${(nt.pbwlTokenCoverage * 100).toFixed(1)}%; expected at least 90%.`,
   );
 }
 
-// This is intentionally only a bootstrap floor. The OT branch will raise this
-// threshold after its high-frequency AYT vocabulary has been curated.
-if (ot.tokenCoverage < 0.75) {
-  throw new Error(
-    `OT bootstrap coverage is unexpectedly low at ${(ot.tokenCoverage * 100).toFixed(1)}%.`,
-  );
-}
-
 console.log(
   `Lexicon verification passed: ${glosses.length} curated forms; ` +
-  `combined ${(coverage.tokenCoverage * 100).toFixed(1)}%; ` +
-  `OT ${(ot.tokenCoverage * 100).toFixed(1)}%; NT ${(nt.tokenCoverage * 100).toFixed(1)}%.`,
+  `direct combined ${(coverage.directTokenCoverage * 100).toFixed(1)}%; ` +
+  `display combined ${(coverage.tokenCoverage * 100).toFixed(2)}%; ` +
+  `OT display ${(ot.tokenCoverage * 100).toFixed(2)}%; NT display ${(nt.tokenCoverage * 100).toFixed(2)}%.`,
 );
