@@ -122,3 +122,39 @@ dt { color: #726b64; } dd { margin: 0; }
   color: #8b8178;
   font-weight: 500;
 }
+
+.root-family {
+  margin: .85rem 0;
+  padding-top: .7rem;
+  border-top: 1px solid #e5ded6;
+}
+.root-family h2 {
+  margin: 0 0 .45rem;
+  color: #726b64;
+  font: 700 .75rem/1.2 Inter, sans-serif;
+  text-transform: uppercase;
+  letter-spacing: .04em;
+}
+.family-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .4rem;
+}
+.family-chip {
+  display: inline-flex;
+  flex-direction: column;
+  gap: .08rem;
+  max-width: 13rem;
+  padding: .35rem .5rem;
+  border-radius: 8px;
+  background: #f3efeb;
+}
+.family-chip strong { font-size: .88rem; }
+.family-chip small {
+  color: #726b64;
+  font-size: .7rem;
+  line-height: 1.2;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
