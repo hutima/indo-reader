@@ -45,6 +45,29 @@ if (manifest.books.length !== 66) {
   throw new Error(`Expected contextual gloss shards for 66 books, found ${manifest.books.length}.`);
 }
 
+const pronounValues = { kita: new Set(), kami: new Set() };
+for (const book of manifest.books) {
+  const payload = JSON.parse(await readFile(path.join(contextDir, book.file), 'utf8'));
+  for (const [key, value] of Object.entries(payload.entries ?? {})) {
+    if (key.includes(':kita:')) pronounValues.kita.add(value);
+    if (key.includes(':kami:')) pronounValues.kami.add(value);
+  }
+}
+
+if (pronounValues.kita.size && (pronounValues.kita.size !== 1 || !pronounValues.kita.has('We (inc.)'))) {
+  throw new Error(`kita inline gloss regression: ${[...pronounValues.kita].join(', ')}`);
+}
+if (pronounValues.kami.size && (pronounValues.kami.size !== 1 || !pronounValues.kami.has('We (ex.)'))) {
+  throw new Error(`kami inline gloss regression: ${[...pronounValues.kami].join(', ')}`);
+}
+
+const penerang = Object.entries(genesis)
+  .filter(([key]) => key.includes(':penerang:'))
+  .map(([, value]) => String(value));
+if (!penerang.length || penerang.some((value) => !/light/i.test(value))) {
+  throw new Error(`Genesis penerang gloss regression: ${penerang.join(', ') || 'missing'}`);
+}
+
 console.log(
   `Context gloss verification passed: ${manifest.totalEntries} token annotations across ${manifest.books.length} book shards.`,
 );
