@@ -158,3 +158,8 @@ dt { color: #726b64; } dd { margin: 0; }
   overflow: hidden;
   text-overflow: ellipsis;
 }
+
+.english-missing {
+  color: #8b8178;
+  font-style: italic;
+}
