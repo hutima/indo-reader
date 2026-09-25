@@ -104,13 +104,21 @@ function senseWords(sense) {
   return words.filter((word) => !stop.has(word));
 }
 
+function conciseInlineGloss(value) {
+  return String(value ?? '')
+    .trim()
+    .replace(/^\((?:n|v|adj|adv|noun|verb|adverb|prep|preposition|conj|pron)[^)]*\)\s*/iu, '')
+    .replace(/\s+\((?!inc\.|ex\.)[^)]*\)\s*$/iu, '')
+    .trim();
+}
+
 function chooseGloss(entry, englishVerse) {
   const normalizedForm = String(entry.form ?? '').toLocaleLowerCase('id');
   if (
     (normalizedForm === 'kita' || normalizedForm === 'kami' || normalizedForm === 'penerang') &&
     entry.preferredGloss
   ) {
-    return entry.preferredGloss;
+    return conciseInlineGloss(entry.preferredGloss);
   }
 
   const dictionaryOptions = senses(entry.gloss);
@@ -118,7 +126,7 @@ function chooseGloss(entry, englishVerse) {
     ? [entry.preferredGloss, ...dictionaryOptions.filter((value) => value !== entry.preferredGloss)]
     : dictionaryOptions;
   if (!options.length) return undefined;
-  if (options.length === 1) return options[0];
+  if (options.length === 1) return conciseInlineGloss(options[0]);
 
   const verseWords = englishWords(englishVerse);
   const verseSet = new Set(verseWords.map((word) => word.canon));
@@ -134,7 +142,7 @@ function chooseGloss(entry, englishVerse) {
         const match = verseWords.find((word) => word.canon === preferredWords[0]);
         if (match) return match.surface;
       }
-      return entry.preferredGloss;
+      return conciseInlineGloss(entry.preferredGloss);
     }
   }
 
@@ -152,15 +160,15 @@ function chooseGloss(entry, englishVerse) {
     if (!best || score > best.score) best = { option, words, overlap, score };
   }
 
-  if (!best) return entry.preferredGloss ?? options[0];
+  if (!best) return conciseInlineGloss(entry.preferredGloss ?? options[0]);
 
   // For one-word dictionary senses, when BSB uses an inflected/case form from
   // the same English family, display the BSB surface form (is -> was, he -> Him).
   if (best.words.length === 1) {
     const match = verseWords.find((word) => word.canon === best.words[0]);
-    if (match) return match.surface;
+    if (match) return conciseInlineGloss(match.surface);
   }
-  return best.option;
+  return conciseInlineGloss(best.option);
 }
 
 function makeIndex(pbwlEntries, readerEntries, derivedEntries) {

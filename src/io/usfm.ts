@@ -25,6 +25,26 @@ function tokenize(text: string, book: string, chapter: number, verse: number): R
       inlineGloss: lookupInlineGloss(book, chapter, verse, normalized, occurrence),
     });
   }
+  for (let i = 0; i < tokens.length - 1; i += 1) {
+    const first = tokens[i];
+    const second = tokens[i + 1];
+
+    if (first.normalized === 'orang' && second.normalized === 'tua') {
+      first.inlineGloss = 'parents';
+      second.inlineGloss = '';
+    }
+
+    if (first.normalized === 'secara' && second.normalized === 'jasmani') {
+      first.inlineGloss = '';
+      second.inlineGloss = 'physically';
+    }
+
+    if (first.normalized === 'secara' && second.normalized === 'rohani') {
+      first.inlineGloss = '';
+      second.inlineGloss = 'spiritually';
+    }
+  }
+
   return tokens;
 }
 

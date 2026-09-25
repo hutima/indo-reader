@@ -75,7 +75,8 @@
     "form": "tetapi",
     "gloss": "but; however",
     "pos": "conjunction",
-    "source": "reader"
+    "source": "reader",
+    "preferredGloss": "but"
   },
   {
     "form": "Yahudi",
@@ -2935,7 +2936,8 @@
     "gloss": "spirit; Spirit",
     "root": "roh",
     "pos": "noun",
-    "source": "reader"
+    "source": "reader",
+    "preferredGloss": "Spirit"
   },
   {
     "form": "salib",
@@ -10144,6 +10146,284 @@
     "preferredGloss": "toward",
     "root": "tuju",
     "pos": "verb",
+    "source": "reader"
+  },
+  {
+    "form": "dapat",
+    "gloss": "can; be able to; obtain",
+    "preferredGloss": "can",
+    "root": "dapat",
+    "pos": "verb/adverb",
+    "source": "reader"
+  },
+  {
+    "form": "bisa",
+    "gloss": "can; be able to",
+    "preferredGloss": "can",
+    "root": "bisa",
+    "pos": "verb/adverb",
+    "source": "reader"
+  },
+  {
+    "form": "lagi",
+    "gloss": "again; more; anymore",
+    "preferredGloss": "again",
+    "root": "lagi",
+    "pos": "adverb",
+    "source": "reader"
+  },
+  {
+    "form": "oleh",
+    "gloss": "by; through",
+    "preferredGloss": "by",
+    "root": "oleh",
+    "pos": "preposition",
+    "source": "reader"
+  },
+  {
+    "form": "dalam",
+    "gloss": "in; inside; within",
+    "preferredGloss": "in",
+    "root": "dalam",
+    "pos": "preposition",
+    "source": "reader"
+  },
+  {
+    "form": "kandungan",
+    "gloss": "womb; contents; pregnancy",
+    "preferredGloss": "womb",
+    "root": "kandung",
+    "pos": "noun",
+    "affixes": [
+      "-an"
+    ],
+    "source": "reader"
+  },
+  {
+    "form": "secara",
+    "gloss": "in a ... way; by; -ly",
+    "preferredGloss": "",
+    "root": "cara",
+    "pos": "adverb marker",
+    "affixes": [
+      "se-"
+    ],
+    "source": "reader"
+  },
+  {
+    "form": "jasmani",
+    "gloss": "physical; bodily",
+    "preferredGloss": "physical",
+    "root": "jasmani",
+    "pos": "adjective",
+    "source": "reader"
+  },
+  {
+    "form": "rohani",
+    "gloss": "spiritual",
+    "preferredGloss": "spiritual",
+    "root": "rohani",
+    "pos": "adjective",
+    "source": "reader"
+  },
+  {
+    "form": "kembali",
+    "gloss": "again; back; return",
+    "preferredGloss": "again",
+    "root": "kembali",
+    "pos": "adverb/verb",
+    "source": "reader"
+  },
+  {
+    "form": "kecuali",
+    "gloss": "unless; except",
+    "preferredGloss": "unless",
+    "root": "kecuali",
+    "pos": "conjunction/preposition",
+    "source": "reader"
+  },
+  {
+    "form": "orang",
+    "gloss": "person; people",
+    "preferredGloss": "person",
+    "root": "orang",
+    "pos": "noun",
+    "source": "reader"
+  },
+  {
+    "form": "tua",
+    "gloss": "old; elder",
+    "preferredGloss": "old",
+    "root": "tua",
+    "pos": "adjective",
+    "source": "reader"
+  },
+  {
+    "form": "waktu",
+    "gloss": "time",
+    "preferredGloss": "time",
+    "root": "waktu",
+    "pos": "",
+    "source": "reader"
+  },
+  {
+    "form": "yang",
+    "gloss": "who",
+    "preferredGloss": "who",
+    "root": "yang",
+    "pos": "",
+    "source": "reader"
+  },
+  {
+    "form": "masuk",
+    "gloss": "enter",
+    "preferredGloss": "enter",
+    "root": "masuk",
+    "pos": "",
+    "source": "reader"
+  },
+  {
+    "form": "ke",
+    "gloss": "to",
+    "preferredGloss": "to",
+    "root": "ke",
+    "pos": "",
+    "source": "reader"
+  },
+  {
+    "form": "ibu",
+    "gloss": "mother",
+    "preferredGloss": "mother",
+    "root": "ibu",
+    "pos": "",
+    "source": "reader"
+  },
+  {
+    "form": "lalu",
+    "gloss": "then",
+    "preferredGloss": "then",
+    "root": "lalu",
+    "pos": "",
+    "source": "reader"
+  },
+  {
+    "form": "Yesus",
+    "gloss": "Jesus",
+    "preferredGloss": "Jesus",
+    "root": "Yesus",
+    "pos": "",
+    "source": "reader"
+  },
+  {
+    "form": "menjawab",
+    "gloss": "answer",
+    "preferredGloss": "answer",
+    "root": "menjawab",
+    "pos": "",
+    "source": "reader"
+  },
+  {
+    "form": "engkau",
+    "gloss": "you",
+    "preferredGloss": "you",
+    "root": "engkau",
+    "pos": "",
+    "source": "reader"
+  },
+  {
+    "form": "tidak",
+    "gloss": "not",
+    "preferredGloss": "not",
+    "root": "tidak",
+    "pos": "",
+    "source": "reader"
+  },
+  {
+    "form": "kerajaan",
+    "gloss": "kingdom",
+    "preferredGloss": "kingdom",
+    "root": "kerajaan",
+    "pos": "",
+    "source": "reader"
+  },
+  {
+    "form": "dari",
+    "gloss": "from",
+    "preferredGloss": "from",
+    "root": "dari",
+    "pos": "",
+    "source": "reader"
+  },
+  {
+    "form": "air",
+    "gloss": "water",
+    "preferredGloss": "water",
+    "root": "air",
+    "pos": "",
+    "source": "reader"
+  },
+  {
+    "form": "dan",
+    "gloss": "and",
+    "preferredGloss": "and",
+    "root": "dan",
+    "pos": "",
+    "source": "reader"
+  },
+  {
+    "form": "manusia",
+    "gloss": "human",
+    "preferredGloss": "human",
+    "root": "manusia",
+    "pos": "",
+    "source": "reader"
+  },
+  {
+    "form": "hanya",
+    "gloss": "only",
+    "preferredGloss": "only",
+    "root": "hanya",
+    "pos": "",
+    "source": "reader"
+  },
+  {
+    "form": "harus",
+    "gloss": "must",
+    "preferredGloss": "must",
+    "root": "harus",
+    "pos": "",
+    "source": "reader"
+  },
+  {
+    "form": "karena",
+    "gloss": "because",
+    "preferredGloss": "because",
+    "root": "karena",
+    "pos": "",
+    "source": "reader"
+  },
+  {
+    "form": "bahwa",
+    "gloss": "that",
+    "preferredGloss": "that",
+    "root": "bahwa",
+    "pos": "",
+    "source": "reader"
+  },
+  {
+    "form": "jangan",
+    "gloss": "do not",
+    "preferredGloss": "do not",
+    "root": "jangan",
+    "pos": "",
+    "source": "reader"
+  },
+  {
+    "form": "mangkali",
+    "gloss": "probably",
+    "preferredGloss": "probably",
+    "root": "mangkali",
+    "pos": "",
     "source": "reader"
   }
 ]
