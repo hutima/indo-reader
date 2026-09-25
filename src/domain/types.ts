@@ -6,6 +6,7 @@ export interface LexiconEntry {
   register?: string;
   cefr?: string;
   note?: string;
+  affixes?: string[];
   source?: 'pbwl' | 'reader';
   sourceRootId?: number;
 }
