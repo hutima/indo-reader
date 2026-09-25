@@ -3,7 +3,7 @@ import type { ReadingToken } from './domain/types';
 import { analyzeIndonesian } from './domain/indonesianMorph';
 import { relatedForms } from './data/lexicon';
 import { BIBLE_BOOKS, BOOK_BY_ID } from './data/books';
-import { loadAgsBook } from './io/corpus';
+import { loadAgsBook, loadAgsManifest } from './io/corpus';
 import { loadPbwlLexicon } from './io/pbwl';
 import { parseUsfm } from './io/usfm';
 import { UpdateModal } from './UpdateModal';
@@ -25,6 +25,8 @@ export function App() {
     }
   });
   const [loading, setLoading] = useState(true);
+  const [lexiconReady, setLexiconReady] = useState(false);
+  const [availableBookIds, setAvailableBookIds] = useState<string[]>(['JHN']);
 
   useEffect(() => {
     localStorage.setItem('indo-reader-known', JSON.stringify([...known]));
@@ -32,13 +34,31 @@ export function App() {
 
   useEffect(() => {
     let cancelled = false;
+    Promise.all([loadPbwlLexicon(), loadAgsManifest()])
+      .then(([, manifest]) => {
+        if (cancelled) return;
+        const ids = manifest.books.map((book) => book.id);
+        setAvailableBookIds(ids);
+        if (!ids.includes(bookId)) {
+          const firstCanonical = BIBLE_BOOKS.find((book) => ids.includes(book.id));
+          if (firstCanonical) setBookId(firstCanonical.id);
+        }
+        setLexiconReady(true);
+      })
+      .catch(() => setLexiconReady(true));
+    return () => { cancelled = true; };
+  }, []);
+
+  useEffect(() => {
+    if (!lexiconReady) return;
+    let cancelled = false;
     setLoading(true);
     setSelected(null);
-    Promise.all([loadPbwlLexicon(), loadAgsBook(bookId)])
-      .then(([, book]) => { if (!cancelled) setUsfm(book); })
+    loadAgsBook(bookId)
+      .then((book) => { if (!cancelled) setUsfm(book); })
       .finally(() => { if (!cancelled) setLoading(false); });
     return () => { cancelled = true; };
-  }, [bookId]);
+  }, [bookId, lexiconReady]);
 
   const verses = useMemo(() => (usfm ? parseUsfm(usfm) : []), [usfm]);
   const chapters = useMemo(
@@ -51,6 +71,9 @@ export function App() {
   }, [chapters, chapter]);
 
   const visibleVerses = verses.filter((verse) => verse.chapter === chapter);
+  const availableBooks = BIBLE_BOOKS.filter((book) => availableBookIds.includes(book.id));
+  const oldTestamentBooks = availableBooks.filter((book) => book.testament === 'OT');
+  const newTestamentBooks = availableBooks.filter((book) => book.testament === 'NT');
   const bookName = BOOK_BY_ID.get(bookId)?.name ?? bookId;
   const chapterTokens = visibleVerses.flatMap((verse) => verse.tokens);
   const glossedTokens = chapterTokens.filter((token) => token.lexicon?.gloss).length;
@@ -93,16 +116,20 @@ export function App() {
         <label>
           <span>Book</span>
           <select value={bookId} onChange={(event) => { setBookId(event.target.value); setChapter(1); }}>
-            <optgroup label="Perjanjian Lama">
-              {BIBLE_BOOKS.filter((book) => book.testament === 'OT').map((book) => (
-                <option value={book.id} key={book.id}>{book.name}</option>
-              ))}
-            </optgroup>
-            <optgroup label="Perjanjian Baru">
-              {BIBLE_BOOKS.filter((book) => book.testament === 'NT').map((book) => (
-                <option value={book.id} key={book.id}>{book.name}</option>
-              ))}
-            </optgroup>
+            {oldTestamentBooks.length > 0 && (
+              <optgroup label="Perjanjian Lama">
+                {oldTestamentBooks.map((book) => (
+                  <option value={book.id} key={book.id}>{book.name}</option>
+                ))}
+              </optgroup>
+            )}
+            {newTestamentBooks.length > 0 && (
+              <optgroup label="Perjanjian Baru">
+                {newTestamentBooks.map((book) => (
+                  <option value={book.id} key={book.id}>{book.name}</option>
+                ))}
+              </optgroup>
+            )}
           </select>
         </label>
         <label>

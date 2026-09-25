@@ -22,7 +22,7 @@ Original-language alignment is deliberately optional. Greek/Hebrew can be attach
 - full PBWL Root v1.0b sheet sync when its CSV export is available
 - pinned PBWL subset fallback for reproducible/offline-safe builds
 - Indo / Both / English display modes
-- full Bible book + chapter navigation
+- corpus-driven book + chapter navigation (only books present in the active source are shown)
 - previous/next chapter controls
 - tappable Indonesian word tokens
 - English gloss + root + RootID + CEFR metadata
@@ -67,6 +67,8 @@ This separation lets a form such as a theological term receive a Bible-context g
 ### AGS
 
 **Alkitab Gratis untuk Semua (AGS)** / Indonesian Bible for All, copyright © 2021–2023 Jonathan Gallagher. Distributed by eBible under **CC BY-SA 4.0**.
+
+The current eBible AGS distribution contains the New Testament (27 canonical NT books) plus front matter. The reader therefore derives its available-book list from the generated corpus manifest instead of assuming all 66 canonical books are present. This also keeps the UI ready for a future Old Testament source.
 
 Source: https://ebible.org/find/show.php?id=indags
 

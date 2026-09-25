@@ -3,13 +3,54 @@ import path from 'node:path';
 
 const corpusDir = path.resolve('public/corpus/ags');
 const lexiconFile = path.resolve('public/lexicon/pbwl.json');
+const readerGlossFile = path.resolve('src/data/readerGlosses.json');
 const outputFile = path.resolve('public/lexicon/coverage.json');
 
 const pbwl = JSON.parse(await readFile(lexiconFile, 'utf8'));
-const known = new Set(pbwl.entries.map((entry) => entry.form.toLocaleLowerCase('id')));
+const readerGlosses = JSON.parse(await readFile(readerGlossFile, 'utf8'));
+const pbwlKnown = new Set(pbwl.entries.map((entry) => entry.form.toLocaleLowerCase('id')));
+const readerKnown = new Set(readerGlosses.map((entry) => entry.form.toLocaleLowerCase('id')));
+const known = new Set([...pbwlKnown, ...readerKnown]);
 const counts = new Map();
 let totalTokens = 0;
 let coveredTokens = 0;
+let pbwlCoveredTokens = 0;
+
+const clitics = ['nya', 'ku', 'mu', 'lah', 'kah', 'pun'];
+
+function isCoveredBy(set, form) {
+  if (set.has(form)) return true;
+
+  const hyphenClitic = form.match(/^(.+)-(nya|ku|mu|lah|kah|pun)$/u);
+  if (hyphenClitic) {
+    if (set.has(hyphenClitic[1])) return true;
+    const compact = hyphenClitic[1] + hyphenClitic[2];
+    if (set.has(compact)) return true;
+  }
+
+  const parts = form.split('-');
+  if (parts.length >= 2) {
+    const first = parts[0];
+    const second = parts[1];
+    const trailing = parts.slice(2);
+    const attached = clitics.find((clitic) => second === first + clitic);
+    if ((second === first || attached) && set.has(first) && trailing.every((part) => clitics.includes(part))) {
+      return true;
+    }
+  }
+
+  for (const clitic of clitics) {
+    if (form.endsWith(clitic) && form.length > clitic.length + 2) {
+      if (set.has(form.slice(0, -clitic.length))) return true;
+    }
+  }
+
+  return false;
+}
+
+function isCovered(form) {
+  return isCoveredBy(known, form);
+}
 
 const wordRe = /[\p{L}\p{M}]+(?:-[\p{L}\p{M}]+)*/gu;
 for (const file of await readdir(corpusDir)) {
@@ -25,8 +66,9 @@ for (const file of await readdir(corpusDir)) {
     for (const match of clean.matchAll(wordRe)) {
       const form = match[0].toLocaleLowerCase('id');
       totalTokens += 1;
-      if (known.has(form)) coveredTokens += 1;
-      const row = counts.get(form) ?? { form, count: 0, covered: known.has(form) };
+      if (isCovered(form)) coveredTokens += 1;
+      if (isCoveredBy(pbwlKnown, form)) pbwlCoveredTokens += 1;
+      const row = counts.get(form) ?? { form, count: 0, covered: isCovered(form) };
       row.count += 1;
       counts.set(form, row);
     }
@@ -34,20 +76,31 @@ for (const file of await readdir(corpusDir)) {
 }
 
 const forms = [...counts.values()].sort((a, b) => b.count - a.count || a.form.localeCompare(b.form, 'id'));
-const coveredTypes = forms.filter((row) => row.covered).length;
+const missing = forms.filter((row) => !row.covered);
+const coveredTypes = forms.length - missing.length;
 const report = {
   generatedAt: new Date().toISOString(),
   totalTokens,
   coveredTokens,
   tokenCoverage: totalTokens ? coveredTokens / totalTokens : 0,
+  pbwlCoveredTokens,
+  pbwlTokenCoverage: totalTokens ? pbwlCoveredTokens / totalTokens : 0,
   totalTypes: forms.length,
   coveredTypes,
   typeCoverage: forms.length ? coveredTypes / forms.length : 0,
-  mostFrequentMissing: forms.filter((row) => !row.covered).slice(0, 500),
+  mostFrequentMissing: missing.slice(0, 500),
 };
 
 await writeFile(outputFile, JSON.stringify(report, null, 2) + '\n', 'utf8');
+
 console.log(
-  `PBWL coverage: ${coveredTokens}/${totalTokens} tokens (${(report.tokenCoverage * 100).toFixed(1)}%), ` +
+  `PBWL-only token coverage: ${pbwlCoveredTokens}/${totalTokens} (${(report.pbwlTokenCoverage * 100).toFixed(1)}%).`,
+);
+console.log(
+  `Reader coverage: ${coveredTokens}/${totalTokens} tokens (${(report.tokenCoverage * 100).toFixed(1)}%), ` +
   `${coveredTypes}/${forms.length} types (${(report.typeCoverage * 100).toFixed(1)}%).`,
 );
+console.log('Top 100 missing AGS surface forms:');
+for (const row of missing.slice(0, 100)) {
+  console.log(`${String(row.count).padStart(6)}  ${row.form}`);
+}
