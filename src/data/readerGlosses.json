@@ -442,7 +442,8 @@
     "gloss": "together",
     "root": "sama",
     "pos": "adverb",
-    "source": "reader"
+    "source": "reader",
+    "preferredGloss": "together"
   },
   {
     "form": "saudara-saudari",
@@ -1144,7 +1145,8 @@
     "gloss": "be created",
     "root": "cipta",
     "pos": "verb",
-    "source": "reader"
+    "source": "reader",
+    "preferredGloss": "created"
   },
   {
     "form": "dimakan",
@@ -3924,6 +3926,82 @@
       "meN-",
       "-i"
     ],
+    "source": "reader"
+  },
+  {
+    "form": "firman",
+    "gloss": "Word; word; message; decree; proclamation",
+    "root": "firman",
+    "pos": "noun",
+    "preferredGloss": "Word",
+    "source": "reader"
+  },
+  {
+    "form": "bersama",
+    "gloss": "with; together with",
+    "root": "sama",
+    "pos": "adverb/preposition",
+    "preferredGloss": "with",
+    "source": "reader"
+  },
+  {
+    "form": "segala",
+    "gloss": "all; every",
+    "root": "segala",
+    "pos": "determiner",
+    "preferredGloss": "all",
+    "source": "reader"
+  },
+  {
+    "form": "sesuatu",
+    "gloss": "something; a thing",
+    "root": "suatu",
+    "pos": "pronoun",
+    "preferredGloss": "thing",
+    "source": "reader"
+  },
+  {
+    "form": "ada",
+    "gloss": "exist; be; there is",
+    "root": "ada",
+    "pos": "verb",
+    "preferredGloss": "exist",
+    "source": "reader"
+  },
+  {
+    "form": "melalui",
+    "gloss": "through; via; by means of",
+    "root": "lalu",
+    "pos": "preposition",
+    "affixes": [
+      "me-",
+      "-i"
+    ],
+    "preferredGloss": "through",
+    "source": "reader"
+  },
+  {
+    "form": "dia",
+    "gloss": "he; she; him; her",
+    "root": "dia",
+    "pos": "pronoun",
+    "preferredGloss": "he",
+    "source": "reader"
+  },
+  {
+    "form": "daripada",
+    "gloss": "than; from; rather than",
+    "root": "dari",
+    "pos": "preposition",
+    "preferredGloss": "than",
+    "source": "reader"
+  },
+  {
+    "form": "pada",
+    "gloss": "at; in; on; to",
+    "root": "pada",
+    "pos": "preposition",
+    "preferredGloss": "in",
     "source": "reader"
   }
 ]
