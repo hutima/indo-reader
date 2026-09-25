@@ -21,13 +21,22 @@ const clitics = ['nya', 'ku', 'mu', 'lah', 'kah', 'pun'];
 function isCoveredBy(set, form) {
   if (set.has(form)) return true;
 
-  const compact = form.replace(/-(nya|ku|mu|lah|kah|pun)$/u, '$1');
-  if (compact !== form && set.has(compact)) return true;
+  const hyphenClitic = form.match(/^(.+)-(nya|ku|mu|lah|kah|pun)$/u);
+  if (hyphenClitic) {
+    if (set.has(hyphenClitic[1])) return true;
+    const compact = hyphenClitic[1] + hyphenClitic[2];
+    if (set.has(compact)) return true;
+  }
 
   const parts = form.split('-');
-  if (parts.length >= 2 && parts[0] === parts[1]) {
+  if (parts.length >= 2) {
+    const first = parts[0];
+    const second = parts[1];
     const trailing = parts.slice(2);
-    if (set.has(parts[0]) && trailing.every((part) => clitics.includes(part))) return true;
+    const attached = clitics.find((clitic) => second === first + clitic);
+    if ((second === first || attached) && set.has(first) && trailing.every((part) => clitics.includes(part))) {
+      return true;
+    }
   }
 
   for (const clitic of clitics) {
