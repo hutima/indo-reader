@@ -89,9 +89,16 @@ function senses(gloss) {
 }
 
 function senseWords(sense) {
-  return englishWords(sense)
-    .map((word) => word.canon)
-    .filter((word) => !['a','an','the','to','of','and','or'].includes(word));
+  const words = englishWords(sense).map((word) => word.canon);
+  const stop = new Set(['a','an','the','to','of','and','or']);
+  // Keep a one-word function gloss such as "be" usable (e.g. adalah),
+  // but do not let an auxiliary in "be created" decide the lexical sense.
+  if (words.length > 1) {
+    stop.add('be');
+    stop.add('have');
+    stop.add('do');
+  }
+  return words.filter((word) => !stop.has(word));
 }
 
 function chooseGloss(entry, englishVerse) {
