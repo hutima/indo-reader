@@ -5,6 +5,7 @@ import { relatedForms } from './data/lexicon';
 import { BIBLE_BOOKS, BOOK_BY_ID } from './data/books';
 import { loadBibleBook, loadCorpusManifest } from './io/corpus';
 import { loadPbwlLexicon } from './io/pbwl';
+import { loadDerivedLexicon } from './io/derivedLexicon';
 import { loadContextGlosses } from './io/contextGlosses';
 import { parseUsfm } from './io/usfm';
 import { UpdateModal } from './UpdateModal';
@@ -48,8 +49,8 @@ export function App() {
 
   useEffect(() => {
     let cancelled = false;
-    Promise.all([loadPbwlLexicon(), loadCorpusManifest()])
-      .then(([, manifest]) => {
+    Promise.all([loadPbwlLexicon(), loadDerivedLexicon(), loadCorpusManifest()])
+      .then(([, , manifest]) => {
         if (cancelled) return;
         const ids = manifest.books.map((book) => book.id);
         setAvailableBookIds(ids);
@@ -232,7 +233,15 @@ export function App() {
               <div><dt>Affixes (auto)</dt><dd>{analysis.affixes.join(' + ')}</dd></div>
             ) : null}
             {(selected.lexicon?.note ?? analysis.note) && <div><dt>Affix note</dt><dd>{selected.lexicon?.note ?? analysis.note}</dd></div>}
-            <div><dt>Source</dt><dd>{selected.lexicon ? selected.lexicon.source === 'pbwl' ? `PBWL reference${selected.lexicon.sourceRootId ? ` · root #${selected.lexicon.sourceRootId}` : ''}` : 'Reader lexicon' : `Automatic analysis (${analysis.confidence})`}</dd></div>
+            <div><dt>Source</dt><dd>{
+              selected.lexicon
+                ? selected.lexicon.source === 'pbwl'
+                  ? `PBWL reference${selected.lexicon.sourceRootId ? ` · root #${selected.lexicon.sourceRootId}` : ''}`
+                  : selected.lexicon.source === 'derived'
+                    ? 'Derived from known root'
+                    : 'Reader lexicon'
+                : `Automatic analysis (${analysis.confidence})`
+            }</dd></div>
           </dl>
           {family.length > 1 && (
             <section className="root-family">
