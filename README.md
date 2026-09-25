@@ -24,6 +24,8 @@ Original-language alignment remains optional. Indonesian → English reading doe
 - per-book AYT / AGS source indicator
 - PBWL Root v1.0b sheet sync with pinned fallback
 - Indo / Both / English display modes
+- persistent light/dark theme switcher
+- dark-blue reading text in light mode
 - full OT/NT book + chapter navigation
 - previous/next chapter controls
 - tappable Indonesian tokens
@@ -32,6 +34,8 @@ Original-language alignment remains optional. Indonesian → English reading doe
 - curated Bible vocabulary, roots and affixes
 - PBWL root-family related forms
 - automatic Indonesian morphology fallback
+- conservative generated derived lexicon for unresolved forms with known roots
+- compact "Both" layout when every word in a verse is already marked known
 - persistent known-vocabulary state
 - per-chapter gloss coverage
 - OT/NT/combined lexical coverage reports
@@ -137,3 +141,16 @@ npm run typecheck
 npm run build
 npm run verify:pwa
 ```
+
+
+## Coverage accounting
+
+Coverage is reported in layers rather than treating every automatic guess as a dictionary fact:
+
+1. **PBWL-only coverage** — forms found directly in PBWL.
+2. **Direct lexical coverage** — PBWL plus manually curated reader entries.
+3. **Display coverage** — direct coverage plus conservative generated entries whose root can be resolved to a known PBWL/reader family, plus conservatively detected rare proper nouns.
+
+Generated entries are labeled `Derived from known root` in the word panel. Automatic morphology that cannot be anchored to a known root does not count as lexical coverage.
+
+The build prints the remaining uncovered forms by corpus frequency so manual curation can target the most useful gaps first.

@@ -9,7 +9,7 @@ export interface LexiconEntry {
   cefr?: string;
   note?: string;
   affixes?: string[];
-  source?: 'pbwl' | 'reader';
+  source?: 'pbwl' | 'reader' | 'derived';
   sourceRootId?: number;
 }
 

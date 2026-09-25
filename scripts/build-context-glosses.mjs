@@ -6,6 +6,7 @@ const corpusManifestFile = path.join(corpusRoot, 'manifest.json');
 const bsbDir = path.resolve('.cache/bsb');
 const pbwlFile = path.resolve('public/lexicon/pbwl.json');
 const readerFile = path.resolve('src/data/readerGlosses.json');
+const derivedFile = path.resolve('public/lexicon/derived.json');
 const overrideFile = path.resolve('src/data/contextGlossOverrides.json');
 const outDir = path.resolve('public/lexicon/context');
 
@@ -104,6 +105,14 @@ function senseWords(sense) {
 }
 
 function chooseGloss(entry, englishVerse) {
+  const normalizedForm = String(entry.form ?? '').toLocaleLowerCase('id');
+  if (
+    (normalizedForm === 'kita' || normalizedForm === 'kami' || normalizedForm === 'penerang') &&
+    entry.preferredGloss
+  ) {
+    return entry.preferredGloss;
+  }
+
   const dictionaryOptions = senses(entry.gloss);
   const options = entry.preferredGloss
     ? [entry.preferredGloss, ...dictionaryOptions.filter((value) => value !== entry.preferredGloss)]
@@ -154,10 +163,14 @@ function chooseGloss(entry, englishVerse) {
   return best.option;
 }
 
-function makeIndex(pbwlEntries, readerEntries) {
+function makeIndex(pbwlEntries, readerEntries, derivedEntries) {
   const index = new Map();
   for (const entry of readerEntries) index.set(entry.form.toLocaleLowerCase('id'), entry);
   for (const entry of pbwlEntries) {
+    const key = entry.form.toLocaleLowerCase('id');
+    if (!index.has(key)) index.set(key, entry);
+  }
+  for (const entry of derivedEntries) {
     const key = entry.form.toLocaleLowerCase('id');
     if (!index.has(key)) index.set(key, entry);
   }
@@ -200,8 +213,9 @@ async function main() {
   const corpus = JSON.parse(await readFile(corpusManifestFile, 'utf8'));
   const pbwl = JSON.parse(await readFile(pbwlFile, 'utf8'));
   const reader = JSON.parse(await readFile(readerFile, 'utf8'));
+  const derived = JSON.parse(await readFile(derivedFile, 'utf8'));
   const exactOverrides = JSON.parse(await readFile(overrideFile, 'utf8'));
-  const lexicon = makeIndex(pbwl.entries, reader);
+  const lexicon = makeIndex(pbwl.entries, reader, derived.entries);
 
   const entries = {};
   const byBook = new Map();
