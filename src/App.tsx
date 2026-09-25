@@ -17,14 +17,12 @@ export function App() {
   const [known, setKnown] = useState<Set<string>>(new Set());
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => { loadPbwlLexicon(); }, []);
-
   useEffect(() => {
     let cancelled = false;
     setLoading(true);
     setSelected(null);
-    loadAgsBook(bookId)
-      .then((book) => { if (!cancelled) setUsfm(book); })
+    Promise.all([loadPbwlLexicon(), loadAgsBook(bookId)])
+      .then(([, book]) => { if (!cancelled) setUsfm(book); })
       .finally(() => { if (!cancelled) setLoading(false); });
     return () => { cancelled = true; };
   }, [bookId]);
