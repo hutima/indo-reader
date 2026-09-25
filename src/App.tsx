@@ -50,6 +50,9 @@ export function App() {
 
   const visibleVerses = verses.filter((verse) => verse.chapter === chapter);
   const bookName = BOOK_BY_ID.get(bookId)?.name ?? bookId;
+  const chapterTokens = visibleVerses.flatMap((verse) => verse.tokens);
+  const glossedTokens = chapterTokens.filter((token) => token.lexicon?.gloss).length;
+  const chapterCoverage = chapterTokens.length ? Math.round((glossedTokens / chapterTokens.length) * 100) : 0;
 
   const tokenRoot = (token: ReadingToken) =>
     token.lexicon?.root ?? analyzeIndonesian(token.surface).root;
@@ -112,7 +115,10 @@ export function App() {
       </nav>
 
       <section className="reader">
-        <h1>{bookName} {chapter}</h1>
+        <div className="chapter-title-row">
+          <h1>{bookName} {chapter}</h1>
+          {!!chapterTokens.length && <span className="coverage-badge">{chapterCoverage}% glossed</span>}
+        </div>
         {loading && <p className="loading">Loading AGS…</p>}
         {!loading && !visibleVerses.length && <p className="loading">No verses found for this chapter.</p>}
         {visibleVerses.map((verse) => (
@@ -126,7 +132,7 @@ export function App() {
                   <button className={`token ${selected === token ? 'selected' : ''}`} onClick={() => setSelected(token)} type="button">
                     {mode !== 'gloss' && <span>{token.surface}</span>}
                     {mode === 'gloss' && <span>{token.lexicon?.gloss ?? token.surface}</span>}
-                    {mode === 'both' && !isKnown && <span className="under">{token.lexicon?.gloss ?? '·'}</span>}
+                    {mode === 'both' && !isKnown && <span className={`under${token.lexicon?.gloss ? '' : ' missing'}`}>{token.lexicon?.gloss ?? '?'}</span>}
                   </button>
                   {token.after}
                 </span>
