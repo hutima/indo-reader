@@ -23,7 +23,8 @@
     "build:context-glosses": "node scripts/build-context-glosses.mjs",
     "verify:context-glosses": "node scripts/verify-context-glosses.mjs",
     "import:ayt": "node scripts/import-ayt.mjs",
-    "build:corpus-manifest": "node scripts/build-corpus-manifest.mjs"
+    "build:corpus-manifest": "node scripts/build-corpus-manifest.mjs",
+    "verify:corpus": "node scripts/verify-corpus.mjs"
   },
   "dependencies": {
     "@vitejs/plugin-react": "^4.3.1",
