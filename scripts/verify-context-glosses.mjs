@@ -1,10 +1,11 @@
 import { readFile } from 'node:fs/promises';
 import path from 'node:path';
 
-const payload = JSON.parse(
-  await readFile(path.resolve('public/lexicon/context-glosses.json'), 'utf8'),
-);
-const entries = payload.entries ?? {};
+const contextDir = path.resolve('public/lexicon/context');
+const manifest = JSON.parse(await readFile(path.join(contextDir, 'manifest.json'), 'utf8'));
+const john = JSON.parse(await readFile(path.join(contextDir, 'JHN.json'), 'utf8')).entries ?? {};
+const genesis = JSON.parse(await readFile(path.join(contextDir, 'GEN.json'), 'utf8')).entries ?? {};
+const entries = { ...john, ...genesis };
 
 const expected = new Map([
   ['JHN.1.1:pada:0', 'In'],
@@ -37,8 +38,13 @@ for (const [key, value] of expected) {
   }
 }
 
-if (Object.keys(entries).length < 500000) {
-  throw new Error(`Context gloss generation unexpectedly small: ${Object.keys(entries).length} entries.`);
+if (manifest.totalEntries < 500000) {
+  throw new Error(`Context gloss generation unexpectedly small: ${manifest.totalEntries} entries.`);
+}
+if (manifest.books.length !== 66) {
+  throw new Error(`Expected contextual gloss shards for 66 books, found ${manifest.books.length}.`);
 }
 
-console.log(`Context gloss verification passed: ${Object.keys(entries).length} token annotations.`);
+console.log(
+  `Context gloss verification passed: ${manifest.totalEntries} token annotations across ${manifest.books.length} book shards.`,
+);
