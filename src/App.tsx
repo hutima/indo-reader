@@ -36,8 +36,8 @@ export function App() {
 
   useEffect(() => {
     let cancelled = false;
-    Promise.all([loadPbwlLexicon(), loadContextGlosses(), loadCorpusManifest()])
-      .then(([, , manifest]) => {
+    Promise.all([loadPbwlLexicon(), loadCorpusManifest()])
+      .then(([, manifest]) => {
         if (cancelled) return;
         const ids = manifest.books.map((book) => book.id);
         setAvailableBookIds(ids);
@@ -56,8 +56,8 @@ export function App() {
     let cancelled = false;
     setLoading(true);
     setSelected(null);
-    loadBibleBook(bookId)
-      .then(({ text, book }) => {
+    Promise.all([loadContextGlosses(bookId), loadBibleBook(bookId)])
+      .then(([, { text, book }]) => {
         if (cancelled) return;
         setUsfm(text);
         setTranslation(book.translation);
