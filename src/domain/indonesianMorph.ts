@@ -6,80 +6,130 @@ export interface MorphAnalysis {
 }
 
 const enclitics = ['-lah', '-kah', '-pun', '-nya', '-ku', '-mu'];
-const suffixes = ['-kan', '-i', '-an'];
 
-function removeSuffix(word: string): { stem: string; suffixes: string[] } {
-  let stem = word;
-  const found: string[] = [];
-
+function removeEnclitic(word: string): { stem: string; affixes: string[] } {
   for (const ending of enclitics) {
     const raw = ending.slice(1);
-    if (stem.length > raw.length + 2 && stem.endsWith(raw)) {
-      stem = stem.slice(0, -raw.length);
-      found.unshift(ending);
-      break;
+    if (word.length > raw.length + 2 && word.endsWith(raw)) {
+      return { stem: word.slice(0, -raw.length), affixes: [ending] };
     }
   }
+  return { stem: word, affixes: [] };
+}
 
-  for (const ending of suffixes) {
+function circumfix(word: string): MorphAnalysis | null {
+  const patterns: Array<[RegExp, string[], 'high' | 'medium']> = [
+    [/^ke(.+)an$/, ['ke-', '-an'], 'high'],
+    [/^per(.+)an$/, ['per-', '-an'], 'high'],
+    [/^ber(.+)an$/, ['ber-', '-an'], 'medium'],
+    [/^peng(.+)an$/, ['peng-', '-an'], 'medium'],
+    [/^peny(.+)an$/, ['peny-', '-an'], 'medium'],
+    [/^pem(.+)an$/, ['pem-', '-an'], 'medium'],
+    [/^pen(.+)an$/, ['pen-', '-an'], 'medium'],
+  ];
+
+  for (const [pattern, affixes, confidence] of patterns) {
+    const match = word.match(pattern);
+    if (!match || match[1].length < 3) continue;
+
+    let root = match[1];
+    if (affixes[0] === 'peny-') root = 's' + root;
+
+    return {
+      root,
+      affixes,
+      confidence,
+      note: 'Automatic circumfix analysis; PBWL/lexicon data takes priority when available.',
+    };
+  }
+  return null;
+}
+
+function removeDerivationalSuffix(word: string): { stem: string; affixes: string[] } {
+  for (const ending of ['-kan', '-an', '-i']) {
     const raw = ending.slice(1);
-    if (stem.length > raw.length + 2 && stem.endsWith(raw)) {
-      stem = stem.slice(0, -raw.length);
-      found.unshift(ending);
-      break;
+    if (word.length > raw.length + 2 && word.endsWith(raw)) {
+      return { stem: word.slice(0, -raw.length), affixes: [ending] };
     }
   }
-
-  return { stem, suffixes: found };
+  return { stem: word, affixes: [] };
 }
 
 /**
  * Conservative learner-oriented Indonesian affix analysis.
  *
- * This intentionally returns a *root guess* for productive forms rather than
- * pretending to be a full linguistic stemmer. Lexicon/PBWL matches should
- * always override this heuristic.
+ * This is intentionally a fallback rather than a full linguistic stemmer.
+ * PBWL/root-family matches and reader-authored entries always take priority.
+ * Where Indonesian nasal assimilation is ambiguous, the result is labelled
+ * medium/low confidence instead of inventing a certain root.
  */
 export function analyzeIndonesian(surface: string): MorphAnalysis {
   const original = surface.toLocaleLowerCase('id');
+
   if (original.includes('-')) {
-    return { root: original, affixes: [], confidence: 'low', note: 'Hyphenated form; check lexical entry.' };
+    return {
+      root: original,
+      affixes: [],
+      confidence: 'low',
+      note: 'Hyphenated/reduplicated form; check lexical entry.',
+    };
   }
 
-  const { stem: afterSuffix, suffixes: foundSuffixes } = removeSuffix(original);
-  let stem = afterSuffix;
+  const enclitic = removeEnclitic(original);
+  const circ = circumfix(enclitic.stem);
+  if (circ) return { ...circ, affixes: [...circ.affixes, ...enclitic.affixes] };
+
+  const suffix = removeDerivationalSuffix(enclitic.stem);
+  let stem = suffix.stem;
   const prefixes: string[] = [];
   let confidence: MorphAnalysis['confidence'] = 'low';
 
-  const rules: Array<[RegExp, string, (m: RegExpMatchArray) => string]> = [
-    [/^meny(.+)$/, 'meny-', (m) => 's' + m[1]],
-    [/^meng(.+)$/, 'meng-', (m) => m[1]],
-    [/^mem(.+)$/, 'mem-', (m) => m[1]],
-    [/^men(.+)$/, 'men-', (m) => m[1]],
-    [/^me(.+)$/, 'me-', (m) => m[1]],
-    [/^peng(.+)$/, 'peng-', (m) => m[1]],
-    [/^peny(.+)$/, 'peny-', (m) => 's' + m[1]],
-    [/^pem(.+)$/, 'pem-', (m) => m[1]],
-    [/^pen(.+)$/, 'pen-', (m) => m[1]],
-    [/^ber(.+)$/, 'ber-', (m) => m[1]],
-    [/^ter(.+)$/, 'ter-', (m) => m[1]],
-    [/^per(.+)$/, 'per-', (m) => m[1]],
-    [/^di(.+)$/, 'di-', (m) => m[1]],
-    [/^ke(.+)$/, 'ke-', (m) => m[1]],
-    [/^se(.+)$/, 'se-', (m) => m[1]],
+  // Handle common stacked prefixes before shorter productive prefixes.
+  const stacked: Array<[RegExp, string[], (m: RegExpMatchArray) => string]> = [
+    [/^memper(.+)$/, ['memper-'], (m) => m[1]],
+    [/^diper(.+)$/, ['di-', 'per-'], (m) => m[1]],
+    [/^keber(.+)$/, ['ke-', 'ber-'], (m) => m[1]],
   ];
-
-  for (const [pattern, label, restore] of rules) {
+  for (const [pattern, labels, restore] of stacked) {
     const match = stem.match(pattern);
     if (match && match[1].length >= 3) {
       stem = restore(match);
-      prefixes.push(label);
-      confidence = label === 'di-' || label === 'ber-' || label === 'ter-' ? 'high' : 'medium';
+      prefixes.push(...labels);
+      confidence = 'high';
       break;
     }
   }
 
-  const affixes = [...prefixes, ...foundSuffixes];
+  if (!prefixes.length) {
+    const rules: Array<[RegExp, string, (m: RegExpMatchArray) => string, MorphAnalysis['confidence']]> = [
+      [/^meny(.+)$/, 'meny-', (m) => 's' + m[1], 'medium'],
+      [/^meng(.+)$/, 'meng-', (m) => m[1], 'medium'],
+      [/^mem(.+)$/, 'mem-', (m) => m[1], 'medium'],
+      [/^men(.+)$/, 'men-', (m) => m[1], 'medium'],
+      [/^me(.+)$/, 'me-', (m) => m[1], 'low'],
+      [/^peng(.+)$/, 'peng-', (m) => m[1], 'medium'],
+      [/^peny(.+)$/, 'peny-', (m) => 's' + m[1], 'medium'],
+      [/^pem(.+)$/, 'pem-', (m) => m[1], 'medium'],
+      [/^pen(.+)$/, 'pen-', (m) => m[1], 'medium'],
+      [/^ber(.+)$/, 'ber-', (m) => m[1], 'high'],
+      [/^ter(.+)$/, 'ter-', (m) => m[1], 'high'],
+      [/^per(.+)$/, 'per-', (m) => m[1], 'high'],
+      [/^di(.+)$/, 'di-', (m) => m[1], 'high'],
+      [/^se(.+)$/, 'se-', (m) => m[1], 'medium'],
+    ];
+
+    for (const [pattern, label, restore, level] of rules) {
+      const match = stem.match(pattern);
+      if (match && match[1].length >= 3) {
+        stem = restore(match);
+        prefixes.push(label);
+        confidence = level;
+        break;
+      }
+    }
+  }
+
+  const affixes = [...prefixes, ...suffix.affixes, ...enclitic.affixes];
   if (!affixes.length) return { root: original, affixes: [], confidence: 'low' };
 
   return {
