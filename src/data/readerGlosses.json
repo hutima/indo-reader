@@ -2365,5 +2365,588 @@
     "root": "Zebedeus",
     "pos": "proper noun",
     "source": "reader"
+  },
+  {
+    "form": "alami",
+    "gloss": "experience; undergo",
+    "root": "alam",
+    "pos": "verb",
+    "affixes": [
+      "-i"
+    ],
+    "note": "Curated reader sense; in AGS often verbal 'experience/undergo'.",
+    "source": "reader"
+  },
+  {
+    "form": "Akwila",
+    "gloss": "Aquila",
+    "root": "Akwila",
+    "pos": "proper noun",
+    "source": "reader"
+  },
+  {
+    "form": "berlanjut",
+    "gloss": "continue; go on",
+    "root": "lanjut",
+    "pos": "verb",
+    "affixes": [
+      "ber-"
+    ],
+    "source": "reader"
+  },
+  {
+    "form": "butuhkan",
+    "gloss": "need; require",
+    "root": "butuh",
+    "pos": "verb",
+    "affixes": [
+      "-kan"
+    ],
+    "source": "reader"
+  },
+  {
+    "form": "diberitahu",
+    "gloss": "be told; be informed",
+    "root": "tahu",
+    "pos": "verb",
+    "affixes": [
+      "di-"
+    ],
+    "note": "Passive of the compound beri tahu.",
+    "source": "reader"
+  },
+  {
+    "form": "dijanjikan",
+    "gloss": "be promised",
+    "root": "janji",
+    "pos": "verb",
+    "affixes": [
+      "di-",
+      "-kan"
+    ],
+    "source": "reader"
+  },
+  {
+    "form": "dikuatkan",
+    "gloss": "be strengthened; be encouraged",
+    "root": "kuat",
+    "pos": "verb",
+    "affixes": [
+      "di-",
+      "-kan"
+    ],
+    "source": "reader"
+  },
+  {
+    "form": "dilihat",
+    "gloss": "be seen",
+    "root": "lihat",
+    "pos": "verb",
+    "affixes": [
+      "di-"
+    ],
+    "source": "reader"
+  },
+  {
+    "form": "ditanam",
+    "gloss": "be planted",
+    "root": "tanam",
+    "pos": "verb",
+    "affixes": [
+      "di-"
+    ],
+    "source": "reader"
+  },
+  {
+    "form": "ditempatkan",
+    "gloss": "be placed; be stationed",
+    "root": "tempat",
+    "pos": "verb",
+    "affixes": [
+      "di-",
+      "-kan"
+    ],
+    "source": "reader"
+  },
+  {
+    "form": "ditentukan",
+    "gloss": "be determined; be appointed",
+    "root": "tentu",
+    "pos": "verb",
+    "affixes": [
+      "di-",
+      "-kan"
+    ],
+    "source": "reader"
+  },
+  {
+    "form": "ditinggikan",
+    "gloss": "be exalted; be lifted up",
+    "root": "tinggi",
+    "pos": "verb",
+    "affixes": [
+      "di-",
+      "-kan"
+    ],
+    "source": "reader"
+  },
+  {
+    "form": "diungkapkan",
+    "gloss": "be revealed; be expressed",
+    "root": "ungkap",
+    "pos": "verb",
+    "affixes": [
+      "di-",
+      "-kan"
+    ],
+    "source": "reader"
+  },
+  {
+    "form": "diyakinkan",
+    "gloss": "be convinced; be assured",
+    "root": "yakin",
+    "pos": "verb",
+    "affixes": [
+      "di-",
+      "-kan"
+    ],
+    "source": "reader"
+  },
+  {
+    "form": "gunanya",
+    "gloss": "use; benefit; usefulness",
+    "root": "guna",
+    "pos": "noun",
+    "affixes": [
+      "-nya"
+    ],
+    "source": "reader"
+  },
+  {
+    "form": "jelaskan",
+    "gloss": "explain; make clear",
+    "root": "jelas",
+    "pos": "verb",
+    "affixes": [
+      "-kan"
+    ],
+    "source": "reader"
+  },
+  {
+    "form": "kemanapun",
+    "gloss": "wherever; anywhere",
+    "root": "mana",
+    "pos": "adverb",
+    "affixes": [
+      "ke-",
+      "-pun"
+    ],
+    "source": "reader"
+  },
+  {
+    "form": "Korintus",
+    "gloss": "Corinth; Corinthians",
+    "root": "Korintus",
+    "pos": "proper noun",
+    "source": "reader"
+  },
+  {
+    "form": "melempari",
+    "gloss": "pelt; throw things at",
+    "root": "lempar",
+    "pos": "verb",
+    "affixes": [
+      "meN-",
+      "-i"
+    ],
+    "source": "reader"
+  },
+  {
+    "form": "menghilang",
+    "gloss": "disappear; vanish",
+    "root": "hilang",
+    "pos": "verb",
+    "affixes": [
+      "meN-"
+    ],
+    "source": "reader"
+  },
+  {
+    "form": "menjalankan",
+    "gloss": "carry out; run; perform",
+    "root": "jalan",
+    "pos": "verb",
+    "affixes": [
+      "meN-",
+      "-kan"
+    ],
+    "source": "reader"
+  },
+  {
+    "form": "meterai",
+    "gloss": "seal",
+    "root": "meterai",
+    "pos": "noun",
+    "source": "reader"
+  },
+  {
+    "form": "pencipta",
+    "gloss": "creator",
+    "root": "cipta",
+    "pos": "noun",
+    "affixes": [
+      "peN-"
+    ],
+    "source": "reader"
+  },
+  {
+    "form": "pendapat",
+    "gloss": "opinion; view",
+    "root": "dapat",
+    "pos": "noun",
+    "affixes": [
+      "peN-"
+    ],
+    "source": "reader"
+  },
+  {
+    "form": "penyembah",
+    "gloss": "worshiper",
+    "root": "sembah",
+    "pos": "noun",
+    "affixes": [
+      "peN-"
+    ],
+    "source": "reader"
+  },
+  {
+    "form": "Akhaia",
+    "gloss": "Achaia",
+    "root": "Akhaia",
+    "pos": "proper noun",
+    "source": "reader"
+  },
+  {
+    "form": "Aleksandria",
+    "gloss": "Alexandria",
+    "root": "Aleksandria",
+    "pos": "proper noun",
+    "source": "reader"
+  },
+  {
+    "form": "Aleksander",
+    "gloss": "Alexander",
+    "root": "Aleksander",
+    "pos": "proper noun",
+    "source": "reader"
+  },
+  {
+    "form": "Annas",
+    "gloss": "Annas",
+    "root": "Annas",
+    "pos": "proper noun",
+    "source": "reader"
+  },
+  {
+    "form": "Arimatea",
+    "gloss": "Arimathea",
+    "root": "Arimatea",
+    "pos": "proper noun",
+    "source": "reader"
+  },
+  {
+    "form": "Atena",
+    "gloss": "Athens",
+    "root": "Atena",
+    "pos": "proper noun",
+    "source": "reader"
+  },
+  {
+    "form": "Berea",
+    "gloss": "Berea",
+    "root": "Berea",
+    "pos": "proper noun",
+    "source": "reader"
+  },
+  {
+    "form": "Kilikia",
+    "gloss": "Cilicia",
+    "root": "Kilikia",
+    "pos": "proper noun",
+    "source": "reader"
+  },
+  {
+    "form": "Kreta",
+    "gloss": "Crete",
+    "root": "Kreta",
+    "pos": "proper noun",
+    "source": "reader"
+  },
+  {
+    "form": "Lidia",
+    "gloss": "Lydia",
+    "root": "Lidia",
+    "pos": "proper noun",
+    "source": "reader"
+  },
+  {
+    "form": "Listra",
+    "gloss": "Lystra",
+    "root": "Listra",
+    "pos": "proper noun",
+    "source": "reader"
+  },
+  {
+    "form": "Miletus",
+    "gloss": "Miletus",
+    "root": "Miletus",
+    "pos": "proper noun",
+    "source": "reader"
+  },
+  {
+    "form": "Nikodemus",
+    "gloss": "Nicodemus",
+    "root": "Nikodemus",
+    "pos": "proper noun",
+    "source": "reader"
+  },
+  {
+    "form": "Priskila",
+    "gloss": "Priscilla",
+    "root": "Priskila",
+    "pos": "proper noun",
+    "source": "reader"
+  },
+  {
+    "form": "Silisia",
+    "gloss": "Cilicia",
+    "root": "Silisia",
+    "pos": "proper noun",
+    "source": "reader"
+  },
+  {
+    "form": "Tarsus",
+    "gloss": "Tarsus",
+    "root": "Tarsus",
+    "pos": "proper noun",
+    "source": "reader"
+  },
+  {
+    "form": "Tiatira",
+    "gloss": "Thyatira",
+    "root": "Tiatira",
+    "pos": "proper noun",
+    "source": "reader"
+  },
+  {
+    "form": "Tirus",
+    "gloss": "Tyre",
+    "root": "Tirus",
+    "pos": "proper noun",
+    "source": "reader"
+  },
+  {
+    "form": "berhenti",
+    "gloss": "stop; cease",
+    "root": "henti",
+    "pos": "verb",
+    "affixes": [
+      "ber-"
+    ],
+    "source": "reader"
+  },
+  {
+    "form": "berlutut",
+    "gloss": "kneel",
+    "root": "lutut",
+    "pos": "verb",
+    "affixes": [
+      "ber-"
+    ],
+    "source": "reader"
+  },
+  {
+    "form": "bertobat",
+    "gloss": "repent",
+    "root": "tobat",
+    "pos": "verb",
+    "affixes": [
+      "ber-"
+    ],
+    "source": "reader"
+  },
+  {
+    "form": "dihukum",
+    "gloss": "be punished; be condemned",
+    "root": "hukum",
+    "pos": "verb",
+    "affixes": [
+      "di-"
+    ],
+    "source": "reader"
+  },
+  {
+    "form": "diperlihatkan",
+    "gloss": "be shown; be revealed",
+    "root": "lihat",
+    "pos": "verb",
+    "affixes": [
+      "di-",
+      "per-",
+      "-kan"
+    ],
+    "source": "reader"
+  },
+  {
+    "form": "disembah",
+    "gloss": "be worshiped",
+    "root": "sembah",
+    "pos": "verb",
+    "affixes": [
+      "di-"
+    ],
+    "source": "reader"
+  },
+  {
+    "form": "ditebus",
+    "gloss": "be redeemed; be ransomed",
+    "root": "tebus",
+    "pos": "verb",
+    "affixes": [
+      "di-"
+    ],
+    "source": "reader"
+  },
+  {
+    "form": "kekal",
+    "gloss": "eternal; everlasting",
+    "root": "kekal",
+    "pos": "adjective",
+    "source": "reader"
+  },
+  {
+    "form": "keselamatan",
+    "gloss": "salvation; deliverance",
+    "root": "selamat",
+    "pos": "noun",
+    "affixes": [
+      "ke-",
+      "-an"
+    ],
+    "source": "reader"
+  },
+  {
+    "form": "kudus",
+    "gloss": "holy; sacred",
+    "root": "kudus",
+    "pos": "adjective",
+    "source": "reader"
+  },
+  {
+    "form": "memuliakan",
+    "gloss": "glorify; honor",
+    "root": "mulia",
+    "pos": "verb",
+    "affixes": [
+      "meN-",
+      "-kan"
+    ],
+    "source": "reader"
+  },
+  {
+    "form": "menebus",
+    "gloss": "redeem; ransom",
+    "root": "tebus",
+    "pos": "verb",
+    "affixes": [
+      "meN-"
+    ],
+    "source": "reader"
+  },
+  {
+    "form": "mengampuni",
+    "gloss": "forgive",
+    "root": "ampun",
+    "pos": "verb",
+    "affixes": [
+      "meN-",
+      "-i"
+    ],
+    "source": "reader"
+  },
+  {
+    "form": "menghakimi",
+    "gloss": "judge",
+    "root": "hakim",
+    "pos": "verb",
+    "affixes": [
+      "meN-",
+      "-i"
+    ],
+    "source": "reader"
+  },
+  {
+    "form": "menguduskan",
+    "gloss": "sanctify; make holy",
+    "root": "kudus",
+    "pos": "verb",
+    "affixes": [
+      "meN-",
+      "-kan"
+    ],
+    "source": "reader"
+  },
+  {
+    "form": "nabi",
+    "gloss": "prophet",
+    "root": "nabi",
+    "pos": "noun",
+    "source": "reader"
+  },
+  {
+    "form": "nubuat",
+    "gloss": "prophecy",
+    "root": "nubuat",
+    "pos": "noun",
+    "source": "reader"
+  },
+  {
+    "form": "perjanjian",
+    "gloss": "covenant; agreement",
+    "root": "janji",
+    "pos": "noun",
+    "affixes": [
+      "per-",
+      "-an"
+    ],
+    "source": "reader"
+  },
+  {
+    "form": "rasul",
+    "gloss": "apostle",
+    "root": "rasul",
+    "pos": "noun",
+    "source": "reader"
+  },
+  {
+    "form": "roh",
+    "gloss": "spirit; Spirit",
+    "root": "roh",
+    "pos": "noun",
+    "source": "reader"
+  },
+  {
+    "form": "salib",
+    "gloss": "cross",
+    "root": "salib",
+    "pos": "noun",
+    "source": "reader"
+  },
+  {
+    "form": "syafaat",
+    "gloss": "intercession",
+    "root": "syafaat",
+    "pos": "noun",
+    "source": "reader"
   }
 ]
