@@ -9383,5 +9383,767 @@
       "reduplication"
     ],
     "source": "reader"
+  },
+  {
+    "form": "mengamat-amati",
+    "gloss": "observe closely; watch carefully",
+    "preferredGloss": "observe closely",
+    "root": "amat",
+    "pos": "verb",
+    "affixes": [
+      "meN-",
+      "reduplication"
+    ],
+    "source": "reader"
+  },
+  {
+    "form": "menunda-nunda",
+    "gloss": "keep delaying; procrastinate",
+    "preferredGloss": "keep delaying",
+    "root": "tunda",
+    "pos": "verb",
+    "affixes": [
+      "meN-",
+      "reduplication"
+    ],
+    "source": "reader"
+  },
+  {
+    "form": "menyendengkan",
+    "gloss": "incline; tilt; turn aside",
+    "preferredGloss": "incline",
+    "root": "sendeng",
+    "pos": "verb",
+    "affixes": [
+      "meN-",
+      "-kan"
+    ],
+    "source": "reader"
+  },
+  {
+    "form": "mina",
+    "gloss": "mina",
+    "root": "mina",
+    "pos": "noun",
+    "note": "Ancient unit of weight or money.",
+    "source": "reader"
+  },
+  {
+    "form": "peribahasa",
+    "gloss": "proverb; saying",
+    "preferredGloss": "proverb",
+    "root": "bahasa",
+    "pos": "noun",
+    "source": "reader"
+  },
+  {
+    "form": "rebab",
+    "gloss": "stringed instrument; lyre",
+    "preferredGloss": "lyre",
+    "root": "rebab",
+    "pos": "noun",
+    "source": "reader"
+  },
+  {
+    "form": "rumbai",
+    "gloss": "fringe; tassel",
+    "preferredGloss": "fringe",
+    "root": "rumbai",
+    "pos": "noun",
+    "source": "reader"
+  },
+  {
+    "form": "saksama",
+    "gloss": "carefully; thoroughly; attentive",
+    "preferredGloss": "carefully",
+    "root": "saksama",
+    "pos": "adverb/adjective",
+    "source": "reader"
+  },
+  {
+    "form": "sembunyi-sembunyi",
+    "gloss": "secretly; in secret",
+    "preferredGloss": "secretly",
+    "root": "sembunyi",
+    "pos": "adverb",
+    "affixes": [
+      "reduplication"
+    ],
+    "source": "reader"
+  },
+  {
+    "form": "serafim",
+    "gloss": "seraphim",
+    "root": "serafim",
+    "pos": "noun",
+    "source": "reader"
+  },
+  {
+    "form": "seringkali",
+    "gloss": "often; frequently",
+    "preferredGloss": "often",
+    "root": "sering",
+    "pos": "adverb",
+    "source": "reader"
+  },
+  {
+    "form": "sukat",
+    "gloss": "measure; measuring vessel",
+    "preferredGloss": "measure",
+    "root": "sukat",
+    "pos": "noun/verb",
+    "source": "reader"
+  },
+  {
+    "form": "teliti",
+    "gloss": "careful; thorough; examine closely",
+    "preferredGloss": "careful",
+    "root": "teliti",
+    "pos": "adjective/verb",
+    "source": "reader"
+  },
+  {
+    "form": "wangi-wangian",
+    "gloss": "fragrances; perfumes; spices",
+    "preferredGloss": "fragrances",
+    "root": "wangi",
+    "pos": "noun",
+    "affixes": [
+      "reduplication",
+      "-an"
+    ],
+    "source": "reader"
+  },
+  {
+    "form": "yaspis",
+    "gloss": "jasper",
+    "root": "yaspis",
+    "pos": "noun",
+    "source": "reader"
+  },
+  {
+    "form": "bajak",
+    "gloss": "plow; plowshare",
+    "preferredGloss": "plow",
+    "root": "bajak",
+    "pos": "noun/verb",
+    "source": "reader"
+  },
+  {
+    "form": "barah",
+    "gloss": "sore; boil; ulcer",
+    "preferredGloss": "sore",
+    "root": "barah",
+    "pos": "noun",
+    "source": "reader"
+  },
+  {
+    "form": "baskom",
+    "gloss": "basin; bowl",
+    "preferredGloss": "basin",
+    "root": "baskom",
+    "pos": "noun",
+    "source": "reader"
+  },
+  {
+    "form": "berahi",
+    "gloss": "lust; sexual desire",
+    "preferredGloss": "lust",
+    "root": "berahi",
+    "pos": "noun/adjective",
+    "source": "reader"
+  },
+  {
+    "form": "berputar-putar",
+    "gloss": "turn around repeatedly; whirl",
+    "preferredGloss": "whirl",
+    "root": "putar",
+    "pos": "verb",
+    "affixes": [
+      "ber-",
+      "reduplication"
+    ],
+    "source": "reader"
+  },
+  {
+    "form": "berwarna-warni",
+    "gloss": "multicolored; colorful",
+    "preferredGloss": "multicolored",
+    "root": "warna",
+    "pos": "adjective",
+    "affixes": [
+      "ber-",
+      "reduplication"
+    ],
+    "source": "reader"
+  },
+  {
+    "form": "capai",
+    "gloss": "reach; attain",
+    "root": "capai",
+    "pos": "verb",
+    "source": "reader"
+  },
+  {
+    "form": "derap",
+    "gloss": "tramp; clatter; hoofbeat",
+    "preferredGloss": "hoofbeat",
+    "root": "derap",
+    "pos": "noun",
+    "source": "reader"
+  },
+  {
+    "form": "dihempaskan",
+    "gloss": "be dashed down; be hurled",
+    "preferredGloss": "be dashed down",
+    "root": "hempas",
+    "pos": "verb",
+    "affixes": [
+      "di-",
+      "-kan"
+    ],
+    "source": "reader"
+  },
+  {
+    "form": "dinanti-nantikan",
+    "gloss": "be eagerly awaited",
+    "preferredGloss": "be awaited",
+    "root": "nanti",
+    "pos": "verb",
+    "affixes": [
+      "di-",
+      "reduplication",
+      "-kan"
+    ],
+    "source": "reader"
+  },
+  {
+    "form": "Epafras",
+    "gloss": "Epaphras",
+    "root": "Epafras",
+    "pos": "proper noun",
+    "source": "reader"
+  },
+  {
+    "form": "ganggu",
+    "gloss": "disturb; trouble; interfere",
+    "preferredGloss": "disturb",
+    "root": "ganggu",
+    "pos": "verb",
+    "source": "reader"
+  },
+  {
+    "form": "henti",
+    "gloss": "stop; cease",
+    "root": "henti",
+    "pos": "verb",
+    "source": "reader"
+  },
+  {
+    "form": "hujat",
+    "gloss": "blaspheme; slander; insult",
+    "preferredGloss": "blaspheme",
+    "root": "hujat",
+    "pos": "verb",
+    "source": "reader"
+  },
+  {
+    "form": "injak",
+    "gloss": "step on; trample",
+    "preferredGloss": "trample",
+    "root": "injak",
+    "pos": "verb",
+    "source": "reader"
+  },
+  {
+    "form": "jasper",
+    "gloss": "jasper",
+    "root": "jasper",
+    "pos": "noun",
+    "source": "reader"
+  },
+  {
+    "form": "jelajahilah",
+    "gloss": "explore; traverse",
+    "preferredGloss": "explore",
+    "root": "jelajah",
+    "pos": "verb",
+    "affixes": [
+      "-i",
+      "-lah"
+    ],
+    "source": "reader"
+  },
+  {
+    "form": "keapda",
+    "gloss": "to; toward",
+    "preferredGloss": "to",
+    "root": "kepada",
+    "pos": "preposition",
+    "note": "AGS apparent typo for kepada.",
+    "source": "reader"
+  },
+  {
+    "form": "kedegilan",
+    "gloss": "stubbornness; hardness",
+    "preferredGloss": "stubbornness",
+    "root": "degil",
+    "pos": "noun",
+    "affixes": [
+      "ke-",
+      "-an"
+    ],
+    "source": "reader"
+  },
+  {
+    "form": "kekuning-kuningan",
+    "gloss": "yellowish",
+    "root": "kuning",
+    "pos": "adjective",
+    "affixes": [
+      "ke-",
+      "reduplication",
+      "-an"
+    ],
+    "source": "reader"
+  },
+  {
+    "form": "keluh",
+    "gloss": "groan; complaint",
+    "preferredGloss": "groan",
+    "root": "keluh",
+    "pos": "noun/verb",
+    "source": "reader"
+  },
+  {
+    "form": "kena",
+    "gloss": "be hit; be affected; incur",
+    "preferredGloss": "be affected",
+    "root": "kena",
+    "pos": "verb",
+    "source": "reader"
+  },
+  {
+    "form": "ketidaksengajaan",
+    "gloss": "unintentional act; inadvertence",
+    "preferredGloss": "unintentional act",
+    "root": "sengaja",
+    "pos": "noun",
+    "affixes": [
+      "ke-",
+      "tidak",
+      "-an"
+    ],
+    "source": "reader"
+  },
+  {
+    "form": "ketidaksengajaannya",
+    "gloss": "his/her unintentional act; inadvertence",
+    "preferredGloss": "unintentional act",
+    "root": "sengaja",
+    "pos": "noun",
+    "affixes": [
+      "ke-",
+      "tidak",
+      "-an",
+      "-nya"
+    ],
+    "source": "reader"
+  },
+  {
+    "form": "kurung",
+    "gloss": "enclose; confine; cage",
+    "preferredGloss": "confine",
+    "root": "kurung",
+    "pos": "verb",
+    "source": "reader"
+  },
+  {
+    "form": "langgar",
+    "gloss": "violate; transgress; collide",
+    "preferredGloss": "violate",
+    "root": "langgar",
+    "pos": "verb",
+    "source": "reader"
+  },
+  {
+    "form": "larang",
+    "gloss": "forbid; prohibit",
+    "root": "larang",
+    "pos": "verb",
+    "source": "reader"
+  },
+  {
+    "form": "lazurit",
+    "gloss": "lapis lazuli",
+    "root": "lazurit",
+    "pos": "noun",
+    "source": "reader"
+  },
+  {
+    "form": "lenan",
+    "gloss": "linen",
+    "root": "lenan",
+    "pos": "noun",
+    "source": "reader"
+  },
+  {
+    "form": "lepa",
+    "gloss": "plaster; coating",
+    "preferredGloss": "plaster",
+    "root": "lepa",
+    "pos": "noun",
+    "source": "reader"
+  },
+  {
+    "form": "memotong-motong",
+    "gloss": "cut into pieces",
+    "root": "potong",
+    "pos": "verb",
+    "affixes": [
+      "meN-",
+      "reduplication"
+    ],
+    "source": "reader"
+  },
+  {
+    "form": "menanti-nanti",
+    "gloss": "wait eagerly; keep waiting",
+    "preferredGloss": "wait eagerly",
+    "root": "nanti",
+    "pos": "verb",
+    "affixes": [
+      "meN-",
+      "reduplication"
+    ],
+    "source": "reader"
+  },
+  {
+    "form": "mencari-cari",
+    "gloss": "search repeatedly; seek out",
+    "preferredGloss": "seek",
+    "root": "cari",
+    "pos": "verb",
+    "affixes": [
+      "meN-",
+      "reduplication"
+    ],
+    "source": "reader"
+  },
+  {
+    "form": "menceraiberaikan",
+    "gloss": "scatter; disperse",
+    "preferredGloss": "scatter",
+    "root": "cerai-berai",
+    "pos": "verb",
+    "affixes": [
+      "meN-",
+      "-kan"
+    ],
+    "source": "reader"
+  },
+  {
+    "form": "menceraiberaikanmu",
+    "gloss": "scatter you; disperse you",
+    "preferredGloss": "scatter you",
+    "root": "cerai-berai",
+    "pos": "verb",
+    "affixes": [
+      "meN-",
+      "-kan",
+      "-mu"
+    ],
+    "source": "reader"
+  },
+  {
+    "form": "menengadah",
+    "gloss": "look up; raise one's face",
+    "preferredGloss": "look up",
+    "root": "tengadah",
+    "pos": "verb",
+    "affixes": [
+      "meN-"
+    ],
+    "source": "reader"
+  },
+  {
+    "form": "menengadahkan",
+    "gloss": "raise; lift up",
+    "preferredGloss": "raise",
+    "root": "tengadah",
+    "pos": "verb",
+    "affixes": [
+      "meN-",
+      "-kan"
+    ],
+    "source": "reader"
+  },
+  {
+    "form": "mengibaskan",
+    "gloss": "shake off; wave",
+    "preferredGloss": "shake off",
+    "root": "kibas",
+    "pos": "verb",
+    "affixes": [
+      "meN-",
+      "-kan"
+    ],
+    "source": "reader"
+  },
+  {
+    "form": "menjelajah",
+    "gloss": "explore; traverse",
+    "preferredGloss": "explore",
+    "root": "jelajah",
+    "pos": "verb",
+    "affixes": [
+      "meN-"
+    ],
+    "source": "reader"
+  },
+  {
+    "form": "nujum",
+    "gloss": "divination; omen",
+    "preferredGloss": "divination",
+    "root": "nujum",
+    "pos": "noun",
+    "source": "reader"
+  },
+  {
+    "form": "orangtuanya",
+    "gloss": "his/her parents",
+    "preferredGloss": "parents",
+    "root": "orangtua",
+    "pos": "noun",
+    "affixes": [
+      "-nya"
+    ],
+    "source": "reader"
+  },
+  {
+    "form": "palungan",
+    "gloss": "manger; feeding trough",
+    "preferredGloss": "manger",
+    "root": "palung",
+    "pos": "noun",
+    "affixes": [
+      "-an"
+    ],
+    "source": "reader"
+  },
+  {
+    "form": "pegang",
+    "gloss": "hold; grasp",
+    "root": "pegang",
+    "pos": "verb",
+    "source": "reader"
+  },
+  {
+    "form": "pejuang",
+    "gloss": "warrior; fighter",
+    "preferredGloss": "warrior",
+    "root": "juang",
+    "pos": "noun",
+    "affixes": [
+      "pe-"
+    ],
+    "source": "reader"
+  },
+  {
+    "form": "pelanduk",
+    "gloss": "rock hyrax; coney",
+    "preferredGloss": "rock hyrax",
+    "root": "pelanduk",
+    "pos": "noun",
+    "source": "reader"
+  },
+  {
+    "form": "pelari",
+    "gloss": "runner; messenger",
+    "preferredGloss": "runner",
+    "root": "lari",
+    "pos": "noun",
+    "affixes": [
+      "pe-"
+    ],
+    "source": "reader"
+  },
+  {
+    "form": "peminum",
+    "gloss": "drinker",
+    "root": "minum",
+    "pos": "noun",
+    "affixes": [
+      "peN-"
+    ],
+    "source": "reader"
+  },
+  {
+    "form": "perilaku",
+    "gloss": "conduct; behavior",
+    "preferredGloss": "conduct",
+    "root": "laku",
+    "pos": "noun",
+    "affixes": [
+      "peri-"
+    ],
+    "source": "reader"
+  },
+  {
+    "form": "perusak",
+    "gloss": "destroyer; one who destroys",
+    "preferredGloss": "destroyer",
+    "root": "rusak",
+    "pos": "noun",
+    "affixes": [
+      "pe-"
+    ],
+    "source": "reader"
+  },
+  {
+    "form": "pewaris",
+    "gloss": "heir; inheritor",
+    "preferredGloss": "heir",
+    "root": "waris",
+    "pos": "noun",
+    "affixes": [
+      "pe-"
+    ],
+    "source": "reader"
+  },
+  {
+    "form": "pezina",
+    "gloss": "adulterer; sexually immoral person",
+    "preferredGloss": "adulterer",
+    "root": "zina",
+    "pos": "noun",
+    "affixes": [
+      "pe-"
+    ],
+    "source": "reader"
+  },
+  {
+    "form": "rebut",
+    "gloss": "seize; snatch; contend for",
+    "preferredGloss": "seize",
+    "root": "rebut",
+    "pos": "verb",
+    "source": "reader"
+  },
+  {
+    "form": "safir",
+    "gloss": "sapphire",
+    "root": "safir",
+    "pos": "noun",
+    "source": "reader"
+  },
+  {
+    "form": "sayu",
+    "gloss": "faint; sorrowful; dim",
+    "preferredGloss": "faint",
+    "root": "sayu",
+    "pos": "adjective",
+    "source": "reader"
+  },
+  {
+    "form": "serunai",
+    "gloss": "pipe; flute",
+    "preferredGloss": "flute",
+    "root": "serunai",
+    "pos": "noun",
+    "source": "reader"
+  },
+  {
+    "form": "seutas",
+    "gloss": "one strand; one cord",
+    "preferredGloss": "one cord",
+    "root": "utas",
+    "pos": "numeral/classifier",
+    "affixes": [
+      "se-"
+    ],
+    "source": "reader"
+  },
+  {
+    "form": "suluh",
+    "gloss": "torch; lamp",
+    "preferredGloss": "torch",
+    "root": "suluh",
+    "pos": "noun",
+    "source": "reader"
+  },
+  {
+    "form": "sungut-sungutmu",
+    "gloss": "your grumbling; your complaints",
+    "preferredGloss": "your grumbling",
+    "root": "sungut",
+    "pos": "noun",
+    "affixes": [
+      "reduplication",
+      "-mu"
+    ],
+    "source": "reader"
+  },
+  {
+    "form": "tabur",
+    "gloss": "sow; scatter",
+    "root": "tabur",
+    "pos": "verb",
+    "source": "reader"
+  },
+  {
+    "form": "tamariska",
+    "gloss": "tamarisk",
+    "root": "tamariska",
+    "pos": "noun",
+    "source": "reader"
+  },
+  {
+    "form": "tari-tarian",
+    "gloss": "dances; dancing",
+    "preferredGloss": "dances",
+    "root": "tari",
+    "pos": "noun",
+    "affixes": [
+      "reduplication",
+      "-an"
+    ],
+    "source": "reader"
+  },
+  {
+    "form": "tedung",
+    "gloss": "cobra; venomous snake",
+    "preferredGloss": "cobra",
+    "root": "tedung",
+    "pos": "noun",
+    "source": "reader"
+  },
+  {
+    "form": "terbagi-bagi",
+    "gloss": "divided; split up",
+    "preferredGloss": "divided",
+    "root": "bagi",
+    "pos": "verb/adjective",
+    "affixes": [
+      "ter-",
+      "reduplication"
+    ],
+    "source": "reader"
+  },
+  {
+    "form": "tetua",
+    "gloss": "elder; elders",
+    "preferredGloss": "elder",
+    "root": "tua",
+    "pos": "noun",
+    "source": "reader"
+  },
+  {
+    "form": "tuju",
+    "gloss": "aim toward; go toward",
+    "preferredGloss": "toward",
+    "root": "tuju",
+    "pos": "verb",
+    "source": "reader"
   }
 ]
