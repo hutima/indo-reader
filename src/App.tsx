@@ -10,12 +10,18 @@ import { parseUsfm } from './io/usfm';
 import { UpdateModal } from './UpdateModal';
 
 type Mode = 'indo' | 'gloss' | 'both';
+type Theme = 'light' | 'dark';
 
 export function App() {
   const [bookId, setBookId] = useState('JHN');
   const [chapter, setChapter] = useState(3);
   const [usfm, setUsfm] = useState('');
   const [mode, setMode] = useState<Mode>('both');
+  const [theme, setTheme] = useState<Theme>(() => {
+    const saved = localStorage.getItem('indo-reader-theme');
+    if (saved === 'light' || saved === 'dark') return saved;
+    return window.matchMedia?.('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  });
   const [selected, setSelected] = useState<ReadingToken | null>(null);
   const [known, setKnown] = useState<Set<string>>(() => {
     try {
@@ -33,6 +39,12 @@ export function App() {
   useEffect(() => {
     localStorage.setItem('indo-reader-known', JSON.stringify([...known]));
   }, [known]);
+
+  useEffect(() => {
+    document.documentElement.dataset.theme = theme;
+    document.documentElement.style.colorScheme = theme;
+    localStorage.setItem('indo-reader-theme', theme);
+  }, [theme]);
 
   useEffect(() => {
     let cancelled = false;
@@ -88,6 +100,8 @@ export function App() {
   const tokenRoot = (token: ReadingToken) =>
     token.lexicon?.root ?? analyzeIndonesian(token.surface).root;
 
+  const isKnown = (token: ReadingToken) => known.has(tokenRoot(token));
+
   const toggleKnown = (token: ReadingToken) => {
     const key = tokenRoot(token);
     setKnown((current) => {
@@ -109,12 +123,23 @@ export function App() {
           <strong>Indo Reader</strong>
           <div className="subtitle">{translation} · Indonesian → English learner reader</div>
         </div>
-        <div className="segmented" aria-label="Display mode">
-          {(['indo', 'both', 'gloss'] as const).map((value) => (
-            <button type="button" className={mode === value ? 'on' : ''} onClick={() => setMode(value)} key={value}>
-              {value === 'indo' ? 'Indo' : value === 'both' ? 'Both' : 'English'}
-            </button>
-          ))}
+        <div className="header-controls">
+          <div className="segmented" aria-label="Display mode">
+            {(['indo', 'both', 'gloss'] as const).map((value) => (
+              <button type="button" className={mode === value ? 'on' : ''} onClick={() => setMode(value)} key={value}>
+                {value === 'indo' ? 'Indo' : value === 'both' ? 'Both' : 'English'}
+              </button>
+            ))}
+          </div>
+          <button
+            className="theme-toggle"
+            type="button"
+            onClick={() => setTheme((value) => value === 'light' ? 'dark' : 'light')}
+            aria-label={theme === 'light' ? 'Switch to dark mode' : 'Switch to light mode'}
+            title={theme === 'light' ? 'Dark mode' : 'Light mode'}
+          >
+            {theme === 'light' ? '☾' : '☀'}
+          </button>
         </div>
       </header>
 
@@ -157,34 +182,40 @@ export function App() {
         </div>
         {loading && <p className="loading">Loading {translation}…</p>}
         {!loading && !visibleVerses.length && <p className="loading">No verses found for this chapter.</p>}
-        {visibleVerses.map((verse) => (
-          <p className={`verse mode-${mode}`} key={`${verse.chapter}:${verse.verse}`}>
-            <sup>{verse.verse}</sup>{' '}
-            {verse.tokens.map((token, index) => {
-              const key = tokenRoot(token);
-              const isKnown = known.has(key);
-              return (
-                <span className="token-wrap" key={`${token.surface}-${index}`}>
-                  <button className={`token ${selected === token ? 'selected' : ''}`} onClick={() => setSelected(token)} type="button">
-                    {mode !== 'gloss' && <span>{token.surface}</span>}
-                    {mode === 'gloss' && (
-                      <span className={token.lexicon?.gloss ? '' : 'english-missing'}>
-                        {token.inlineGloss ?? token.lexicon?.gloss?.split(';')[0]?.trim() ?? `[${token.surface}?]`}
-                      </span>
-                    )}
-                    {mode === 'both' && !isKnown && <span className={`under${token.lexicon?.gloss ? '' : ' missing'}`}>{token.inlineGloss ?? token.lexicon?.gloss?.split(';')[0]?.trim() ?? '?'}</span>}
-                  </button>
-                  {token.after}
-                </span>
-              );
-            })}
-          </p>
-        ))}
+        {visibleVerses.map((verse) => {
+          const allKnown = verse.tokens.length > 0 && verse.tokens.every(isKnown);
+          return (
+            <p className={`verse mode-${mode}${mode === 'both' && allKnown ? ' all-known' : ''}`} key={`${verse.chapter}:${verse.verse}`}>
+              <sup>{verse.verse}</sup>{' '}
+              {verse.tokens.map((token, index) => {
+                const knownToken = isKnown(token);
+                return (
+                  <span className="token-wrap" key={`${token.surface}-${index}`}>
+                    <button className={`token ${selected === token ? 'selected' : ''}`} onClick={() => setSelected(token)} type="button">
+                      {mode !== 'gloss' && <span>{token.surface}</span>}
+                      {mode === 'gloss' && (
+                        <span className={token.lexicon?.gloss ? '' : 'english-missing'}>
+                          {token.inlineGloss ?? token.lexicon?.gloss?.split(';')[0]?.trim() ?? `[${token.surface}?]`}
+                        </span>
+                      )}
+                      {mode === 'both' && !knownToken && (
+                        <span className={`under${token.lexicon?.gloss ? '' : ' missing'}`}>
+                          {token.inlineGloss ?? token.lexicon?.gloss?.split(';')[0]?.trim() ?? '?'}
+                        </span>
+                      )}
+                    </button>
+                    <span className="after">{token.after}</span>
+                  </span>
+                );
+              })}
+            </p>
+          );
+        })}
       </section>
 
       {selected && analysis && (
         <aside className="detail">
-          <button className="close" onClick={() => setSelected(null)} type="button">×</button>
+          <button className="close" onClick={() => setSelected(null)} type="button" aria-label="Close word details">×</button>
           <div className="surface">{selected.surface}</div>
           <dl>
             {selected.inlineGloss && (
