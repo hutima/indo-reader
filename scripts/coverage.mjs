@@ -14,7 +14,7 @@ let coveredTokens = 0;
 const clitics = ['nya', 'ku', 'mu', 'lah', 'kah', 'pun'];
 
 function isCovered(form) {
-  if (isCovered(form)) return true;
+  if (known.has(form)) return true;
 
   const compact = form.replace(/-(nya|ku|mu|lah|kah|pun)$/u, '$1');
   if (compact !== form && known.has(compact)) return true;
