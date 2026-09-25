@@ -39,3 +39,12 @@ export function lookupLexicon(surface: string): LexiconEntry | undefined {
 export function allLexiconEntries(): LexiconEntry[] {
   return [...index.values()];
 }
+
+
+export function relatedForms(root: string, limit = 8): LexiconEntry[] {
+  const normalized = root.toLocaleLowerCase('id');
+  return [...index.values()]
+    .filter((entry) => (entry.root ?? entry.form).toLocaleLowerCase('id') === normalized)
+    .sort((a, b) => a.form.localeCompare(b.form, 'id'))
+    .slice(0, limit);
+}
