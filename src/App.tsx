@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from 'react';
 import type { ReadingToken } from './domain/types';
 import { analyzeIndonesian } from './domain/indonesianMorph';
+import { relatedForms } from './data/lexicon';
 import { BIBLE_BOOKS, BOOK_BY_ID } from './data/books';
 import { loadAgsBook } from './io/corpus';
 import { loadPbwlLexicon } from './io/pbwl';
@@ -69,6 +70,7 @@ export function App() {
 
   const analysis = selected ? analyzeIndonesian(selected.surface) : null;
   const selectedRoot = selected ? tokenRoot(selected) : '';
+  const family = selectedRoot ? relatedForms(selectedRoot) : [];
 
   return (
     <main className="app">
@@ -156,6 +158,19 @@ export function App() {
             {(selected.lexicon?.note ?? analysis.note) && <div><dt>Affix note</dt><dd>{selected.lexicon?.note ?? analysis.note}</dd></div>}
             <div><dt>Source</dt><dd>{selected.lexicon ? selected.lexicon.source === 'pbwl' ? `PBWL reference${selected.lexicon.sourceRootId ? ` · root #${selected.lexicon.sourceRootId}` : ''}` : 'Reader lexicon' : `Automatic analysis (${analysis.confidence})`}</dd></div>
           </dl>
+          {family.length > 1 && (
+            <section className="root-family">
+              <h2>Root family</h2>
+              <div className="family-chips">
+                {family.map((entry) => (
+                  <span className="family-chip" key={entry.form}>
+                    <strong>{entry.form}</strong>
+                    {entry.gloss && <small>{entry.gloss}</small>}
+                  </span>
+                ))}
+              </div>
+            </section>
+          )}
           <button className="known" type="button" onClick={() => toggleKnown(selected)}>
             {known.has(selectedRoot) ? '✓ Known' : 'Mark known'}
           </button>
