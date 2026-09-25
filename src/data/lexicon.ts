@@ -37,8 +37,14 @@ function derivedFromBase(
 
 function lookupSafeVariant(normalized: string): LexiconEntry | undefined {
   // Orthographic hyphens before clitics are optional/inconsistent in AGS.
-  const compact = normalized.replace(/-(nya|ku|mu|lah|kah|pun)$/u, '$1');
-  if (compact !== normalized) {
+  const hyphenClitic = normalized.match(/^(.+)-(nya|ku|mu|lah|kah|pun)$/u);
+  if (hyphenClitic) {
+    const base = index.get(hyphenClitic[1]);
+    if (base) {
+      return derivedFromBase(normalized, base, `Base form + -${hyphenClitic[2]} clitic.`);
+    }
+
+    const compact = hyphenClitic[1] + hyphenClitic[2];
     const compactEntry = index.get(compact);
     if (compactEntry) {
       return derivedFromBase(normalized, compactEntry, 'Hyphenated clitic spelling.');
@@ -48,17 +54,19 @@ function lookupSafeVariant(normalized: string): LexiconEntry | undefined {
   const parts = normalized.split('-');
   // Exact reduplication, optionally followed by a clitic:
   // orang-orang, murid-murid-nya, kata-kata, etc.
-  if (parts.length >= 2 && parts[0] === parts[1]) {
-    const base = index.get(parts[0]);
+  if (parts.length >= 2) {
+    const first = parts[0];
+    const second = parts[1];
     const trailing = parts.slice(2);
-    if (base && trailing.every((part) => clitics.has(part))) {
-      return derivedFromBase(
-        normalized,
-        base,
-        trailing.length
-          ? `Reduplicated form with -${trailing.join('-')} clitic.`
-          : 'Reduplicated/plural form.',
-      );
+    const attached = [...clitics].find((clitic) => second === first + clitic);
+    const exactRepeat = second === first;
+
+    if (exactRepeat || attached) {
+      const base = index.get(first);
+      if (base && trailing.every((part) => clitics.has(part))) {
+        const cliticNote = attached ? ` with -${attached}` : trailing.length ? ` with -${trailing.join('-')}` : '';
+        return derivedFromBase(normalized, base, `Reduplicated/plural form${cliticNote}.`);
+      }
     }
   }
 
