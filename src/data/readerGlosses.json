@@ -1059,5 +1059,702 @@
     "root": "Kapernaum",
     "pos": "proper noun",
     "source": "reader"
+  },
+  {
+    "form": "beri",
+    "gloss": "give",
+    "root": "beri",
+    "pos": "verb",
+    "source": "reader"
+  },
+  {
+    "form": "kasihi",
+    "gloss": "love",
+    "root": "kasih",
+    "pos": "verb",
+    "source": "reader"
+  },
+  {
+    "form": "Lazarus",
+    "gloss": "Lazarus",
+    "root": "Lazarus",
+    "pos": "proper noun",
+    "source": "reader"
+  },
+  {
+    "form": "mahkluk",
+    "gloss": "creature; living being",
+    "root": "makhluk",
+    "pos": "noun",
+    "note": "AGS spelling; standard Indonesian is makhluk.",
+    "source": "reader"
+  },
+  {
+    "form": "berilah",
+    "gloss": "give",
+    "root": "beri",
+    "pos": "verb",
+    "source": "reader"
+  },
+  {
+    "form": "dipersembahkan",
+    "gloss": "be offered; be presented",
+    "root": "persembah",
+    "pos": "verb",
+    "source": "reader"
+  },
+  {
+    "form": "kasihilah",
+    "gloss": "love",
+    "root": "kasih",
+    "pos": "verb",
+    "source": "reader"
+  },
+  {
+    "form": "mahakuasa",
+    "gloss": "almighty; all-powerful",
+    "root": "kuasa",
+    "pos": "adjective",
+    "source": "reader"
+  },
+  {
+    "form": "mengijinkan",
+    "gloss": "allow; permit",
+    "root": "izin",
+    "pos": "verb",
+    "note": "AGS spelling; standard Indonesian is mengizinkan.",
+    "source": "reader"
+  },
+  {
+    "form": "pikir",
+    "gloss": "think",
+    "root": "pikir",
+    "pos": "verb",
+    "source": "reader"
+  },
+  {
+    "form": "Antiokia",
+    "gloss": "Antioch",
+    "root": "Antiokia",
+    "pos": "proper noun",
+    "source": "reader"
+  },
+  {
+    "form": "diciptakan",
+    "gloss": "be created",
+    "root": "cipta",
+    "pos": "verb",
+    "source": "reader"
+  },
+  {
+    "form": "dimakan",
+    "gloss": "be eaten",
+    "root": "makan",
+    "pos": "verb",
+    "source": "reader"
+  },
+  {
+    "form": "dimana",
+    "gloss": "where",
+    "root": "mana",
+    "pos": "adverb",
+    "note": "Standard Indonesian normally writes di mana as two words.",
+    "source": "reader"
+  },
+  {
+    "form": "keadaan",
+    "gloss": "condition; state; situation",
+    "root": "ada",
+    "pos": "noun",
+    "source": "reader"
+  },
+  {
+    "form": "memasuki",
+    "gloss": "enter; go into",
+    "root": "masuk",
+    "pos": "verb",
+    "source": "reader"
+  },
+  {
+    "form": "penglihatan",
+    "gloss": "vision; sight",
+    "root": "lihat",
+    "pos": "noun",
+    "source": "reader"
+  },
+  {
+    "form": "saudari",
+    "gloss": "sister",
+    "root": "saudara",
+    "pos": "noun",
+    "source": "reader"
+  },
+  {
+    "form": "seolah-olah",
+    "gloss": "as if; as though",
+    "root": "olah",
+    "pos": "conjunction/adverb",
+    "source": "reader"
+  },
+  {
+    "form": "dibebaskan",
+    "gloss": "be freed; be set free",
+    "root": "bebas",
+    "pos": "verb",
+    "source": "reader"
+  },
+  {
+    "form": "diberkati",
+    "gloss": "be blessed",
+    "root": "berkat",
+    "pos": "verb",
+    "source": "reader"
+  },
+  {
+    "form": "diterima",
+    "gloss": "be received; be accepted",
+    "root": "terima",
+    "pos": "verb",
+    "source": "reader"
+  },
+  {
+    "form": "mengadakan",
+    "gloss": "hold; conduct; provide",
+    "root": "ada",
+    "pos": "verb",
+    "source": "reader"
+  },
+  {
+    "form": "mengikat",
+    "gloss": "bind; tie",
+    "root": "ikat",
+    "pos": "verb",
+    "source": "reader"
+  },
+  {
+    "form": "bernubuat",
+    "gloss": "prophesy",
+    "root": "nubuat",
+    "pos": "verb",
+    "source": "reader"
+  },
+  {
+    "form": "diangkat",
+    "gloss": "be lifted; be taken up; be appointed",
+    "root": "angkat",
+    "pos": "verb",
+    "source": "reader"
+  },
+  {
+    "form": "kebijaksanaan",
+    "gloss": "wisdom",
+    "root": "bijak",
+    "pos": "noun",
+    "source": "reader"
+  },
+  {
+    "form": "memenangkan",
+    "gloss": "win; gain victory",
+    "root": "menang",
+    "pos": "verb",
+    "source": "reader"
+  },
+  {
+    "form": "setuju",
+    "gloss": "agree",
+    "root": "setuju",
+    "pos": "verb/adjective",
+    "source": "reader"
+  },
+  {
+    "form": "berhati-hatilah",
+    "gloss": "be careful",
+    "root": "hati",
+    "pos": "verb",
+    "source": "reader"
+  },
+  {
+    "form": "bersaksi",
+    "gloss": "testify; bear witness",
+    "root": "saksi",
+    "pos": "verb",
+    "source": "reader"
+  },
+  {
+    "form": "diberkatilah",
+    "gloss": "be blessed",
+    "root": "berkat",
+    "pos": "verb",
+    "source": "reader"
+  },
+  {
+    "form": "dihakimi",
+    "gloss": "be judged",
+    "root": "hakim",
+    "pos": "verb",
+    "source": "reader"
+  },
+  {
+    "form": "dihancurkan",
+    "gloss": "be destroyed",
+    "root": "hancur",
+    "pos": "verb",
+    "source": "reader"
+  },
+  {
+    "form": "dikuasai",
+    "gloss": "be controlled; be overpowered",
+    "root": "kuasa",
+    "pos": "verb",
+    "source": "reader"
+  },
+  {
+    "form": "ditinggalkan",
+    "gloss": "be left; be abandoned",
+    "root": "tinggal",
+    "pos": "verb",
+    "source": "reader"
+  },
+  {
+    "form": "Festus",
+    "gloss": "Festus",
+    "root": "Festus",
+    "pos": "proper noun",
+    "source": "reader"
+  },
+  {
+    "form": "Lewi",
+    "gloss": "Levi",
+    "root": "Lewi",
+    "pos": "proper noun",
+    "source": "reader"
+  },
+  {
+    "form": "melarang",
+    "gloss": "forbid; prohibit",
+    "root": "larang",
+    "pos": "verb",
+    "source": "reader"
+  },
+  {
+    "form": "memperlakukan",
+    "gloss": "treat; deal with",
+    "root": "laku",
+    "pos": "verb",
+    "source": "reader"
+  },
+  {
+    "form": "meyakinkan",
+    "gloss": "convince; assure",
+    "root": "yakin",
+    "pos": "verb",
+    "source": "reader"
+  },
+  {
+    "form": "penagih",
+    "gloss": "collector",
+    "root": "tagih",
+    "pos": "noun",
+    "source": "reader"
+  },
+  {
+    "form": "Saduki",
+    "gloss": "Sadducee",
+    "root": "Saduki",
+    "pos": "noun",
+    "source": "reader"
+  },
+  {
+    "form": "Stefanus",
+    "gloss": "Stephen",
+    "root": "Stefanus",
+    "pos": "proper noun",
+    "source": "reader"
+  },
+  {
+    "form": "Yordan",
+    "gloss": "Jordan",
+    "root": "Yordan",
+    "pos": "proper noun",
+    "source": "reader"
+  },
+  {
+    "form": "Apolos",
+    "gloss": "Apollos",
+    "root": "Apolos",
+    "pos": "proper noun",
+    "source": "reader"
+  },
+  {
+    "form": "berencana",
+    "gloss": "plan; intend",
+    "root": "rencana",
+    "pos": "verb",
+    "source": "reader"
+  },
+  {
+    "form": "berkuasa",
+    "gloss": "have authority; rule",
+    "root": "kuasa",
+    "pos": "verb",
+    "source": "reader"
+  },
+  {
+    "form": "Betania",
+    "gloss": "Bethany",
+    "root": "Betania",
+    "pos": "proper noun",
+    "source": "reader"
+  },
+  {
+    "form": "bicarakan",
+    "gloss": "discuss; talk about",
+    "root": "bicara",
+    "pos": "verb",
+    "source": "reader"
+  },
+  {
+    "form": "diambil",
+    "gloss": "be taken",
+    "root": "ambil",
+    "pos": "verb",
+    "source": "reader"
+  },
+  {
+    "form": "dibangun",
+    "gloss": "be built",
+    "root": "bangun",
+    "pos": "verb",
+    "source": "reader"
+  },
+  {
+    "form": "dirasuki",
+    "gloss": "be possessed; be entered",
+    "root": "rasuk",
+    "pos": "verb",
+    "source": "reader"
+  },
+  {
+    "form": "memperlihatkan",
+    "gloss": "show; reveal",
+    "root": "lihat",
+    "pos": "verb",
+    "source": "reader"
+  },
+  {
+    "form": "memukuli",
+    "gloss": "beat; strike repeatedly",
+    "root": "pukul",
+    "pos": "verb",
+    "source": "reader"
+  },
+  {
+    "form": "memulai",
+    "gloss": "begin; start",
+    "root": "mulai",
+    "pos": "verb",
+    "source": "reader"
+  },
+  {
+    "form": "nyata",
+    "gloss": "real; evident; manifest",
+    "root": "nyata",
+    "pos": "adjective",
+    "source": "reader"
+  },
+  {
+    "form": "penatua",
+    "gloss": "elder",
+    "root": "tua",
+    "pos": "noun",
+    "source": "reader"
+  },
+  {
+    "form": "pencobaan",
+    "gloss": "temptation; trial",
+    "root": "coba",
+    "pos": "noun",
+    "source": "reader"
+  },
+  {
+    "form": "pikirkan",
+    "gloss": "think about; consider",
+    "root": "pikir",
+    "pos": "verb",
+    "source": "reader"
+  },
+  {
+    "form": "pilih",
+    "gloss": "choose; select",
+    "root": "pilih",
+    "pos": "verb",
+    "source": "reader"
+  },
+  {
+    "form": "Titus",
+    "gloss": "Titus",
+    "root": "Titus",
+    "pos": "proper noun",
+    "source": "reader"
+  },
+  {
+    "form": "tulis",
+    "gloss": "write",
+    "root": "tulis",
+    "pos": "verb",
+    "source": "reader"
+  },
+  {
+    "form": "Adam",
+    "gloss": "Adam",
+    "root": "Adam",
+    "pos": "proper noun",
+    "source": "reader"
+  },
+  {
+    "form": "amoralitas",
+    "gloss": "immorality",
+    "root": "moral",
+    "pos": "noun",
+    "source": "reader"
+  },
+  {
+    "form": "Andreas",
+    "gloss": "Andrew",
+    "root": "Andreas",
+    "pos": "proper noun",
+    "source": "reader"
+  },
+  {
+    "form": "Barabas",
+    "gloss": "Barabbas",
+    "root": "Barabas",
+    "pos": "proper noun",
+    "source": "reader"
+  },
+  {
+    "form": "berperang",
+    "gloss": "fight; wage war",
+    "root": "perang",
+    "pos": "verb",
+    "source": "reader"
+  },
+  {
+    "form": "bertambah",
+    "gloss": "increase; grow in number",
+    "root": "tambah",
+    "pos": "verb",
+    "source": "reader"
+  },
+  {
+    "form": "bertumbuh",
+    "gloss": "grow",
+    "root": "tumbuh",
+    "pos": "verb",
+    "source": "reader"
+  },
+  {
+    "form": "diadili",
+    "gloss": "be tried; be judged",
+    "root": "adil",
+    "pos": "verb",
+    "source": "reader"
+  },
+  {
+    "form": "dibakar",
+    "gloss": "be burned",
+    "root": "bakar",
+    "pos": "verb",
+    "source": "reader"
+  },
+  {
+    "form": "dilemparkan",
+    "gloss": "be thrown",
+    "root": "lempar",
+    "pos": "verb",
+    "source": "reader"
+  },
+  {
+    "form": "diperintahkan",
+    "gloss": "be commanded; be ordered",
+    "root": "perintah",
+    "pos": "verb",
+    "source": "reader"
+  },
+  {
+    "form": "Kornelius",
+    "gloss": "Cornelius",
+    "root": "Kornelius",
+    "pos": "proper noun",
+    "source": "reader"
+  },
+  {
+    "form": "Magdalena",
+    "gloss": "Magdalene",
+    "root": "Magdalena",
+    "pos": "proper noun",
+    "source": "reader"
+  },
+  {
+    "form": "Marta",
+    "gloss": "Martha",
+    "root": "Marta",
+    "pos": "proper noun",
+    "source": "reader"
+  },
+  {
+    "form": "mengerjakan",
+    "gloss": "do; work on; carry out",
+    "root": "kerja",
+    "pos": "verb",
+    "source": "reader"
+  },
+  {
+    "form": "menikahi",
+    "gloss": "marry",
+    "root": "nikah",
+    "pos": "verb",
+    "source": "reader"
+  },
+  {
+    "form": "penutup",
+    "gloss": "closing; end; covering",
+    "root": "tutup",
+    "pos": "noun",
+    "source": "reader"
+  },
+  {
+    "form": "romawi",
+    "gloss": "Roman",
+    "root": "Roma",
+    "pos": "adjective/noun",
+    "source": "reader"
+  },
+  {
+    "form": "salibkan",
+    "gloss": "crucify",
+    "root": "salib",
+    "pos": "verb",
+    "source": "reader"
+  },
+  {
+    "form": "Sidon",
+    "gloss": "Sidon",
+    "root": "Sidon",
+    "pos": "proper noun",
+    "source": "reader"
+  },
+  {
+    "form": "tahan",
+    "gloss": "hold; endure; detain",
+    "root": "tahan",
+    "pos": "verb",
+    "source": "reader"
+  },
+  {
+    "form": "tahanan",
+    "gloss": "prisoner; detainee",
+    "root": "tahan",
+    "pos": "noun",
+    "source": "reader"
+  },
+  {
+    "form": "terhormat",
+    "gloss": "honored; respected",
+    "root": "hormat",
+    "pos": "adjective",
+    "source": "reader"
+  },
+  {
+    "form": "berterima",
+    "gloss": "acceptable; accepted",
+    "root": "terima",
+    "pos": "adjective",
+    "source": "reader"
+  },
+  {
+    "form": "dibangkitkan",
+    "gloss": "be raised; be raised from the dead",
+    "root": "bangkit",
+    "pos": "verb",
+    "source": "reader"
+  },
+  {
+    "form": "disampaikan",
+    "gloss": "be conveyed; be delivered",
+    "root": "sampai",
+    "pos": "verb",
+    "source": "reader"
+  },
+  {
+    "form": "disini",
+    "gloss": "here",
+    "root": "sini",
+    "pos": "adverb",
+    "note": "Standard Indonesian normally writes di sini as two words.",
+    "source": "reader"
+  },
+  {
+    "form": "ditolak",
+    "gloss": "be rejected",
+    "root": "tolak",
+    "pos": "verb",
+    "source": "reader"
+  },
+  {
+    "form": "diundang",
+    "gloss": "be invited",
+    "root": "undang",
+    "pos": "verb",
+    "source": "reader"
+  },
+  {
+    "form": "Ishak",
+    "gloss": "Isaac",
+    "root": "Ishak",
+    "pos": "proper noun",
+    "source": "reader"
+  },
+  {
+    "form": "Kaisarea",
+    "gloss": "Caesarea",
+    "root": "Kaisarea",
+    "pos": "proper noun",
+    "source": "reader"
+  },
+  {
+    "form": "menceraikan",
+    "gloss": "divorce",
+    "root": "cerai",
+    "pos": "verb",
+    "source": "reader"
+  },
+  {
+    "form": "menghadap",
+    "gloss": "face; appear before",
+    "root": "hadap",
+    "pos": "verb",
+    "source": "reader"
+  },
+  {
+    "form": "mengucap",
+    "gloss": "say; utter",
+    "root": "ucap",
+    "pos": "verb",
+    "source": "reader"
+  },
+  {
+    "form": "menjual",
+    "gloss": "sell",
+    "root": "jual",
+    "pos": "verb",
+    "source": "reader"
+  },
+  {
+    "form": "mewarisi",
+    "gloss": "inherit",
+    "root": "waris",
+    "pos": "verb",
+    "source": "reader"
   }
 ]
