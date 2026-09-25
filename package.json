@@ -20,7 +20,8 @@
     "verify:pwa": "node scripts/verify-pwa.mjs",
     "verify:lexicon": "node scripts/verify-lexicon.mjs",
     "import:bsb": "node scripts/import-bsb.mjs",
-    "build:context-glosses": "node scripts/build-context-glosses.mjs"
+    "build:context-glosses": "node scripts/build-context-glosses.mjs",
+    "verify:context-glosses": "node scripts/verify-context-glosses.mjs"
   },
   "dependencies": {
     "@vitejs/plugin-react": "^4.3.1",
