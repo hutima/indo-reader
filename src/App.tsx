@@ -49,8 +49,11 @@ export function App() {
 
   useEffect(() => {
     let cancelled = false;
-    Promise.all([loadPbwlLexicon(), loadDerivedLexicon(), loadCorpusManifest()])
-      .then(([, , manifest]) => {
+    Promise.all([
+      loadPbwlLexicon().then(() => loadDerivedLexicon()),
+      loadCorpusManifest(),
+    ])
+      .then(([, manifest]) => {
         if (cancelled) return;
         const ids = manifest.books.map((book) => book.id);
         setAvailableBookIds(ids);
