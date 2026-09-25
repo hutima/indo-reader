@@ -1,13 +1,14 @@
 import type { LexiconEntry } from '../domain/types';
 
-/**
- * Starter Indonesian learner lexicon.
- *
- * PBWL is the preferred root/form reference where an entry is available.
- * English glosses and contextual Bible notes can be edited independently.
- * PBWL-derived material must retain its own CC BY-NC-SA attribution.
- */
-const entries: LexiconEntry[] = [
+export interface PbwlPayload {
+  sourceRepository: string;
+  sourceCommit: string;
+  sourceReference: string;
+  license: string;
+  entries: LexiconEntry[];
+}
+
+const starter: LexiconEntry[] = [
   { form: 'Allah', gloss: 'God', pos: 'noun', source: 'reader' },
   { form: 'mencintai', gloss: 'love', root: 'cinta', pos: 'verb', source: 'reader' },
   { form: 'dunia', gloss: 'world', pos: 'noun', source: 'reader' },
@@ -21,12 +22,21 @@ const entries: LexiconEntry[] = [
   { form: 'selama-lamanya', gloss: 'forever', root: 'lama', pos: 'adverb', source: 'reader' },
 ];
 
-const index = new Map(entries.map((entry) => [entry.form.toLocaleLowerCase('id'), entry]));
+const index = new Map(starter.map((entry) => [entry.form.toLocaleLowerCase('id'), entry]));
+
+export function hydratePbwl(payload: PbwlPayload): void {
+  for (const entry of payload.entries) {
+    const key = entry.form.toLocaleLowerCase('id');
+    // Reader-authored contextual entries win when intentionally supplied;
+    // PBWL fills the much larger general lexical layer.
+    if (!index.has(key)) index.set(key, { ...entry, source: 'pbwl' });
+  }
+}
 
 export function lookupLexicon(surface: string): LexiconEntry | undefined {
   return index.get(surface.toLocaleLowerCase('id'));
 }
 
 export function allLexiconEntries(): LexiconEntry[] {
-  return entries;
+  return [...index.values()];
 }
