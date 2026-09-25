@@ -1,7 +1,8 @@
-import { mkdir, readFile, readdir, writeFile } from 'node:fs/promises';
+import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 
-const agsDir = path.resolve('public/corpus/ags');
+const corpusRoot = path.resolve('public/corpus');
+const corpusManifestFile = path.join(corpusRoot, 'manifest.json');
 const bsbDir = path.resolve('.cache/bsb');
 const pbwlFile = path.resolve('public/lexicon/pbwl.json');
 const readerFile = path.resolve('src/data/readerGlosses.json');
@@ -195,6 +196,7 @@ function lookupSafe(index, form) {
 }
 
 async function main() {
+  const corpus = JSON.parse(await readFile(corpusManifestFile, 'utf8'));
   const pbwl = JSON.parse(await readFile(pbwlFile, 'utf8'));
   const reader = JSON.parse(await readFile(readerFile, 'utf8'));
   const lexicon = makeIndex(pbwl.entries, reader);
@@ -203,10 +205,9 @@ async function main() {
   let verseCount = 0;
   let contextualCount = 0;
 
-  for (const file of await readdir(agsDir)) {
-    if (!file.endsWith('.usfm')) continue;
-    const book = file.replace(/\.usfm$/i, '');
-    const bsbPath = path.join(bsbDir, file);
+  for (const corpusBook of corpus.books) {
+    const book = corpusBook.id;
+    const bsbPath = path.join(bsbDir, `${book}.usfm`);
 
     let bsb;
     try {
@@ -215,10 +216,10 @@ async function main() {
       continue;
     }
 
-    const agsVerses = verseMap(await readFile(path.join(agsDir, file), 'utf8'));
+    const indoVerses = verseMap(await readFile(path.join(corpusRoot, corpusBook.file), 'utf8'));
     const bsbVerses = verseMap(bsb);
 
-    for (const [ref, indoVerse] of agsVerses) {
+    for (const [ref, indoVerse] of indoVerses) {
       const englishVerse = bsbVerses.get(ref);
       if (!englishVerse) continue;
       verseCount += 1;
@@ -259,11 +260,17 @@ async function main() {
   );
   console.log(`Generated ${contextualCount} contextual inline glosses across ${verseCount} matched verses.`);
 
-  const sample = Object.entries(entries)
+  const johnSample = Object.entries(entries)
     .filter(([key]) => /^JHN\.1\.[1-3]:/u.test(key))
     .slice(0, 40);
   console.log('John 1:1–3 contextual gloss sample:');
-  for (const [key, value] of sample) console.log(`  ${key} -> ${value}`);
+  for (const [key, value] of johnSample) console.log(`  ${key} -> ${value}`);
+
+  const genesisSample = Object.entries(entries)
+    .filter(([key]) => /^GEN\.1\.[1-3]:/u.test(key))
+    .slice(0, 50);
+  console.log('Genesis 1:1–3 contextual gloss sample:');
+  for (const [key, value] of genesisSample) console.log(`  ${key} -> ${value}`);
 }
 
 main().catch((error) => {
