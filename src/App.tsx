@@ -133,7 +133,11 @@ export function App() {
                 <span className="token-wrap" key={`${token.surface}-${index}`}>
                   <button className={`token ${selected === token ? 'selected' : ''}`} onClick={() => setSelected(token)} type="button">
                     {mode !== 'gloss' && <span>{token.surface}</span>}
-                    {mode === 'gloss' && <span>{token.lexicon?.gloss ?? token.surface}</span>}
+                    {mode === 'gloss' && (
+                      <span className={token.lexicon?.gloss ? '' : 'english-missing'}>
+                        {token.lexicon?.gloss ?? `[${token.surface}?]`}
+                      </span>
+                    )}
                     {mode === 'both' && !isKnown && <span className={`under${token.lexicon?.gloss ? '' : ' missing'}`}>{token.lexicon?.gloss ?? '?'}</span>}
                   </button>
                   {token.after}
@@ -154,7 +158,7 @@ export function App() {
             <div><dt>Part of speech</dt><dd>{selected.lexicon?.pos ?? '—'}</dd></div>
             {selected.lexicon?.register && <div><dt>Register</dt><dd>{selected.lexicon.register}</dd></div>}
             {selected.lexicon?.cefr && <div><dt>PBWL level</dt><dd>{selected.lexicon.cefr}</dd></div>}
-            {analysis.affixes.length > 0 && <div><dt>Affixes</dt><dd>{analysis.affixes.join(' + ')}</dd></div>}
+            {analysis.affixes.length > 0 && <div><dt>Affixes (auto)</dt><dd>{analysis.affixes.join(' + ')}</dd></div>}
             {(selected.lexicon?.note ?? analysis.note) && <div><dt>Affix note</dt><dd>{selected.lexicon?.note ?? analysis.note}</dd></div>}
             <div><dt>Source</dt><dd>{selected.lexicon ? selected.lexicon.source === 'pbwl' ? `PBWL reference${selected.lexicon.sourceRootId ? ` · root #${selected.lexicon.sourceRootId}` : ''}` : 'Reader lexicon' : `Automatic analysis (${analysis.confidence})`}</dd></div>
           </dl>
