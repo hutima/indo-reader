@@ -6693,5 +6693,860 @@
     "root": "Benaya",
     "pos": "proper noun",
     "source": "reader"
+  },
+  {
+    "form": "penghapus",
+    "gloss": "atoning; removing; expiatory",
+    "root": "hapus",
+    "pos": "adjective/noun",
+    "affixes": [
+      "peN-"
+    ],
+    "preferredGloss": "atoning",
+    "note": "In AYT OT frequently occurs in persembahan penghapus dosa (sin/atoning offering).",
+    "source": "reader"
+  },
+  {
+    "form": "bersetubuh",
+    "gloss": "have sexual relations; have intercourse",
+    "root": "tubuh",
+    "pos": "verb",
+    "affixes": [
+      "ber-"
+    ],
+    "source": "reader"
+  },
+  {
+    "form": "terus-menerus",
+    "gloss": "continually; continuously",
+    "root": "terus",
+    "pos": "adverb",
+    "source": "reader"
+  },
+  {
+    "form": "Gibea",
+    "gloss": "Gibeah",
+    "root": "Gibea",
+    "pos": "proper noun",
+    "source": "reader"
+  },
+  {
+    "form": "jelai",
+    "gloss": "barley",
+    "root": "jelai",
+    "pos": "noun",
+    "source": "reader"
+  },
+  {
+    "form": "mengaruniakan",
+    "gloss": "grant; bestow; give",
+    "root": "karunia",
+    "pos": "verb",
+    "affixes": [
+      "meN-",
+      "-kan"
+    ],
+    "preferredGloss": "grant",
+    "source": "reader"
+  },
+  {
+    "form": "Yebus",
+    "gloss": "Jebus; Jebusite",
+    "root": "Yebus",
+    "pos": "proper noun",
+    "source": "reader"
+  },
+  {
+    "form": "Yoyakim",
+    "gloss": "Jehoiakim",
+    "root": "Yoyakim",
+    "pos": "proper noun",
+    "source": "reader"
+  },
+  {
+    "form": "Zakharia",
+    "gloss": "Zechariah",
+    "root": "Zakharia",
+    "pos": "proper noun",
+    "source": "reader"
+  },
+  {
+    "form": "Isakhar",
+    "gloss": "Issachar",
+    "root": "Isakhar",
+    "pos": "proper noun",
+    "source": "reader"
+  },
+  {
+    "form": "Ribka",
+    "gloss": "Rebekah",
+    "root": "Ribka",
+    "pos": "proper noun",
+    "source": "reader"
+  },
+  {
+    "form": "Semaya",
+    "gloss": "Shemaiah",
+    "root": "Semaya",
+    "pos": "proper noun",
+    "source": "reader"
+  },
+  {
+    "form": "Gat",
+    "gloss": "Gath",
+    "root": "Gat",
+    "pos": "proper noun",
+    "source": "reader"
+  },
+  {
+    "form": "Natan",
+    "gloss": "Nathan",
+    "root": "Natan",
+    "pos": "proper noun",
+    "source": "reader"
+  },
+  {
+    "form": "Kaleb",
+    "gloss": "Caleb",
+    "root": "Kaleb",
+    "pos": "proper noun",
+    "source": "reader"
+  },
+  {
+    "form": "kesepuluh",
+    "gloss": "tenth",
+    "root": "sepuluh",
+    "pos": "numeral",
+    "affixes": [
+      "ke-"
+    ],
+    "source": "reader"
+  },
+  {
+    "form": "mahakudus",
+    "gloss": "most holy; most sacred",
+    "root": "kudus",
+    "pos": "adjective",
+    "affixes": [
+      "maha-"
+    ],
+    "preferredGloss": "most holy",
+    "source": "reader"
+  },
+  {
+    "form": "Merari",
+    "gloss": "Merari",
+    "root": "Merari",
+    "pos": "proper noun",
+    "source": "reader"
+  },
+  {
+    "form": "sampar",
+    "gloss": "plague; pestilence",
+    "root": "sampar",
+    "pos": "noun",
+    "source": "reader"
+  },
+  {
+    "form": "Silo",
+    "gloss": "Shiloh",
+    "root": "Silo",
+    "pos": "proper noun",
+    "source": "reader"
+  },
+  {
+    "form": "Uria",
+    "gloss": "Uriah",
+    "root": "Uria",
+    "pos": "proper noun",
+    "source": "reader"
+  },
+  {
+    "form": "dibaringkan",
+    "gloss": "be laid down; be placed",
+    "root": "baring",
+    "pos": "verb",
+    "affixes": [
+      "di-",
+      "-kan"
+    ],
+    "preferredGloss": "be laid",
+    "source": "reader"
+  },
+  {
+    "form": "dilenyapkan",
+    "gloss": "be destroyed; be wiped out",
+    "root": "lenyap",
+    "pos": "verb",
+    "affixes": [
+      "di-",
+      "-kan"
+    ],
+    "preferredGloss": "be destroyed",
+    "source": "reader"
+  },
+  {
+    "form": "dituliskan",
+    "gloss": "be written; be written down",
+    "root": "tulis",
+    "pos": "verb",
+    "affixes": [
+      "di-",
+      "-kan"
+    ],
+    "preferredGloss": "be written",
+    "source": "reader"
+  },
+  {
+    "form": "Eli",
+    "gloss": "Eli",
+    "root": "Eli",
+    "pos": "proper noun",
+    "source": "reader"
+  },
+  {
+    "form": "Gerson",
+    "gloss": "Gershon",
+    "root": "Gerson",
+    "pos": "proper noun",
+    "source": "reader"
+  },
+  {
+    "form": "Lea",
+    "gloss": "Leah",
+    "root": "Lea",
+    "pos": "proper noun",
+    "source": "reader"
+  },
+  {
+    "form": "perlengkapan",
+    "gloss": "equipment; supplies; furnishings",
+    "root": "lengkap",
+    "pos": "noun",
+    "affixes": [
+      "per-",
+      "-an"
+    ],
+    "source": "reader"
+  },
+  {
+    "form": "Persia",
+    "gloss": "Persia; Persian",
+    "root": "Persia",
+    "pos": "proper noun",
+    "source": "reader"
+  },
+  {
+    "form": "Seir",
+    "gloss": "Seir",
+    "root": "Seir",
+    "pos": "proper noun",
+    "source": "reader"
+  },
+  {
+    "form": "seisi",
+    "gloss": "all within; whole contents",
+    "root": "isi",
+    "pos": "determiner",
+    "affixes": [
+      "se-"
+    ],
+    "source": "reader"
+  },
+  {
+    "form": "Boas",
+    "gloss": "Boaz",
+    "root": "Boas",
+    "pos": "proper noun",
+    "source": "reader"
+  },
+  {
+    "form": "Hilkia",
+    "gloss": "Hilkiah",
+    "root": "Hilkia",
+    "pos": "proper noun",
+    "source": "reader"
+  },
+  {
+    "form": "Yohanan",
+    "gloss": "Johanan",
+    "root": "Yohanan",
+    "pos": "proper noun",
+    "source": "reader"
+  },
+  {
+    "form": "dikumpulkan",
+    "gloss": "be gathered; be assembled",
+    "root": "kumpul",
+    "pos": "verb",
+    "affixes": [
+      "di-",
+      "-kan"
+    ],
+    "preferredGloss": "be gathered",
+    "source": "reader"
+  },
+  {
+    "form": "Gilgal",
+    "gloss": "Gilgal",
+    "root": "Gilgal",
+    "pos": "proper noun",
+    "source": "reader"
+  },
+  {
+    "form": "Hamat",
+    "gloss": "Hamath",
+    "root": "Hamat",
+    "pos": "proper noun",
+    "source": "reader"
+  },
+  {
+    "form": "pendatang",
+    "gloss": "sojourner; foreigner; resident alien",
+    "root": "datang",
+    "pos": "noun",
+    "affixes": [
+      "peN-"
+    ],
+    "preferredGloss": "sojourner",
+    "source": "reader"
+  },
+  {
+    "form": "Rama",
+    "gloss": "Ramah",
+    "root": "Rama",
+    "pos": "proper noun",
+    "source": "reader"
+  },
+  {
+    "form": "Sihon",
+    "gloss": "Sihon",
+    "root": "Sihon",
+    "pos": "proper noun",
+    "source": "reader"
+  },
+  {
+    "form": "Bersyeba",
+    "gloss": "Beersheba",
+    "root": "Bersyeba",
+    "pos": "proper noun",
+    "source": "reader"
+  },
+  {
+    "form": "buangan",
+    "gloss": "exile; exiles; banishment",
+    "root": "buang",
+    "pos": "noun",
+    "affixes": [
+      "-an"
+    ],
+    "preferredGloss": "exile",
+    "source": "reader"
+  },
+  {
+    "form": "Kush",
+    "gloss": "Cush; Cushite",
+    "root": "Kush",
+    "pos": "proper noun",
+    "source": "reader"
+  },
+  {
+    "form": "perbaikan",
+    "gloss": "repair; restoration",
+    "root": "baik",
+    "pos": "noun",
+    "affixes": [
+      "per-",
+      "-an"
+    ],
+    "source": "reader"
+  },
+  {
+    "form": "tertinggal",
+    "gloss": "left behind; remaining",
+    "root": "tinggal",
+    "pos": "adjective/verb",
+    "affixes": [
+      "ter-"
+    ],
+    "preferredGloss": "remaining",
+    "source": "reader"
+  },
+  {
+    "form": "Efrat",
+    "gloss": "Ephrath; Ephrathah",
+    "root": "Efrat",
+    "pos": "proper noun",
+    "source": "reader"
+  },
+  {
+    "form": "Hesybon",
+    "gloss": "Heshbon",
+    "root": "Hesybon",
+    "pos": "proper noun",
+    "source": "reader"
+  },
+  {
+    "form": "kuperintahkan",
+    "gloss": "I command; I commanded",
+    "root": "perintah",
+    "pos": "verb",
+    "affixes": [
+      "ku-",
+      "-kan"
+    ],
+    "preferredGloss": "I command",
+    "source": "reader"
+  },
+  {
+    "form": "Safan",
+    "gloss": "Shaphan",
+    "root": "Safan",
+    "pos": "proper noun",
+    "source": "reader"
+  },
+  {
+    "form": "Tamar",
+    "gloss": "Tamar",
+    "root": "Tamar",
+    "pos": "proper noun",
+    "source": "reader"
+  },
+  {
+    "form": "Ahasyweros",
+    "gloss": "Ahasuerus",
+    "root": "Ahasyweros",
+    "pos": "proper noun",
+    "source": "reader"
+  },
+  {
+    "form": "Amnon",
+    "gloss": "Amnon",
+    "root": "Amnon",
+    "pos": "proper noun",
+    "source": "reader"
+  },
+  {
+    "form": "Gedalya",
+    "gloss": "Gedaliah",
+    "root": "Gedalya",
+    "pos": "proper noun",
+    "source": "reader"
+  },
+  {
+    "form": "melebihi",
+    "gloss": "exceed; surpass",
+    "root": "lebih",
+    "pos": "verb",
+    "affixes": [
+      "meN-",
+      "-i"
+    ],
+    "source": "reader"
+  },
+  {
+    "form": "persembahkan",
+    "gloss": "offer; present",
+    "root": "sembah",
+    "pos": "verb",
+    "affixes": [
+      "per-",
+      "-kan"
+    ],
+    "preferredGloss": "offer",
+    "source": "reader"
+  },
+  {
+    "form": "Sinai",
+    "gloss": "Sinai",
+    "root": "Sinai",
+    "pos": "proper noun",
+    "source": "reader"
+  },
+  {
+    "form": "Abyatar",
+    "gloss": "Abiathar",
+    "root": "Abyatar",
+    "pos": "proper noun",
+    "source": "reader"
+  },
+  {
+    "form": "akasia",
+    "gloss": "acacia",
+    "root": "akasia",
+    "pos": "noun",
+    "source": "reader"
+  },
+  {
+    "form": "Asyera",
+    "gloss": "Asherah",
+    "root": "Asyera",
+    "pos": "proper noun",
+    "source": "reader"
+  },
+  {
+    "form": "bergembira",
+    "gloss": "rejoice; be glad",
+    "root": "gembira",
+    "pos": "verb",
+    "affixes": [
+      "ber-"
+    ],
+    "preferredGloss": "rejoice",
+    "source": "reader"
+  },
+  {
+    "form": "bersunat",
+    "gloss": "be circumcised; circumcised",
+    "root": "sunat",
+    "pos": "verb/adjective",
+    "affixes": [
+      "ber-"
+    ],
+    "source": "reader"
+  },
+  {
+    "form": "Ezra",
+    "gloss": "Ezra",
+    "root": "Ezra",
+    "pos": "proper noun",
+    "source": "reader"
+  },
+  {
+    "form": "kirmizi",
+    "gloss": "crimson; scarlet",
+    "root": "kirmizi",
+    "pos": "adjective/noun",
+    "source": "reader"
+  },
+  {
+    "form": "menamainya",
+    "gloss": "name him/her/it; call it",
+    "root": "nama",
+    "pos": "verb",
+    "affixes": [
+      "meN-",
+      "-i",
+      "-nya"
+    ],
+    "preferredGloss": "named",
+    "source": "reader"
+  },
+  {
+    "form": "napas",
+    "gloss": "breath",
+    "root": "napas",
+    "pos": "noun",
+    "source": "reader"
+  },
+  {
+    "form": "perapian",
+    "gloss": "furnace; hearth",
+    "root": "api",
+    "pos": "noun",
+    "affixes": [
+      "per-",
+      "-an"
+    ],
+    "source": "reader"
+  },
+  {
+    "form": "tuangan",
+    "gloss": "pouring; drink offering",
+    "root": "tuang",
+    "pos": "noun",
+    "affixes": [
+      "-an"
+    ],
+    "preferredGloss": "drink offering",
+    "source": "reader"
+  },
+  {
+    "form": "unjukan",
+    "gloss": "wave offering; presentation offering",
+    "root": "unjuk",
+    "pos": "noun",
+    "affixes": [
+      "-an"
+    ],
+    "preferredGloss": "wave offering",
+    "source": "reader"
+  },
+  {
+    "form": "Yefta",
+    "gloss": "Jephthah",
+    "root": "Yefta",
+    "pos": "proper noun",
+    "source": "reader"
+  },
+  {
+    "form": "Baesa",
+    "gloss": "Baasha",
+    "root": "Baesa",
+    "pos": "proper noun",
+    "source": "reader"
+  },
+  {
+    "form": "dikalahkan",
+    "gloss": "be defeated; be overcome",
+    "root": "kalah",
+    "pos": "verb",
+    "affixes": [
+      "di-",
+      "-kan"
+    ],
+    "preferredGloss": "be defeated",
+    "source": "reader"
+  },
+  {
+    "form": "Maakha",
+    "gloss": "Maacah",
+    "root": "Maakha",
+    "pos": "proper noun",
+    "source": "reader"
+  },
+  {
+    "form": "terkutuklah",
+    "gloss": "cursed; let ... be cursed",
+    "root": "kutuk",
+    "pos": "adjective/verb",
+    "affixes": [
+      "ter-",
+      "-lah"
+    ],
+    "preferredGloss": "cursed",
+    "source": "reader"
+  },
+  {
+    "form": "Uzia",
+    "gloss": "Uzziah",
+    "root": "Uzia",
+    "pos": "proper noun",
+    "source": "reader"
+  },
+  {
+    "form": "Zerah",
+    "gloss": "Zerah",
+    "root": "Zerah",
+    "pos": "proper noun",
+    "source": "reader"
+  },
+  {
+    "form": "Adonia",
+    "gloss": "Adonijah",
+    "root": "Adonia",
+    "pos": "proper noun",
+    "source": "reader"
+  },
+  {
+    "form": "pelihat",
+    "gloss": "seer",
+    "root": "lihat",
+    "pos": "noun",
+    "affixes": [
+      "pe-"
+    ],
+    "source": "reader"
+  },
+  {
+    "form": "Pesakh",
+    "gloss": "Passover",
+    "root": "Pesakh",
+    "pos": "noun/proper noun",
+    "source": "reader"
+  },
+  {
+    "form": "Pinehas",
+    "gloss": "Phinehas",
+    "root": "Pinehas",
+    "pos": "proper noun",
+    "source": "reader"
+  },
+  {
+    "form": "Abia",
+    "gloss": "Abijah",
+    "root": "Abia",
+    "pos": "proper noun",
+    "source": "reader"
+  },
+  {
+    "form": "berhadapan",
+    "gloss": "face to face; opposite",
+    "root": "hadap",
+    "pos": "adverb/adjective",
+    "affixes": [
+      "ber-",
+      "-an"
+    ],
+    "preferredGloss": "face to face",
+    "source": "reader"
+  },
+  {
+    "form": "menamai",
+    "gloss": "name; call",
+    "root": "nama",
+    "pos": "verb",
+    "affixes": [
+      "meN-",
+      "-i"
+    ],
+    "preferredGloss": "name",
+    "source": "reader"
+  },
+  {
+    "form": "menjauhkan",
+    "gloss": "remove; keep away; put far away",
+    "root": "jauh",
+    "pos": "verb",
+    "affixes": [
+      "meN-",
+      "-kan"
+    ],
+    "preferredGloss": "remove",
+    "source": "reader"
+  },
+  {
+    "form": "Salum",
+    "gloss": "Shallum",
+    "root": "Salum",
+    "pos": "proper noun",
+    "source": "reader"
+  },
+  {
+    "form": "Tarsis",
+    "gloss": "Tarshish",
+    "root": "Tarsis",
+    "pos": "proper noun",
+    "source": "reader"
+  },
+  {
+    "form": "Barukh",
+    "gloss": "Baruch",
+    "root": "Barukh",
+    "pos": "proper noun",
+    "source": "reader"
+  },
+  {
+    "form": "Benhadad",
+    "gloss": "Ben-hadad",
+    "root": "Benhadad",
+    "pos": "proper noun",
+    "source": "reader"
+  },
+  {
+    "form": "dibinasakan",
+    "gloss": "be destroyed; be annihilated",
+    "root": "binasa",
+    "pos": "verb",
+    "affixes": [
+      "di-",
+      "-kan"
+    ],
+    "preferredGloss": "be destroyed",
+    "source": "reader"
+  },
+  {
+    "form": "Elam",
+    "gloss": "Elam; Elamite",
+    "root": "Elam",
+    "pos": "proper noun",
+    "source": "reader"
+  },
+  {
+    "form": "kukatakan",
+    "gloss": "I say; I tell",
+    "root": "kata",
+    "pos": "verb",
+    "affixes": [
+      "ku-",
+      "-kan"
+    ],
+    "preferredGloss": "I say",
+    "source": "reader"
+  },
+  {
+    "form": "melapisinya",
+    "gloss": "overlay it; cover it",
+    "root": "lapis",
+    "pos": "verb",
+    "affixes": [
+      "meN-",
+      "-i",
+      "-nya"
+    ],
+    "preferredGloss": "overlay it",
+    "source": "reader"
+  },
+  {
+    "form": "mencemarkan",
+    "gloss": "defile; make unclean",
+    "root": "cemar",
+    "pos": "verb",
+    "affixes": [
+      "meN-",
+      "-kan"
+    ],
+    "preferredGloss": "defile",
+    "source": "reader"
+  },
+  {
+    "form": "Nebat",
+    "gloss": "Nebat",
+    "root": "Nebat",
+    "pos": "proper noun",
+    "source": "reader"
+  },
+  {
+    "form": "pesuruh",
+    "gloss": "messenger; servant; envoy",
+    "root": "suruh",
+    "pos": "noun",
+    "affixes": [
+      "pe-"
+    ],
+    "preferredGloss": "messenger",
+    "source": "reader"
+  },
+  {
+    "form": "tulah",
+    "gloss": "plague; affliction",
+    "root": "tulah",
+    "pos": "noun",
+    "source": "reader"
+  },
+  {
+    "form": "Yotam",
+    "gloss": "Jotham",
+    "root": "Yotam",
+    "pos": "proper noun",
+    "source": "reader"
+  },
+  {
+    "form": "Zeruya",
+    "gloss": "Zeruiah",
+    "root": "Zeruya",
+    "pos": "proper noun",
+    "source": "reader"
+  },
+  {
+    "form": "Abisai",
+    "gloss": "Abishai",
+    "root": "Abisai",
+    "pos": "proper noun",
+    "source": "reader"
+  },
+  {
+    "form": "Hewi",
+    "gloss": "Hivite",
+    "root": "Hewi",
+    "pos": "proper noun",
+    "source": "reader"
+  },
+  {
+    "form": "Kadesh",
+    "gloss": "Kadesh",
+    "root": "Kadesh",
+    "pos": "proper noun",
+    "source": "reader"
   }
 ]
