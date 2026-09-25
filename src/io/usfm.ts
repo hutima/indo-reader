@@ -1,22 +1,28 @@
 import type { ReadingToken, Verse } from '../domain/types';
 import { lookupContextualLexicon } from '../data/contextualLexicon';
+import { lookupInlineGloss } from './contextGlosses';
 
 const WORD_RE = /([\p{L}\p{M}]+(?:-[\p{L}\p{M}]+)*)|([^\p{L}\p{M}]+)/gu;
 
 function tokenize(text: string, book: string, chapter: number, verse: number): ReadingToken[] {
   const parts = [...text.matchAll(WORD_RE)];
   const tokens: ReadingToken[] = [];
+  const occurrences = new Map<string, number>();
 
   for (let i = 0; i < parts.length; i += 1) {
     const value = parts[i][0];
     if (!parts[i][1]) continue;
 
     const next = parts[i + 1]?.[0] ?? '';
+    const normalized = value.toLocaleLowerCase('id');
+    const occurrence = occurrences.get(normalized) ?? 0;
+    occurrences.set(normalized, occurrence + 1);
     tokens.push({
       surface: value,
-      normalized: value.toLocaleLowerCase('id'),
+      normalized,
       after: next,
       lexicon: lookupContextualLexicon(value, book, chapter, verse),
+      inlineGloss: lookupInlineGloss(book, chapter, verse, normalized, occurrence),
     });
   }
   return tokens;

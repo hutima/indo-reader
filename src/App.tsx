@@ -5,6 +5,7 @@ import { relatedForms } from './data/lexicon';
 import { BIBLE_BOOKS, BOOK_BY_ID } from './data/books';
 import { loadAgsBook, loadAgsManifest } from './io/corpus';
 import { loadPbwlLexicon } from './io/pbwl';
+import { loadContextGlosses } from './io/contextGlosses';
 import { parseUsfm } from './io/usfm';
 import { UpdateModal } from './UpdateModal';
 
@@ -34,8 +35,8 @@ export function App() {
 
   useEffect(() => {
     let cancelled = false;
-    Promise.all([loadPbwlLexicon(), loadAgsManifest()])
-      .then(([, manifest]) => {
+    Promise.all([loadPbwlLexicon(), loadContextGlosses(), loadAgsManifest()])
+      .then(([, , manifest]) => {
         if (cancelled) return;
         const ids = manifest.books.map((book) => book.id);
         setAvailableBookIds(ids);
@@ -163,10 +164,10 @@ export function App() {
                     {mode !== 'gloss' && <span>{token.surface}</span>}
                     {mode === 'gloss' && (
                       <span className={token.lexicon?.gloss ? '' : 'english-missing'}>
-                        {token.lexicon?.gloss ?? `[${token.surface}?]`}
+                        {token.inlineGloss ?? token.lexicon?.gloss?.split(';')[0]?.trim() ?? `[${token.surface}?]`}
                       </span>
                     )}
-                    {mode === 'both' && !isKnown && <span className={`under${token.lexicon?.gloss ? '' : ' missing'}`}>{token.lexicon?.gloss ?? '?'}</span>}
+                    {mode === 'both' && !isKnown && <span className={`under${token.lexicon?.gloss ? '' : ' missing'}`}>{token.inlineGloss ?? token.lexicon?.gloss?.split(';')[0]?.trim() ?? '?'}</span>}
                   </button>
                   {token.after}
                 </span>
@@ -181,12 +182,19 @@ export function App() {
           <button className="close" onClick={() => setSelected(null)} type="button">×</button>
           <div className="surface">{selected.surface}</div>
           <dl>
-            <div><dt>English</dt><dd>{selected.lexicon?.gloss ?? 'Not glossed yet'}</dd></div>
+            {selected.inlineGloss && (
+              <div><dt>Inline gloss</dt><dd>{selected.inlineGloss} <small>· BSB-informed</small></dd></div>
+            )}
+            <div><dt>Dictionary gloss</dt><dd>{selected.lexicon?.gloss ?? 'Not glossed yet'}</dd></div>
             <div><dt>{selected.lexicon?.root ? 'Root' : 'Root guess'}</dt><dd>{selectedRoot}</dd></div>
             <div><dt>Part of speech</dt><dd>{selected.lexicon?.pos ?? '—'}</dd></div>
             {selected.lexicon?.register && <div><dt>Register</dt><dd>{selected.lexicon.register}</dd></div>}
             {selected.lexicon?.cefr && <div><dt>PBWL level</dt><dd>{selected.lexicon.cefr}</dd></div>}
-            {analysis.affixes.length > 0 && <div><dt>Affixes (auto)</dt><dd>{analysis.affixes.join(' + ')}</dd></div>}
+            {selected.lexicon?.affixes?.length ? (
+              <div><dt>Affixes</dt><dd>{selected.lexicon.affixes.join(' + ')}</dd></div>
+            ) : analysis.affixes.length > 0 ? (
+              <div><dt>Affixes (auto)</dt><dd>{analysis.affixes.join(' + ')}</dd></div>
+            ) : null}
             {(selected.lexicon?.note ?? analysis.note) && <div><dt>Affix note</dt><dd>{selected.lexicon?.note ?? analysis.note}</dd></div>}
             <div><dt>Source</dt><dd>{selected.lexicon ? selected.lexicon.source === 'pbwl' ? `PBWL reference${selected.lexicon.sourceRootId ? ` · root #${selected.lexicon.sourceRootId}` : ''}` : 'Reader lexicon' : `Automatic analysis (${analysis.confidence})`}</dd></div>
           </dl>
