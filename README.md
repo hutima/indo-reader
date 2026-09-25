@@ -25,7 +25,8 @@ Original-language alignment is deliberately optional. Greek/Hebrew can be attach
 - corpus-driven book + chapter navigation (only books present in the active source are shown)
 - previous/next chapter controls
 - tappable Indonesian word tokens
-- English gloss + root + RootID + CEFR metadata
+- concise verse-context inline glosses selected against the public-domain Berean Standard Bible
+- full dictionary gloss + root + RootID + CEFR metadata in the word detail panel
 - PBWL root-family related forms
 - automatic first-pass Indonesian prefix/suffix analysis
 - persistent known-vocabulary state
@@ -93,3 +94,12 @@ npm run prepare:data
 npm run typecheck
 npm run build
 ```
+
+
+## Contextual inline glosses
+
+Interlinear mode does not display the full PBWL sense inventory. During `prepare:data`, the build downloads the public-domain Berean Standard Bible (BSB) USFM and compares each AGS verse with the corresponding English verse. For each Indonesian token that already has lexical data, the generator selects one concise English sense that best overlaps the BSB verse. When no contextual match is available, it falls back to the first concise dictionary sense.
+
+The generated token-level choice is stored separately from the PBWL/reader dictionary entry. Tapping a word therefore still exposes the full lexical range, while the reading line stays compact.
+
+BSB source: https://ebible.org/details.php?id=engbsb (Public Domain).
