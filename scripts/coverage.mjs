@@ -11,6 +11,29 @@ const counts = new Map();
 let totalTokens = 0;
 let coveredTokens = 0;
 
+const clitics = ['nya', 'ku', 'mu', 'lah', 'kah', 'pun'];
+
+function isCovered(form) {
+  if (isCovered(form)) return true;
+
+  const compact = form.replace(/-(nya|ku|mu|lah|kah|pun)$/u, '$1');
+  if (compact !== form && known.has(compact)) return true;
+
+  const parts = form.split('-');
+  if (parts.length >= 2 && parts[0] === parts[1]) {
+    const trailing = parts.slice(2);
+    if (known.has(parts[0]) && trailing.every((part) => clitics.includes(part))) return true;
+  }
+
+  for (const clitic of clitics) {
+    if (form.endsWith(clitic) && form.length > clitic.length + 2) {
+      if (known.has(form.slice(0, -clitic.length))) return true;
+    }
+  }
+
+  return false;
+}
+
 const wordRe = /[\p{L}\p{M}]+(?:-[\p{L}\p{M}]+)*/gu;
 for (const file of await readdir(corpusDir)) {
   if (!file.endsWith('.usfm')) continue;
@@ -25,8 +48,8 @@ for (const file of await readdir(corpusDir)) {
     for (const match of clean.matchAll(wordRe)) {
       const form = match[0].toLocaleLowerCase('id');
       totalTokens += 1;
-      if (known.has(form)) coveredTokens += 1;
-      const row = counts.get(form) ?? { form, count: 0, covered: known.has(form) };
+      if (isCovered(form)) coveredTokens += 1;
+      const row = counts.get(form) ?? { form, count: 0, covered: isCovered(form) };
       row.count += 1;
       counts.set(form, row);
     }
