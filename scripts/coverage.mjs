@@ -1,17 +1,23 @@
-import { readFile, readdir, writeFile } from 'node:fs/promises';
+import { readFile, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 
-const corpusDir = path.resolve('public/corpus/ags');
+const corpusRoot = path.resolve('public/corpus');
+const corpusManifestFile = path.join(corpusRoot, 'manifest.json');
 const lexiconFile = path.resolve('public/lexicon/pbwl.json');
 const readerGlossFile = path.resolve('src/data/readerGlosses.json');
 const outputFile = path.resolve('public/lexicon/coverage.json');
 
+const corpus = JSON.parse(await readFile(corpusManifestFile, 'utf8'));
 const pbwl = JSON.parse(await readFile(lexiconFile, 'utf8'));
 const readerGlosses = JSON.parse(await readFile(readerGlossFile, 'utf8'));
 const pbwlKnown = new Set(pbwl.entries.map((entry) => entry.form.toLocaleLowerCase('id')));
 const readerKnown = new Set(readerGlosses.map((entry) => entry.form.toLocaleLowerCase('id')));
 const known = new Set([...pbwlKnown, ...readerKnown]);
 const counts = new Map();
+const byTestament = {
+  OT: { totalTokens: 0, coveredTokens: 0, pbwlCoveredTokens: 0 },
+  NT: { totalTokens: 0, coveredTokens: 0, pbwlCoveredTokens: 0 },
+};
 let totalTokens = 0;
 let coveredTokens = 0;
 let pbwlCoveredTokens = 0;
@@ -48,14 +54,12 @@ function isCoveredBy(set, form) {
   return false;
 }
 
-function isCovered(form) {
-  return isCoveredBy(known, form);
-}
-
 const wordRe = /[\p{L}\p{M}]+(?:-[\p{L}\p{M}]+)*/gu;
-for (const file of await readdir(corpusDir)) {
-  if (!file.endsWith('.usfm')) continue;
-  const source = await readFile(path.join(corpusDir, file), 'utf8');
+
+for (const book of corpus.books) {
+  const source = await readFile(path.join(corpusRoot, book.file), 'utf8');
+  const testamentStats = byTestament[book.testament];
+
   for (const line of source.split(/\r?\n/)) {
     if (!line.startsWith('\\v ')) continue;
     const clean = line
@@ -63,14 +67,32 @@ for (const file of await readdir(corpusDir)) {
       .replace(/\\f\s+.*?\\f\*/g, '')
       .replace(/\\x\s+.*?\\x\*/g, '')
       .replace(/\\[a-z0-9-]+\*?/gi, '');
+
     for (const match of clean.matchAll(wordRe)) {
       const form = match[0].toLocaleLowerCase('id');
+      const readerCovered = isCoveredBy(known, form);
+      const pbwlCovered = isCoveredBy(pbwlKnown, form);
+
       totalTokens += 1;
-      if (isCovered(form)) coveredTokens += 1;
-      if (isCoveredBy(pbwlKnown, form)) pbwlCoveredTokens += 1;
-      const row = counts.get(form) ?? { form, count: 0, covered: isCovered(form) };
+      testamentStats.totalTokens += 1;
+      if (readerCovered) {
+        coveredTokens += 1;
+        testamentStats.coveredTokens += 1;
+      }
+      if (pbwlCovered) {
+        pbwlCoveredTokens += 1;
+        testamentStats.pbwlCoveredTokens += 1;
+      }
+
+      const key = `${book.testament}:${form}`;
+      const row = counts.get(key) ?? {
+        form,
+        testament: book.testament,
+        count: 0,
+        covered: readerCovered,
+      };
       row.count += 1;
-      counts.set(form, row);
+      counts.set(key, row);
     }
   }
 }
@@ -78,6 +100,15 @@ for (const file of await readdir(corpusDir)) {
 const forms = [...counts.values()].sort((a, b) => b.count - a.count || a.form.localeCompare(b.form, 'id'));
 const missing = forms.filter((row) => !row.covered);
 const coveredTypes = forms.length - missing.length;
+
+function finalize(stats) {
+  return {
+    ...stats,
+    tokenCoverage: stats.totalTokens ? stats.coveredTokens / stats.totalTokens : 0,
+    pbwlTokenCoverage: stats.totalTokens ? stats.pbwlCoveredTokens / stats.totalTokens : 0,
+  };
+}
+
 const report = {
   generatedAt: new Date().toISOString(),
   totalTokens,
@@ -88,19 +119,29 @@ const report = {
   totalTypes: forms.length,
   coveredTypes,
   typeCoverage: forms.length ? coveredTypes / forms.length : 0,
-  mostFrequentMissing: missing.slice(0, 500),
+  byTestament: {
+    OT: finalize(byTestament.OT),
+    NT: finalize(byTestament.NT),
+  },
+  mostFrequentMissing: missing.slice(0, 1000),
 };
 
 await writeFile(outputFile, JSON.stringify(report, null, 2) + '\n', 'utf8');
 
 console.log(
-  `PBWL-only token coverage: ${pbwlCoveredTokens}/${totalTokens} (${(report.pbwlTokenCoverage * 100).toFixed(1)}%).`,
+  `Combined PBWL-only token coverage: ${pbwlCoveredTokens}/${totalTokens} (${(report.pbwlTokenCoverage * 100).toFixed(1)}%).`,
 );
 console.log(
-  `Reader coverage: ${coveredTokens}/${totalTokens} tokens (${(report.tokenCoverage * 100).toFixed(1)}%), ` +
-  `${coveredTypes}/${forms.length} types (${(report.typeCoverage * 100).toFixed(1)}%).`,
+  `Combined reader coverage: ${coveredTokens}/${totalTokens} (${(report.tokenCoverage * 100).toFixed(1)}%).`,
 );
-console.log('Top 100 missing AGS surface forms:');
+for (const testament of ['OT', 'NT']) {
+  const stats = report.byTestament[testament];
+  console.log(
+    `${testament} reader coverage: ${stats.coveredTokens}/${stats.totalTokens} (${(stats.tokenCoverage * 100).toFixed(1)}%), ` +
+    `PBWL-only ${(stats.pbwlTokenCoverage * 100).toFixed(1)}%.`,
+  );
+}
+console.log('Top 100 missing surface forms across the merged corpus:');
 for (const row of missing.slice(0, 100)) {
-  console.log(`${String(row.count).padStart(6)}  ${row.form}`);
+  console.log(`${String(row.count).padStart(6)}  [${row.testament}] ${row.form}`);
 }

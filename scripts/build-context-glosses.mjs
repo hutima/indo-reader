@@ -1,11 +1,13 @@
-import { mkdir, readFile, readdir, writeFile } from 'node:fs/promises';
+import { mkdir, readFile, rm, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 
-const agsDir = path.resolve('public/corpus/ags');
+const corpusRoot = path.resolve('public/corpus');
+const corpusManifestFile = path.join(corpusRoot, 'manifest.json');
 const bsbDir = path.resolve('.cache/bsb');
 const pbwlFile = path.resolve('public/lexicon/pbwl.json');
 const readerFile = path.resolve('src/data/readerGlosses.json');
-const outFile = path.resolve('public/lexicon/context-glosses.json');
+const overrideFile = path.resolve('src/data/contextGlossOverrides.json');
+const outDir = path.resolve('public/lexicon/context');
 
 const WORD_RE = /[\p{L}\p{M}]+(?:['’-][\p{L}\p{M}]+)*/gu;
 const clitics = ['nya', 'ku', 'mu', 'lah', 'kah', 'pun'];
@@ -195,18 +197,20 @@ function lookupSafe(index, form) {
 }
 
 async function main() {
+  const corpus = JSON.parse(await readFile(corpusManifestFile, 'utf8'));
   const pbwl = JSON.parse(await readFile(pbwlFile, 'utf8'));
   const reader = JSON.parse(await readFile(readerFile, 'utf8'));
+  const exactOverrides = JSON.parse(await readFile(overrideFile, 'utf8'));
   const lexicon = makeIndex(pbwl.entries, reader);
 
   const entries = {};
+  const byBook = new Map();
   let verseCount = 0;
   let contextualCount = 0;
 
-  for (const file of await readdir(agsDir)) {
-    if (!file.endsWith('.usfm')) continue;
-    const book = file.replace(/\.usfm$/i, '');
-    const bsbPath = path.join(bsbDir, file);
+  for (const corpusBook of corpus.books) {
+    const book = corpusBook.id;
+    const bsbPath = path.join(bsbDir, `${book}.usfm`);
 
     let bsb;
     try {
@@ -215,10 +219,10 @@ async function main() {
       continue;
     }
 
-    const agsVerses = verseMap(await readFile(path.join(agsDir, file), 'utf8'));
+    const indoVerses = verseMap(await readFile(path.join(corpusRoot, corpusBook.file), 'utf8'));
     const bsbVerses = verseMap(bsb);
 
-    for (const [ref, indoVerse] of agsVerses) {
+    for (const [ref, indoVerse] of indoVerses) {
       const englishVerse = bsbVerses.get(ref);
       if (!englishVerse) continue;
       verseCount += 1;
@@ -231,39 +235,87 @@ async function main() {
         const occurrence = occurrences.get(normalized) ?? 0;
         occurrences.set(normalized, occurrence + 1);
 
+        const key = `${book}.${chapter}.${verse}:${normalized}:${occurrence}`;
+        const exact = exactOverrides[key];
+        if (exact) {
+          entries[key] = exact;
+          const bookEntries = byBook.get(book) ?? {};
+          bookEntries[key] = exact;
+          byBook.set(book, bookEntries);
+          contextualCount += 1;
+          continue;
+        }
+
         const entry = lookupSafe(lexicon, surface);
         if (!entry?.gloss) continue;
         const chosen = chooseGloss(entry, englishVerse);
         if (!chosen) continue;
 
-        entries[`${book}.${chapter}.${verse}:${normalized}:${occurrence}`] = chosen;
+        entries[key] = chosen;
+        const bookEntries = byBook.get(book) ?? {};
+        bookEntries[key] = chosen;
+        byBook.set(book, bookEntries);
         contextualCount += 1;
       }
     }
   }
 
-  await mkdir(path.dirname(outFile), { recursive: true });
+  await rm(outDir, { recursive: true, force: true });
+  await mkdir(outDir, { recursive: true });
+  const generatedAt = new Date().toISOString();
+  const bookManifest = [];
+
+  for (const [book, bookEntries] of byBook) {
+    const filename = `${book}.json`;
+    await writeFile(
+      path.join(outDir, filename),
+      JSON.stringify(
+        {
+          source: 'Berean Standard Bible (public domain) contextual sense selection',
+          generatedAt,
+          book,
+          entries: bookEntries,
+        },
+        null,
+        2,
+      ) + '\n',
+      'utf8',
+    );
+    bookManifest.push({ book, file: filename, entries: Object.keys(bookEntries).length });
+  }
+
+  bookManifest.sort((a, b) => a.book.localeCompare(b.book));
   await writeFile(
-    outFile,
+    path.join(outDir, 'manifest.json'),
     JSON.stringify(
       {
         source: 'Berean Standard Bible (public domain) contextual sense selection',
-        generatedAt: new Date().toISOString(),
+        generatedAt,
         versesCompared: verseCount,
-        entries,
+        totalEntries: contextualCount,
+        books: bookManifest,
       },
       null,
       2,
     ) + '\n',
     'utf8',
   );
-  console.log(`Generated ${contextualCount} contextual inline glosses across ${verseCount} matched verses.`);
 
-  const sample = Object.entries(entries)
+  console.log(
+    `Generated ${contextualCount} contextual inline glosses across ${verseCount} matched verses in ${bookManifest.length} book shards.`,
+  );
+
+  const johnSample = Object.entries(entries)
     .filter(([key]) => /^JHN\.1\.[1-3]:/u.test(key))
     .slice(0, 40);
   console.log('John 1:1–3 contextual gloss sample:');
-  for (const [key, value] of sample) console.log(`  ${key} -> ${value}`);
+  for (const [key, value] of johnSample) console.log(`  ${key} -> ${value}`);
+
+  const genesisSample = Object.entries(entries)
+    .filter(([key]) => /^GEN\.1\.[1-3]:/u.test(key))
+    .slice(0, 50);
+  console.log('Genesis 1:1–3 contextual gloss sample:');
+  for (const [key, value] of genesisSample) console.log(`  ${key} -> ${value}`);
 }
 
 main().catch((error) => {

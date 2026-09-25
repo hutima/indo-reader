@@ -1,10 +1,11 @@
 import { readFile } from 'node:fs/promises';
 import path from 'node:path';
 
-const payload = JSON.parse(
-  await readFile(path.resolve('public/lexicon/context-glosses.json'), 'utf8'),
-);
-const entries = payload.entries ?? {};
+const contextDir = path.resolve('public/lexicon/context');
+const manifest = JSON.parse(await readFile(path.join(contextDir, 'manifest.json'), 'utf8'));
+const john = JSON.parse(await readFile(path.join(contextDir, 'JHN.json'), 'utf8')).entries ?? {};
+const genesis = JSON.parse(await readFile(path.join(contextDir, 'GEN.json'), 'utf8')).entries ?? {};
+const entries = { ...john, ...genesis };
 
 const expected = new Map([
   ['JHN.1.1:pada:0', 'In'],
@@ -19,6 +20,16 @@ const expected = new Map([
   ['JHN.1.3:melalui:0', 'Through'],
   ['JHN.1.3:diciptakan:0', 'created'],
   ['JHN.1.3:firman:0', 'Word'],
+  ['GEN.1.1:pada:0', 'In'],
+  ['GEN.1.1:allah:0', 'God'],
+  ['GEN.1.1:menciptakan:0', 'created'],
+  ['GEN.1.1:langit:0', 'heavens'],
+  ['GEN.1.1:bumi:0', 'earth'],
+  ['GEN.1.2:roh:0', 'Spirit'],
+  ['GEN.1.3:berfirman:0', 'said'],
+  ['GEN.1.3:jadilah:0', 'Let there be'],
+  ['GEN.1.3:lalu:0', 'then'],
+  ['GEN.1.3:jadi:0', 'was'],
 ]);
 
 for (const [key, value] of expected) {
@@ -27,8 +38,13 @@ for (const [key, value] of expected) {
   }
 }
 
-if (Object.keys(entries).length < 150000) {
-  throw new Error(`Context gloss generation unexpectedly small: ${Object.keys(entries).length} entries.`);
+if (manifest.totalEntries < 500000) {
+  throw new Error(`Context gloss generation unexpectedly small: ${manifest.totalEntries} entries.`);
+}
+if (manifest.books.length !== 66) {
+  throw new Error(`Expected contextual gloss shards for 66 books, found ${manifest.books.length}.`);
 }
 
-console.log(`Context gloss verification passed: ${Object.keys(entries).length} token annotations.`);
+console.log(
+  `Context gloss verification passed: ${manifest.totalEntries} token annotations across ${manifest.books.length} book shards.`,
+);

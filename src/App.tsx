@@ -3,7 +3,7 @@ import type { ReadingToken } from './domain/types';
 import { analyzeIndonesian } from './domain/indonesianMorph';
 import { relatedForms } from './data/lexicon';
 import { BIBLE_BOOKS, BOOK_BY_ID } from './data/books';
-import { loadAgsBook, loadAgsManifest } from './io/corpus';
+import { loadBibleBook, loadCorpusManifest } from './io/corpus';
 import { loadPbwlLexicon } from './io/pbwl';
 import { loadContextGlosses } from './io/contextGlosses';
 import { parseUsfm } from './io/usfm';
@@ -26,6 +26,7 @@ export function App() {
     }
   });
   const [loading, setLoading] = useState(true);
+  const [translation, setTranslation] = useState<'AYT' | 'AGS'>('AGS');
   const [lexiconReady, setLexiconReady] = useState(false);
   const [availableBookIds, setAvailableBookIds] = useState<string[]>(['JHN']);
 
@@ -35,8 +36,8 @@ export function App() {
 
   useEffect(() => {
     let cancelled = false;
-    Promise.all([loadPbwlLexicon(), loadContextGlosses(), loadAgsManifest()])
-      .then(([, , manifest]) => {
+    Promise.all([loadPbwlLexicon(), loadCorpusManifest()])
+      .then(([, manifest]) => {
         if (cancelled) return;
         const ids = manifest.books.map((book) => book.id);
         setAvailableBookIds(ids);
@@ -55,8 +56,12 @@ export function App() {
     let cancelled = false;
     setLoading(true);
     setSelected(null);
-    loadAgsBook(bookId)
-      .then((book) => { if (!cancelled) setUsfm(book); })
+    Promise.all([loadContextGlosses(bookId), loadBibleBook(bookId)])
+      .then(([, { text, book }]) => {
+        if (cancelled) return;
+        setUsfm(text);
+        setTranslation(book.translation);
+      })
       .finally(() => { if (!cancelled) setLoading(false); });
     return () => { cancelled = true; };
   }, [bookId, lexiconReady]);
@@ -102,7 +107,7 @@ export function App() {
       <header className="header">
         <div>
           <strong>Indo Reader</strong>
-          <div className="subtitle">AGS · Indonesian → English learner reader</div>
+          <div className="subtitle">{translation} · Indonesian → English learner reader</div>
         </div>
         <div className="segmented" aria-label="Display mode">
           {(['indo', 'both', 'gloss'] as const).map((value) => (
@@ -147,10 +152,10 @@ export function App() {
 
       <section className="reader">
         <div className="chapter-title-row">
-          <h1>{bookName} {chapter}</h1>
+          <h1>{bookName} {chapter} <small className="translation-tag">{translation}</small></h1>
           {!!chapterTokens.length && <span className="coverage-badge">{chapterCoverage}% glossed</span>}
         </div>
-        {loading && <p className="loading">Loading AGS…</p>}
+        {loading && <p className="loading">Loading {translation}…</p>}
         {!loading && !visibleVerses.length && <p className="loading">No verses found for this chapter.</p>}
         {visibleVerses.map((verse) => (
           <p className={`verse mode-${mode}`} key={`${verse.chapter}:${verse.verse}`}>

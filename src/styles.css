@@ -197,3 +197,11 @@ dt { color: #726b64; } dd { margin: 0; }
   padding: .55rem .9rem;
   font-weight: 700;
 }
+
+.translation-tag {
+  margin-left: .35rem;
+  color: #726b64;
+  font: 700 .68rem/1 Inter, sans-serif;
+  letter-spacing: .05em;
+  vertical-align: middle;
+}

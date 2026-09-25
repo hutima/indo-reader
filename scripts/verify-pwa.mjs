@@ -22,7 +22,8 @@ if (manifest.scope !== './') throw new Error('PWA scope must remain relative for
 if (!Array.isArray(manifest.icons) || manifest.icons.length < 3) throw new Error('PWA manifest icons are incomplete.');
 
 const worker = await readFile(path.join(dist, 'sw.js'), 'utf8');
-if (!worker.includes('indo-reader-data-v1')) throw new Error('Runtime AGS/PBWL cache missing from built service worker.');
+if (!worker.includes('indo-reader-data-v1')) throw new Error('Runtime Bible/lexicon cache missing from built service worker.');
+if (!worker.includes('/corpus/')) throw new Error('Merged AYT/AGS runtime corpus caching missing from built service worker.');
 if (!worker.includes('SKIP_WAITING')) throw new Error('User-triggered update activation missing from built service worker.');
 
 console.log('PWA artifact verification passed.');

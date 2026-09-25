@@ -14,6 +14,7 @@ jobs:
           node-version: 20
       - run: npm install
       - run: npm run prepare:data
+      - run: npm run verify:corpus
       - run: npm run verify:lexicon
       - run: npm run verify:context-glosses
       - run: npm run typecheck
