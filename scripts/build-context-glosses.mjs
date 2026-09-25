@@ -106,7 +106,10 @@ function senseWords(sense) {
 
 function chooseGloss(entry, englishVerse) {
   const normalizedForm = String(entry.form ?? '').toLocaleLowerCase('id');
-  if ((normalizedForm === 'kita' || normalizedForm === 'kami') && entry.preferredGloss) {
+  if (
+    (normalizedForm === 'kita' || normalizedForm === 'kami' || normalizedForm === 'penerang') &&
+    entry.preferredGloss
+  ) {
     return entry.preferredGloss;
   }
 
