@@ -5,6 +5,7 @@ import { relatedForms } from './data/lexicon';
 import { BIBLE_BOOKS, BOOK_BY_ID } from './data/books';
 import { loadAgsBook, loadAgsManifest } from './io/corpus';
 import { loadPbwlLexicon } from './io/pbwl';
+import { loadContextGlosses } from './io/contextGlosses';
 import { parseUsfm } from './io/usfm';
 import { UpdateModal } from './UpdateModal';
 
@@ -34,8 +35,8 @@ export function App() {
 
   useEffect(() => {
     let cancelled = false;
-    Promise.all([loadPbwlLexicon(), loadAgsManifest()])
-      .then(([, manifest]) => {
+    Promise.all([loadPbwlLexicon(), loadContextGlosses(), loadAgsManifest()])
+      .then(([, , manifest]) => {
         if (cancelled) return;
         const ids = manifest.books.map((book) => book.id);
         setAvailableBookIds(ids);
@@ -163,10 +164,10 @@ export function App() {
                     {mode !== 'gloss' && <span>{token.surface}</span>}
                     {mode === 'gloss' && (
                       <span className={token.lexicon?.gloss ? '' : 'english-missing'}>
-                        {token.lexicon?.gloss ?? `[${token.surface}?]`}
+                        {token.inlineGloss ?? token.lexicon?.gloss?.split(';')[0]?.trim() ?? `[${token.surface}?]`}
                       </span>
                     )}
-                    {mode === 'both' && !isKnown && <span className={`under${token.lexicon?.gloss ? '' : ' missing'}`}>{token.lexicon?.gloss ?? '?'}</span>}
+                    {mode === 'both' && !isKnown && <span className={`under${token.lexicon?.gloss ? '' : ' missing'}`}>{token.inlineGloss ?? token.lexicon?.gloss?.split(';')[0]?.trim() ?? '?'}</span>}
                   </button>
                   {token.after}
                 </span>
