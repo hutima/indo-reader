@@ -9,6 +9,8 @@
   "scripts": {
     "dev": "vite",
     "import:ags": "node scripts/import-ags.mjs",
+    "sync:pbwl": "node scripts/sync-pbwl.mjs",
+    "prepare:data": "npm run import:ags && npm run sync:pbwl",
     "build": "tsc -b && vite build",
     "preview": "vite preview",
     "typecheck": "tsc -b --noEmit"
