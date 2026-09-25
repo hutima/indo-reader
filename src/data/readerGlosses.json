@@ -10145,5 +10145,115 @@
     "root": "tuju",
     "pos": "verb",
     "source": "reader"
+  },
+  {
+    "form": "dapat",
+    "gloss": "can; be able to; obtain",
+    "preferredGloss": "can",
+    "root": "dapat",
+    "pos": "verb/adverb",
+    "source": "reader"
+  },
+  {
+    "form": "bisa",
+    "gloss": "can; be able to",
+    "preferredGloss": "can",
+    "root": "bisa",
+    "pos": "verb/adverb",
+    "source": "reader"
+  },
+  {
+    "form": "lagi",
+    "gloss": "again; more; anymore",
+    "preferredGloss": "again",
+    "root": "lagi",
+    "pos": "adverb",
+    "source": "reader"
+  },
+  {
+    "form": "oleh",
+    "gloss": "by; through",
+    "preferredGloss": "by",
+    "root": "oleh",
+    "pos": "preposition",
+    "source": "reader"
+  },
+  {
+    "form": "dalam",
+    "gloss": "in; inside; within",
+    "preferredGloss": "in",
+    "root": "dalam",
+    "pos": "preposition",
+    "source": "reader"
+  },
+  {
+    "form": "kandungan",
+    "gloss": "womb; contents; pregnancy",
+    "preferredGloss": "womb",
+    "root": "kandung",
+    "pos": "noun",
+    "affixes": [
+      "-an"
+    ],
+    "source": "reader"
+  },
+  {
+    "form": "secara",
+    "gloss": "in a ... way; by; -ly",
+    "preferredGloss": "",
+    "root": "cara",
+    "pos": "adverb marker",
+    "affixes": [
+      "se-"
+    ],
+    "source": "reader"
+  },
+  {
+    "form": "jasmani",
+    "gloss": "physical; bodily",
+    "preferredGloss": "physical",
+    "root": "jasmani",
+    "pos": "adjective",
+    "source": "reader"
+  },
+  {
+    "form": "rohani",
+    "gloss": "spiritual",
+    "preferredGloss": "spiritual",
+    "root": "rohani",
+    "pos": "adjective",
+    "source": "reader"
+  },
+  {
+    "form": "kembali",
+    "gloss": "again; back; return",
+    "preferredGloss": "again",
+    "root": "kembali",
+    "pos": "adverb/verb",
+    "source": "reader"
+  },
+  {
+    "form": "kecuali",
+    "gloss": "unless; except",
+    "preferredGloss": "unless",
+    "root": "kecuali",
+    "pos": "conjunction/preposition",
+    "source": "reader"
+  },
+  {
+    "form": "orang",
+    "gloss": "person; people",
+    "preferredGloss": "person",
+    "root": "orang",
+    "pos": "noun",
+    "source": "reader"
+  },
+  {
+    "form": "tua",
+    "gloss": "old; elder",
+    "preferredGloss": "old",
+    "root": "tua",
+    "pos": "adjective",
+    "source": "reader"
   }
 ]
