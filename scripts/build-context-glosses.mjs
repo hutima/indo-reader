@@ -6,6 +6,7 @@ const corpusManifestFile = path.join(corpusRoot, 'manifest.json');
 const bsbDir = path.resolve('.cache/bsb');
 const pbwlFile = path.resolve('public/lexicon/pbwl.json');
 const readerFile = path.resolve('src/data/readerGlosses.json');
+const overrideFile = path.resolve('src/data/contextGlossOverrides.json');
 const outFile = path.resolve('public/lexicon/context-glosses.json');
 
 const WORD_RE = /[\p{L}\p{M}]+(?:['’-][\p{L}\p{M}]+)*/gu;
@@ -199,6 +200,7 @@ async function main() {
   const corpus = JSON.parse(await readFile(corpusManifestFile, 'utf8'));
   const pbwl = JSON.parse(await readFile(pbwlFile, 'utf8'));
   const reader = JSON.parse(await readFile(readerFile, 'utf8'));
+  const exactOverrides = JSON.parse(await readFile(overrideFile, 'utf8'));
   const lexicon = makeIndex(pbwl.entries, reader);
 
   const entries = {};
@@ -232,12 +234,20 @@ async function main() {
         const occurrence = occurrences.get(normalized) ?? 0;
         occurrences.set(normalized, occurrence + 1);
 
+        const key = `${book}.${chapter}.${verse}:${normalized}:${occurrence}`;
+        const exact = exactOverrides[key];
+        if (exact) {
+          entries[key] = exact;
+          contextualCount += 1;
+          continue;
+        }
+
         const entry = lookupSafe(lexicon, surface);
         if (!entry?.gloss) continue;
         const chosen = chooseGloss(entry, englishVerse);
         if (!chosen) continue;
 
-        entries[`${book}.${chapter}.${verse}:${normalized}:${occurrence}`] = chosen;
+        entries[key] = chosen;
         contextualCount += 1;
       }
     }
