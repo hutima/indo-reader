@@ -17,6 +17,7 @@ const expected = new Map([
   ['JHN.1.3:segala:0', 'all'],
   ['JHN.1.3:sesuatu:0', 'things'],
   ['JHN.1.3:melalui:0', 'Through'],
+  ['JHN.1.3:diciptakan:0', 'created'],
   ['JHN.1.3:firman:0', 'Word'],
 ]);
 
