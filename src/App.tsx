@@ -187,7 +187,11 @@ export function App() {
             <div><dt>Part of speech</dt><dd>{selected.lexicon?.pos ?? '—'}</dd></div>
             {selected.lexicon?.register && <div><dt>Register</dt><dd>{selected.lexicon.register}</dd></div>}
             {selected.lexicon?.cefr && <div><dt>PBWL level</dt><dd>{selected.lexicon.cefr}</dd></div>}
-            {analysis.affixes.length > 0 && <div><dt>Affixes (auto)</dt><dd>{analysis.affixes.join(' + ')}</dd></div>}
+            {selected.lexicon?.affixes?.length ? (
+              <div><dt>Affixes</dt><dd>{selected.lexicon.affixes.join(' + ')}</dd></div>
+            ) : analysis.affixes.length > 0 ? (
+              <div><dt>Affixes (auto)</dt><dd>{analysis.affixes.join(' + ')}</dd></div>
+            ) : null}
             {(selected.lexicon?.note ?? analysis.note) && <div><dt>Affix note</dt><dd>{selected.lexicon?.note ?? analysis.note}</dd></div>}
             <div><dt>Source</dt><dd>{selected.lexicon ? selected.lexicon.source === 'pbwl' ? `PBWL reference${selected.lexicon.sourceRootId ? ` · root #${selected.lexicon.sourceRootId}` : ''}` : 'Reader lexicon' : `Automatic analysis (${analysis.confidence})`}</dd></div>
           </dl>
