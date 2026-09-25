@@ -7548,5 +7548,32 @@
     "root": "Kadesh",
     "pos": "proper noun",
     "source": "reader"
+  },
+  {
+    "form": "penerang",
+    "gloss": "light; light source; luminary",
+    "preferredGloss": "light",
+    "root": "terang",
+    "pos": "noun",
+    "affixes": [
+      "peN-"
+    ],
+    "source": "reader"
+  },
+  {
+    "form": "kita",
+    "gloss": "we; us (inclusive)",
+    "preferredGloss": "We (inc.)",
+    "root": "kita",
+    "pos": "pronoun",
+    "source": "reader"
+  },
+  {
+    "form": "kami",
+    "gloss": "we; us (exclusive)",
+    "preferredGloss": "We (ex.)",
+    "root": "kami",
+    "pos": "pronoun",
+    "source": "reader"
   }
 ]
