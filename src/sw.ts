@@ -13,7 +13,7 @@ const DATA_CACHE = 'indo-reader-data-v1';
 function isRuntimeData(url: URL): boolean {
   const p = url.pathname;
   return (
-    (p.includes('/corpus/ags/') && (p.endsWith('.usfm') || p.endsWith('/manifest.json'))) ||
+    (p.includes('/corpus/') && (p.endsWith('.usfm') || p.endsWith('/manifest.json'))) ||
     (p.includes('/lexicon/') && p.endsWith('.json'))
   );
 }
