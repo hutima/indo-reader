@@ -1,4 +1,4 @@
-import { mkdir, readFile, writeFile } from 'node:fs/promises';
+import { mkdir, readFile, rm, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 
 const corpusRoot = path.resolve('public/corpus');
@@ -7,7 +7,7 @@ const bsbDir = path.resolve('.cache/bsb');
 const pbwlFile = path.resolve('public/lexicon/pbwl.json');
 const readerFile = path.resolve('src/data/readerGlosses.json');
 const overrideFile = path.resolve('src/data/contextGlossOverrides.json');
-const outFile = path.resolve('public/lexicon/context-glosses.json');
+const outDir = path.resolve('public/lexicon/context');
 
 const WORD_RE = /[\p{L}\p{M}]+(?:['’-][\p{L}\p{M}]+)*/gu;
 const clitics = ['nya', 'ku', 'mu', 'lah', 'kah', 'pun'];
@@ -204,6 +204,7 @@ async function main() {
   const lexicon = makeIndex(pbwl.entries, reader);
 
   const entries = {};
+  const byBook = new Map();
   let verseCount = 0;
   let contextualCount = 0;
 
@@ -238,6 +239,9 @@ async function main() {
         const exact = exactOverrides[key];
         if (exact) {
           entries[key] = exact;
+          const bookEntries = byBook.get(book) ?? {};
+          bookEntries[key] = exact;
+          byBook.set(book, bookEntries);
           contextualCount += 1;
           continue;
         }
@@ -248,27 +252,58 @@ async function main() {
         if (!chosen) continue;
 
         entries[key] = chosen;
+        const bookEntries = byBook.get(book) ?? {};
+        bookEntries[key] = chosen;
+        byBook.set(book, bookEntries);
         contextualCount += 1;
       }
     }
   }
 
-  await mkdir(path.dirname(outFile), { recursive: true });
+  await rm(outDir, { recursive: true, force: true });
+  await mkdir(outDir, { recursive: true });
+  const generatedAt = new Date().toISOString();
+  const bookManifest = [];
+
+  for (const [book, bookEntries] of byBook) {
+    const filename = `${book}.json`;
+    await writeFile(
+      path.join(outDir, filename),
+      JSON.stringify(
+        {
+          source: 'Berean Standard Bible (public domain) contextual sense selection',
+          generatedAt,
+          book,
+          entries: bookEntries,
+        },
+        null,
+        2,
+      ) + '\n',
+      'utf8',
+    );
+    bookManifest.push({ book, file: filename, entries: Object.keys(bookEntries).length });
+  }
+
+  bookManifest.sort((a, b) => a.book.localeCompare(b.book));
   await writeFile(
-    outFile,
+    path.join(outDir, 'manifest.json'),
     JSON.stringify(
       {
         source: 'Berean Standard Bible (public domain) contextual sense selection',
-        generatedAt: new Date().toISOString(),
+        generatedAt,
         versesCompared: verseCount,
-        entries,
+        totalEntries: contextualCount,
+        books: bookManifest,
       },
       null,
       2,
     ) + '\n',
     'utf8',
   );
-  console.log(`Generated ${contextualCount} contextual inline glosses across ${verseCount} matched verses.`);
+
+  console.log(
+    `Generated ${contextualCount} contextual inline glosses across ${verseCount} matched verses in ${bookManifest.length} book shards.`,
+  );
 
   const johnSample = Object.entries(entries)
     .filter(([key]) => /^JHN\.1\.[1-3]:/u.test(key))
