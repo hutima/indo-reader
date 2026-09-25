@@ -14,8 +14,19 @@ export function App() {
   const [usfm, setUsfm] = useState('');
   const [mode, setMode] = useState<Mode>('both');
   const [selected, setSelected] = useState<ReadingToken | null>(null);
-  const [known, setKnown] = useState<Set<string>>(new Set());
+  const [known, setKnown] = useState<Set<string>>(() => {
+    try {
+      const saved = JSON.parse(localStorage.getItem('indo-reader-known') ?? '[]') as string[];
+      return new Set(saved);
+    } catch {
+      return new Set();
+    }
+  });
   const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    localStorage.setItem('indo-reader-known', JSON.stringify([...known]));
+  }, [known]);
 
   useEffect(() => {
     let cancelled = false;
@@ -94,6 +105,10 @@ export function App() {
             {chapters.map((number) => <option value={number} key={number}>{number}</option>)}
           </select>
         </label>
+        <div className="chapter-arrows" aria-label="Chapter navigation">
+          <button type="button" onClick={() => setChapter((value) => Math.max(chapters[0] ?? 1, value - 1))} disabled={!chapters.length || chapter <= (chapters[0] ?? 1)} aria-label="Previous chapter">‹</button>
+          <button type="button" onClick={() => setChapter((value) => Math.min(chapters.at(-1) ?? value, value + 1))} disabled={!chapters.length || chapter >= (chapters.at(-1) ?? chapter)} aria-label="Next chapter">›</button>
+        </div>
       </nav>
 
       <section className="reader">
