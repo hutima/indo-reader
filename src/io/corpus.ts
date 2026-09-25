@@ -3,31 +3,40 @@ import { SAMPLE_AGS_USFM } from '../data/sample';
 export interface CorpusBook {
   id: string;
   file: string;
+  translation: 'AYT' | 'AGS';
+  testament: 'OT' | 'NT';
 }
 
 export interface CorpusManifest {
-  translation: string;
+  generatedAt: string;
+  translations: Record<string, Record<string, string>>;
   books: CorpusBook[];
 }
 
-export async function loadAgsManifest(): Promise<CorpusManifest> {
-  const manifestUrl = new URL('./corpus/ags/manifest.json', window.location.href);
+export async function loadCorpusManifest(): Promise<CorpusManifest> {
+  const manifestUrl = new URL('./corpus/manifest.json', window.location.href);
   const response = await fetch(manifestUrl);
-  if (!response.ok) throw new Error('AGS manifest unavailable');
+  if (!response.ok) throw new Error('Bible corpus manifest unavailable');
   return (await response.json()) as CorpusManifest;
 }
 
-export async function loadAgsBook(bookId = 'JHN'): Promise<string> {
+export async function loadBibleBook(bookId = 'JHN'): Promise<{ text: string; book: CorpusBook }> {
   try {
-    const manifest = await loadAgsManifest();
+    const manifest = await loadCorpusManifest();
     const book = manifest.books.find((candidate) => candidate.id === bookId);
-    if (!book) throw new Error(`AGS book ${bookId} not found`);
-    const bookUrl = new URL(`./corpus/ags/${book.file}`, window.location.href);
-    const bookResponse = await fetch(bookUrl);
-    if (!bookResponse.ok) throw new Error('AGS book unavailable');
-    return await bookResponse.text();
-  } catch {
-    if (bookId === 'JHN') return SAMPLE_AGS_USFM;
-    throw new Error(`AGS book ${bookId} unavailable`);
+    if (!book) throw new Error(`Bible book ${bookId} not found`);
+
+    const bookUrl = new URL(`./corpus/${book.file}`, window.location.href);
+    const response = await fetch(bookUrl);
+    if (!response.ok) throw new Error(`${book.translation} book unavailable`);
+    return { text: await response.text(), book };
+  } catch (error) {
+    if (bookId === 'JHN') {
+      return {
+        text: SAMPLE_AGS_USFM,
+        book: { id: 'JHN', file: '', translation: 'AGS', testament: 'NT' },
+      };
+    }
+    throw error;
   }
 }
