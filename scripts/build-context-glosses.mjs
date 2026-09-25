@@ -94,8 +94,11 @@ function senseWords(sense) {
     .filter((word) => !['a','an','the','to','of','and','or'].includes(word));
 }
 
-function chooseGloss(gloss, englishVerse) {
-  const options = senses(gloss);
+function chooseGloss(entry, englishVerse) {
+  const dictionaryOptions = senses(entry.gloss);
+  const options = entry.preferredGloss
+    ? [entry.preferredGloss, ...dictionaryOptions.filter((value) => value !== entry.preferredGloss)]
+    : dictionaryOptions;
   if (!options.length) return undefined;
   if (options.length === 1) return options[0];
 
@@ -208,7 +211,7 @@ async function main() {
 
         const entry = lookupSafe(lexicon, surface);
         if (!entry?.gloss) continue;
-        const chosen = chooseGloss(entry.gloss, englishVerse);
+        const chosen = chooseGloss(entry, englishVerse);
         if (!chosen) continue;
 
         entries[`${book}.${chapter}.${verse}:${normalized}:${occurrence}`] = chosen;
