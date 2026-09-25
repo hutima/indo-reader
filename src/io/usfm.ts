@@ -1,9 +1,9 @@
 import type { ReadingToken, Verse } from '../domain/types';
-import { lookupLexicon } from '../data/lexicon';
+import { lookupContextualLexicon } from '../data/contextualLexicon';
 
 const WORD_RE = /([\p{L}\p{M}]+(?:-[\p{L}\p{M}]+)*)|([^\p{L}\p{M}]+)/gu;
 
-function tokenize(text: string): ReadingToken[] {
+function tokenize(text: string, book: string, chapter: number, verse: number): ReadingToken[] {
   const parts = [...text.matchAll(WORD_RE)];
   const tokens: ReadingToken[] = [];
 
@@ -16,7 +16,7 @@ function tokenize(text: string): ReadingToken[] {
       surface: value,
       normalized: value.toLocaleLowerCase('id'),
       after: next,
-      lexicon: lookupLexicon(value),
+      lexicon: lookupContextualLexicon(value, book, chapter, verse),
     });
   }
   return tokens;
@@ -52,7 +52,7 @@ export function parseUsfm(usfm: string): Verse[] {
         .replace(/\\[a-z0-9-]+\*?/gi, '')
         .replace(/\s+/g, ' ')
         .trim();
-      verses.push({ book, chapter, verse, tokens: tokenize(clean) });
+      verses.push({ book, chapter, verse, tokens: tokenize(clean, book, chapter, verse) });
     }
   }
   return verses;
