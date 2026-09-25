@@ -6,34 +6,38 @@ A reading-focused Indonesian Bible learner app, derived from the interaction mod
 
 The primary reading path is:
 
-1. **Indonesian AGS Bible text**
-2. tap a word for an **English gloss**
-3. show its **PBWL root / RootID / CEFR level**
-4. expose **related forms in the same root family**
-5. fall back to conservative Indonesian affix analysis when no lexical entry exists
+1. **AYT Old Testament (Genesis–Malachi) + AGS New Testament (Matthew–Revelation)**
+2. display one concise English gloss inline
+3. tap a word for its full dictionary gloss
+4. show PBWL root / RootID / CEFR metadata and related root-family forms
+5. prefer curated affix/root analysis, with conservative automatic morphology as fallback
 6. let the learner mark roots/forms known so glosses progressively disappear
 
-Original-language alignment is deliberately optional. Greek/Hebrew can be attached later if a compatible word-aligned corpus becomes available, but Indonesian → English reading does not depend on it.
+Original-language alignment remains optional. Indonesian → English reading does not depend on Greek/Hebrew token tagging.
 
 ## Implemented
 
-- Vite + React + TypeScript reader
-- full AGS USFM import pipeline
-- full PBWL Root v1.0b sheet sync when its CSV export is available
-- pinned PBWL subset fallback for reproducible/offline-safe builds
+- Vite + React + TypeScript PWA
+- 66-book merged corpus manifest
+- AYT OT import pipeline
+- AGS NT import pipeline
+- per-book AYT / AGS source indicator
+- PBWL Root v1.0b sheet sync with pinned fallback
 - Indo / Both / English display modes
-- corpus-driven book + chapter navigation (only books present in the active source are shown)
+- full OT/NT book + chapter navigation
 - previous/next chapter controls
-- tappable Indonesian word tokens
+- tappable Indonesian tokens
 - concise verse-context inline glosses selected against the public-domain Berean Standard Bible
-- full dictionary gloss + root + RootID + CEFR metadata in the word detail panel
+- full dictionary gloss + root + RootID + CEFR metadata in the detail panel
+- curated Bible vocabulary, roots and affixes
 - PBWL root-family related forms
-- automatic first-pass Indonesian prefix/suffix analysis
+- automatic Indonesian morphology fallback
 - persistent known-vocabulary state
-- per-chapter "% glossed" coverage indicator
-- whole-corpus coverage report generation
-- GitHub Actions data/typecheck/build verification
-- GitHub Pages deployment workflow
+- per-chapter gloss coverage
+- OT/NT/combined lexical coverage reports
+- offline runtime caching of opened AYT and AGS books
+- update-available modal for PWA releases
+- GitHub Actions verification and GitHub Pages deployment
 
 ## Data preparation
 
@@ -46,34 +50,58 @@ npm run dev
 `prepare:data` performs:
 
 ```
-AGS USFM import
+AGS NT import
+→ AYT OT import
+→ merged 66-book corpus manifest
+→ BSB import
 → PBWL lexicon sync
-→ AGS lexical coverage analysis
+→ combined OT/NT lexical coverage
+→ BSB-informed contextual gloss generation
 ```
 
-The generated runtime assets live under `public/corpus/ags` and `public/lexicon`.
+Generated runtime assets live under `public/corpus` and `public/lexicon`.
+
+## Corpus design
+
+The app intentionally uses two Indonesian Scripture sources:
+
+- **Genesis–Malachi: AYT (Alkitab Yang Terbuka)**
+- **Matthew–Revelation: AGS (Alkitab Gratis untuk Semua)**
+
+The generated corpus manifest records the translation for every book. AYT and AGS Scripture files remain separate and unmodified; learner annotations are generated independently in `public/lexicon`.
 
 ## Lexicon precedence
 
 The reader uses lexical information in this order:
 
-1. **reader-authored contextual override** — Bible-specific meaning when a generic dictionary gloss is misleading
-2. **PBWL surface-form entry** — general English meaning + root family metadata
-3. **automatic morphology guess** — root/affix help only, explicitly labeled as a guess
+1. **verse-specific reader override** — a Bible-context meaning where the generic dictionary entry would mislead
+2. **reader lexicon** — curated Bible vocabulary, proper nouns, preferred glosses, roots and affixes
+3. **PBWL surface-form entry** — general English meaning + root-family metadata
+4. **automatic morphology guess** — explicitly labeled fallback only
 
-This separation lets a form such as a theological term receive a Bible-context gloss without losing its PBWL family metadata.
+The inline interlinear gloss is stored separately from the full dictionary gloss.
 
 ## Data and licensing
 
-### AGS
+### AYT — Old Testament
+
+**Alkitab Yang Terbuka (AYT)**, copyright © 2011–2024 YLSA-AYT.
+
+The current reader imports only the 39 canonical Old Testament books from AYT. The Scripture text is stored and displayed unmodified. Our English glosses, root analysis, vocabulary state and other learner annotations are separate data rather than edits to the AYT text.
+
+The project is intended for personal/noncommercial use.
+
+Source: https://ebible.org/details.php?id=indayt
+
+### AGS — New Testament
 
 **Alkitab Gratis untuk Semua (AGS)** / Indonesian Bible for All, copyright © 2021–2023 Jonathan Gallagher. Distributed by eBible under **CC BY-SA 4.0**.
 
-The current eBible AGS distribution contains the New Testament (27 canonical NT books) plus front matter. The reader therefore derives its available-book list from the generated corpus manifest instead of assuming all 66 canonical books are present. This also keeps the UI ready for a future Old Testament source.
+The current eBible AGS distribution contains the 27 canonical New Testament books plus front matter; the merged reader uses its 27 NT books.
 
 Source: https://ebible.org/find/show.php?id=indags
 
-AGS text is not relicensed under the app's MIT code license.
+AGS and AYT Scripture text are not relicensed under the app's MIT code license.
 
 ### PBWL
 
@@ -81,25 +109,31 @@ Primary lexical reference:
 
 > MsFixer, PBWL (2) Root v1.0b — CC BY-NC-SA 4.0
 
-The linked source sheet identifies version 1.0b (May 8, 2025) as containing 8,462 root words. The build indexes the listed `Word_Token_L1/L2/L3` surface forms while retaining their root-family metadata; it does not assume every abstract root is independently usable as a word.
+The build indexes the listed `Word_Token_L1/L2/L3` surface forms while retaining their root-family metadata.
 
 Source: https://pulaubahasa.wordpress.com/vocab-builders/pbwl/
 
-Because PBWL is **BY-NC-SA**, PBWL-derived runtime data remains separately attributed and subject to those terms. The application source code is MIT; bundled third-party data is not relicensed as MIT.
+PBWL-derived runtime data remains separately attributed and subject to its license.
+
+### Berean Standard Bible
+
+The public-domain **Berean Standard Bible (BSB)** is downloaded at build time as an English contextual reference. The reader does not display BSB as a parallel Bible translation.
+
+Source: https://ebible.org/details.php?id=engbsb
+
+## Contextual inline glosses
+
+Interlinear mode does not display the full PBWL sense inventory. During `prepare:data`, the build compares each Indonesian verse—AYT OT or AGS NT—with the corresponding BSB verse and selects one concise English sense for each token with lexical data.
+
+The generated token-level choice is stored separately from the PBWL/reader dictionary entry. Tapping the word therefore still exposes the full lexical range while the reading line remains compact.
 
 ## Development checks
 
 ```sh
 npm run prepare:data
+npm run verify:lexicon
+npm run verify:context-glosses
 npm run typecheck
 npm run build
+npm run verify:pwa
 ```
-
-
-## Contextual inline glosses
-
-Interlinear mode does not display the full PBWL sense inventory. During `prepare:data`, the build downloads the public-domain Berean Standard Bible (BSB) USFM and compares each AGS verse with the corresponding English verse. For each Indonesian token that already has lexical data, the generator selects one concise English sense that best overlaps the BSB verse. When no contextual match is available, it falls back to the first concise dictionary sense.
-
-The generated token-level choice is stored separately from the PBWL/reader dictionary entry. Tapping a word therefore still exposes the full lexical range, while the reading line stays compact.
-
-BSB source: https://ebible.org/details.php?id=engbsb (Public Domain).
